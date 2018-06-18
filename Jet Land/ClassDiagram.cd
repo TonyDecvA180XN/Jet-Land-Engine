@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManager">
+    <Position X="8" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="~GameManager" Hidden="true" />
+      <Method Name="GameManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAQQAAAAAAEAAAAAAAAAAAAAEAABQAAA=</HashCode>
+      <FileName>GameManager.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="windowsManager_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WindowsManager">
+    <Position X="1" Y="1.75" Width="2" />
+    <Members>
+      <Method Name="~WindowsManager" Hidden="true" />
+      <Method Name="WindowsManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAYQACAAAIAAAAAAAABwAAAAEgAAAAAAAAAAAAAAQIA=</HashCode>
+      <FileName>WindowsManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9.75" />
+</ClassDiagram>

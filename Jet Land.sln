@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Jet Land", "Jet Land.vcxproj", "{7380D3D9-5B91-4B11-9BD2-56BF3F0ECAD4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Jet Land", "Jet Land\Jet Land.vcxproj", "{7380D3D9-5B91-4B11-9BD2-56BF3F0ECAD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -72,7 +72,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(MSBuildProjectName)\$(Platform)\$(Configuration)\</IntDir>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>NativeMinimumRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -93,7 +93,7 @@
       <EnablePREfast>true</EnablePREfast>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy "$(TargetDir)$(TargetFileName)" "Runtime\"</Command>
+      <Command>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)Runtime\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,13 +125,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Jet Land\main.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="WindowsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Jet Land\Jet Land.rc" />
+    <ResourceCompile Include="Jet Land.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Jet Land\resource.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="WindowsManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
