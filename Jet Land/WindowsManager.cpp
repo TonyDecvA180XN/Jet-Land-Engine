@@ -6,7 +6,7 @@ WindowsManager::WindowsManager()
 {
     hInstance_ = NULL;
     windowHandle_ = NULL;
-    windowsMessage_ = MSG{0};
+    windowsMessage_ = MSG{NULL};
     enableFullscreen_ = FALSE;
     windowWidth_ = 0;
     windowHeight_ = 0;

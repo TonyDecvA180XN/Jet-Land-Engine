@@ -125,7 +125,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConfigManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="INIReader\ini.c" />
+    <ClCompile Include="INIReader\INIReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
   </ItemGroup>
@@ -133,7 +136,12 @@
     <ResourceCompile Include="Jet Land.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigManager.h" />
+    <ClInclude Include="Configuration.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Includer.h" />
+    <ClInclude Include="INIReader\ini.h" />
+    <ClInclude Include="INIReader\INIReader.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="WindowsManager.h" />
   </ItemGroup>
