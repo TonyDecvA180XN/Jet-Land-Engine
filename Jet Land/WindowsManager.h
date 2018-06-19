@@ -8,7 +8,7 @@ public:
     WindowsManager();
     ~WindowsManager();
 
-    VOID CreateGameWindow(HINSTANCE h_instance, UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL use_force_resolution);
+    VOID CreateGameWindow(HINSTANCE h_instance, UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL use_force_resolution, BOOL enable_borderless_window);
     VOID DestroyGameWindow();
 
     BOOL Update();

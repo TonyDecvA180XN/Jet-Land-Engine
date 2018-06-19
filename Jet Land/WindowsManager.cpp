@@ -6,7 +6,7 @@ WindowsManager::WindowsManager()
 {
     hInstance_ = NULL;
     windowHandle_ = NULL;
-    windowsMessage_ = MSG{NULL};
+    windowsMessage_ = MSG{ NULL };
     enableFullscreen_ = FALSE;
     windowWidth_ = 0;
     windowHeight_ = 0;
@@ -16,7 +16,7 @@ WindowsManager::WindowsManager()
 WindowsManager::~WindowsManager()
 = default;
 
-VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL use_force_resolution)
+VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL use_force_resolution, BOOL enable_borderless_window)
 {
     WNDCLASSEX windowClass;
     windowClass.cbSize = sizeof windowClass;
@@ -47,6 +47,15 @@ VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, U
         windowWidth_ = displayWidth;
         windowHeight_ = displayHeight;
     }
+    auto BORDERLESS = WS_POPUP;
+    if (!enableFullscreen_)
+    {
+        if (!enable_borderless_window)
+        {
+            BORDERLESS = 0;
+        }
+    }
+
     UINT windowPosX = 0;
     UINT windowPosY = 0;
 
@@ -72,7 +81,7 @@ VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, U
         WS_EX_APPWINDOW,
         L"Jet Land Window Class",
         L"Jet Land",
-        WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
+        WS_CLIPSIBLINGS | WS_CLIPCHILDREN | BORDERLESS,
         windowPosX,
         windowPosY,
         windowWidth_,

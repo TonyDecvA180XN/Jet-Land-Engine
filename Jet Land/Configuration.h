@@ -10,6 +10,7 @@ struct Configuration
         UINT windowHeight;
         BOOL enableFullscreen;
         BOOL useForceResolution;
+        BOOL enableBorderlessWindow;
         BOOL enableVSync;
     } Screen;
 };
