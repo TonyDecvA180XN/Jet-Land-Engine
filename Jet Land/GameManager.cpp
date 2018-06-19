@@ -16,9 +16,11 @@ GameManager::~GameManager()
 
 BOOL GameManager::Initialize(HINSTANCE h_instance)
 {
-    config_ = new Configuration;
+    BOOL result;
 
-    configManager_->LoadConfig(LPSTR("config.ini"));
+    config_ = new Configuration;
+    result = configManager_->LoadConfig(LPSTR("config.ini"));
+    if (!result) { return FALSE; }
     configManager_->ApplyConfig(config_);
 
     windowsManager_->CreateGameWindow(
@@ -60,7 +62,7 @@ VOID GameManager::Execute()
         BOOL result;
 
         result = windowsManager_->Update();
-        if (!result) {isExit_ = TRUE;}
+        if (!result) { isExit_ = TRUE; }
         Sleep(5);
     }
 }

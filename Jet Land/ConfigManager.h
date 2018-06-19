@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Includer.h"
+#include "IncluderW.h"
 
+#include "CrashManager.h"
 #include "INIReader/INIReader.h"
 #include "Configuration.h"
 

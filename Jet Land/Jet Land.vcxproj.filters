@@ -18,6 +18,9 @@
     <Filter Include="Source Files\Parsers\INIReader">
       <UniqueIdentifier>{c486b23a-a6c7-4715-92b7-d89ab53fe409}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Includers">
+      <UniqueIdentifier>{f6789b40-0082-4ce6-adac-b1608492af2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +41,9 @@
     <ClCompile Include="ConfigManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="CrashManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -54,9 +60,6 @@
     <ClInclude Include="WindowsManager.h">
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Includer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="INIReader\INIReader.h">
       <Filter>Source Files\Parsers\INIReader</Filter>
     </ClInclude>
@@ -67,7 +70,19 @@
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="Configuration.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="CrashManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="IncluderDX.h">
+      <Filter>Source Files\Includers</Filter>
+    </ClInclude>
+    <ClInclude Include="IncluderSTD.h">
+      <Filter>Source Files\Includers</Filter>
+    </ClInclude>
+    <ClInclude Include="IncluderW.h">
+      <Filter>Source Files\Includers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
