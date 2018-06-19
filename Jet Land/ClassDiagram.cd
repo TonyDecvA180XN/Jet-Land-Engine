@@ -6,14 +6,36 @@
       <Method Name="~GameManager" Hidden="true" />
       <Method Name="GameManager" Hidden="true" />
     </Members>
+    <AssociationLine Name="configManager_" Type="ConfigManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.875" Y="2.563" />
+        <Point X="4.875" Y="5.459" />
+        <Point X="6.5" Y="5.459" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="windowsManager_" Type="WindowsManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.062" Y="2.563" />
+        <Point X="4.062" Y="3.689" />
+        <Point X="2.5" Y="3.689" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="inputManager_" Type="InputManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.438" Y="2.563" />
+        <Point X="4.438" Y="7.134" />
+        <Point X="2.5" Y="7.134" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AQAAgAAABAAAAQQAAAAAAEAAAAAAAAAAAAAEAABQAAA=</HashCode>
+      <HashCode>AQAAgAAABAAQAQQAAAAAAEAAAAAAAAAAAAAEAABQAAA=</HashCode>
       <FileName>GameManager.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="windowsManager_" />
       <Field Name="configManager_" />
+      <Field Name="windowsManager_" />
       <Field Name="config_" />
+      <Field Name="inputManager_" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WindowsManager">
@@ -28,7 +50,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConfigManager">
-    <Position X="5.75" Y="3.5" Width="1.5" />
+    <Position X="6.5" Y="4.25" Width="1.5" />
     <Members>
       <Method Name="~ConfigManager" Hidden="true" />
     </Members>
@@ -41,7 +63,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="INIReader">
-    <Position X="9" Y="3.5" Width="1.5" />
+    <Position X="9.25" Y="4.5" Width="1.5" />
     <Members>
       <Method Name="INIReader" Hidden="true" />
       <Method Name="MakeKey" Hidden="true" />
@@ -59,8 +81,22 @@
       <FileName>CrashManager.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="InputManager">
+    <Position X="0.5" Y="6" Width="2" />
+    <Members>
+      <Method Name="~InputManager" Hidden="true" />
+      <Method Name="InputManager" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIQAAAAAAAAAAAQEABQAAACAEAAAAAKAAAAIA=</HashCode>
+      <FileName>InputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Configuration">
-    <Position X="4" Y="5.75" Width="1.5" />
+    <Position X="6" Y="1.75" Width="1.5" />
     <NestedTypes>
       <Struct Name="Configuration::ScreenSettings" Collapsed="true">
         <TypeIdentifier>
@@ -74,28 +110,28 @@
     </TypeIdentifier>
   </Struct>
   <Struct Name="__unnamed_struct_015d_1" Collapsed="true">
-    <Position X="0.5" Y="9.5" Width="2.25" />
+    <Position X="0.5" Y="12.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>INIReader\ini.c</FileName>
     </TypeIdentifier>
   </Struct>
   <Typedef Name="ini_parse_string_ctx" Collapsed="true">
-    <Position X="0.5" Y="8.5" Width="3.5" />
+    <Position X="0.5" Y="11.25" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INIReader\ini.c</FileName>
     </TypeIdentifier>
   </Typedef>
   <Typedef Name="ini_handler" Collapsed="true">
-    <Position X="0.5" Y="10.5" Width="7" />
+    <Position X="0.5" Y="13.25" Width="7" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INIReader\ini.h</FileName>
     </TypeIdentifier>
   </Typedef>
   <Typedef Name="ini_reader" Collapsed="true">
-    <Position X="0.5" Y="11.25" Width="4" />
+    <Position X="0.5" Y="14" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>INIReader\ini.h</FileName>

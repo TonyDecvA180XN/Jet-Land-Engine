@@ -1,7 +1,8 @@
 #pragma once
 
-#include "WindowsManager.h"
 #include "ConfigManager.h"
+#include "WindowsManager.h"
+#include "InputManager.h"
 
 class GameManager
 {
@@ -14,8 +15,9 @@ public:
 
     VOID Execute();
 private:
-    WindowsManager * windowsManager_;
     ConfigManager * configManager_;
+    WindowsManager * windowsManager_;
+    InputManager * inputManager_;
     Configuration * config_;
     BOOL isExit_;
 };

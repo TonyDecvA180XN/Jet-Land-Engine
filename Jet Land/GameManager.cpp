@@ -4,8 +4,9 @@
 
 GameManager::GameManager()
 {
-    windowsManager_ = new WindowsManager;
     configManager_ = new ConfigManager;
+    windowsManager_ = new WindowsManager;
+    inputManager_ = new InputManager;
     config_ = NULL;
     isExit_ = FALSE;
 }
@@ -31,22 +32,31 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
         config_->Screen.useForceResolution
     );
 
+    result = inputManager_->InitializeDevices(h_instance, windowsManager_->GetWindowHandle());
+    if (!result) { return FALSE; }
+
     return TRUE;
 }
 
 VOID GameManager::Terminate()
 {
+    if (configManager_)
+    {
+        configManager_->DeleteConfig();
+        delete configManager_;
+        configManager_ = NULL;
+    }
     if (windowsManager_)
     {
         windowsManager_->DestroyGameWindow();
         delete windowsManager_;
         windowsManager_ = NULL;
     }
-    if (configManager_)
+    if (inputManager_)
     {
-        configManager_->DeleteConfig();
-        delete configManager_;
-        configManager_ = NULL;
+        inputManager_->TerminateDevices();
+        delete inputManager_;
+        inputManager_ = NULL;
     }
     if (config_)
     {
@@ -63,6 +73,9 @@ VOID GameManager::Execute()
 
         result = windowsManager_->Update();
         if (!result) { isExit_ = TRUE; }
+        result = inputManager_->Update();
+        if (!result) { isExit_ = TRUE; }
+        if (inputManager_->IsKeyboardKeyPressed(DIK_ESCAPE)) { isExit_ = TRUE; }
         Sleep(5);
     }
 }

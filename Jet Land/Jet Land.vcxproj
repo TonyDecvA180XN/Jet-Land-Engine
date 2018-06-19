@@ -95,6 +95,9 @@
     <PostBuildEvent>
       <Command>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)Runtime\"</Command>
     </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>dinput8.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -130,6 +133,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="INIReader\ini.c" />
     <ClCompile Include="INIReader\INIReader.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
   </ItemGroup>
@@ -146,6 +150,7 @@
     <ClInclude Include="IncluderW.h" />
     <ClInclude Include="INIReader\ini.h" />
     <ClInclude Include="INIReader\INIReader.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="WindowsManager.h" />
   </ItemGroup>

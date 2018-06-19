@@ -44,6 +44,9 @@
     <ClCompile Include="CrashManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -83,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="IncluderW.h">
       <Filter>Source Files\Includers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
