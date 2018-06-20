@@ -3,6 +3,7 @@
 #include "ConfigManager.h"
 #include "WindowsManager.h"
 #include "InputManager.h"
+#include "GraphicsManager.h"
 
 class GameManager
 {
@@ -18,6 +19,7 @@ private:
     ConfigManager * configManager_;
     WindowsManager * windowsManager_;
     InputManager * inputManager_;
+    GraphicsManager * graphicsManager_;
     Configuration * config_;
     BOOL isExit_;
 };

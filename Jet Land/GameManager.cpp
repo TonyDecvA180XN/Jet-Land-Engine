@@ -7,6 +7,7 @@ GameManager::GameManager()
     configManager_ = new ConfigManager;
     windowsManager_ = new WindowsManager;
     inputManager_ = new InputManager;
+    graphicsManager_ = new GraphicsManager;
     config_ = NULL;
     isExit_ = FALSE;
 }
@@ -36,6 +37,9 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
     result = inputManager_->InitializeDevices(h_instance, windowsManager_->GetWindowHandle());
     if (!result) { return FALSE; }
 
+    result = graphicsManager_->InitializeGraphicsSystem();
+    if (!result) { return FALSE; }
+
     return TRUE;
 }
 
@@ -59,6 +63,12 @@ VOID GameManager::Terminate()
         delete inputManager_;
         inputManager_ = NULL;
     }
+    if (graphicsManager_)
+    {
+        graphicsManager_->TerminateGraphicsSystem();
+        delete graphicsManager_;
+        graphicsManager_ = NULL;
+    }
     if (config_)
     {
         delete config_;
@@ -77,6 +87,8 @@ VOID GameManager::Execute()
         result = inputManager_->Update();
         if (!result) { isExit_ = TRUE; }
         if (inputManager_->IsKeyboardKeyPressed(DIK_ESCAPE)) { isExit_ = TRUE; }
+        result = graphicsManager_->Update();
+        if (!result) { isExit_ = TRUE; }
         Sleep(5);
     }
 }

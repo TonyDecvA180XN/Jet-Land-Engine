@@ -131,6 +131,7 @@
     <ClCompile Include="ConfigManager.cpp" />
     <ClCompile Include="CrashManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="INIReader\ini.c" />
     <ClCompile Include="INIReader\INIReader.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="CrashManager.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="IncluderDX.h" />
     <ClInclude Include="IncluderSTD.h" />
     <ClInclude Include="IncluderW.h" />
