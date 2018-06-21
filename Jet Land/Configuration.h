@@ -12,6 +12,7 @@ struct Configuration
         BOOL useForceResolution;
         BOOL enableBorderlessWindow;
         BOOL enableVSync;
+        UINT multiSampleAACount;
     } Screen;
 };
 

@@ -96,7 +96,7 @@
       <Command>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)Runtime\"</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>dinput8.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dinput8.lib;dxguid.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,6 +136,7 @@
     <ClCompile Include="INIReader\INIReader.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="INIReader\ini.h" />
     <ClInclude Include="INIReader\INIReader.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="WindowsManager.h" />
   </ItemGroup>

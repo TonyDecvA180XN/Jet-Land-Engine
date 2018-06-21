@@ -37,7 +37,13 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
     result = inputManager_->InitializeDevices(h_instance, windowsManager_->GetWindowHandle());
     if (!result) { return FALSE; }
 
-    result = graphicsManager_->InitializeGraphicsSystem();
+    result = graphicsManager_->InitializeGraphicsSystem(
+        config_->Screen.windowWidth,
+        config_->Screen.windowHeight,
+        config_->Screen.enableFullscreen,
+        config_->Screen.enableVSync,
+        config_->Screen.multiSampleAACount,
+        windowsManager_->GetWindowHandle());
     if (!result) { return FALSE; }
 
     return TRUE;

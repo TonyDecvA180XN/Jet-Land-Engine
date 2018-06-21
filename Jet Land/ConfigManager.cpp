@@ -46,12 +46,13 @@ BOOL ConfigManager::LoadConfig(LPSTR filename)
 
 VOID ConfigManager::ApplyConfig(Configuration * config)
 {
-    config->Screen.windowWidth = parser->GetInt("Screen", "iWindowWidth", 800);
-    config->Screen.windowHeight = parser->GetInt("Screen", "iWindowHeight", 600);
+    config->Screen.windowWidth = parser->GetInt("Screen", "iWindowWidth", 0);
+    config->Screen.windowHeight = parser->GetInt("Screen", "iWindowHeight", 0);
     config->Screen.useForceResolution = parser->GetBool("Screen", "bUseForceResolution", false);
     config->Screen.enableBorderlessWindow = parser->GetBool("Screen", "bEnableBorderlessWindow", true);
     config->Screen.enableFullscreen = parser->GetBool("Screen", "bEnableFullscreen", false);
     config->Screen.enableVSync = parser->GetBool("Screen", "bEnableVSync", true);
+    config->Screen.multiSampleAACount = parser->GetInt("Screen", "iMSAAcount", 1);
 
 }
 
