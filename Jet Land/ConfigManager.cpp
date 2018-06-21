@@ -15,12 +15,12 @@ ConfigManager::~ConfigManager()
 BOOL ConfigManager::LoadConfig(LPSTR filename)
 {
     parser = new INIReader(filename);
+    if (!parser) { return FALSE; }
     if (parser->ParseError()) 
     {
         std::wstring error;
-        LPTSTR wfilename = new WCHAR[200];
-        auto a = new size_t(0);
-        mbstowcs_s(a, wfilename, strlen(filename) + 1, LPCSTR(filename), 200);
+        WCHAR wfilename[200];
+        mbstowcs_s(NULL, wfilename, strlen(filename) + 1, LPCSTR(filename), 200);
         if (parser->ParseError() < 0)
         {
             error += L"Error parsing configuration file.\n";

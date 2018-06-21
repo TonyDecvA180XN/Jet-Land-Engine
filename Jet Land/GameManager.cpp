@@ -4,10 +4,10 @@
 
 GameManager::GameManager()
 {
-    configManager_ = new ConfigManager;
-    windowsManager_ = new WindowsManager;
-    inputManager_ = new InputManager;
-    graphicsManager_ = new GraphicsManager;
+    configManager_ = NULL;
+    windowsManager_ = NULL;
+    inputManager_ = NULL;
+    graphicsManager_ = NULL;
     config_ = NULL;
     isExit_ = FALSE;
 }
@@ -20,7 +20,16 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
 {
     BOOL result;
 
+    configManager_ = new ConfigManager;
+    if (!configManager_) { return FALSE; }
+    windowsManager_ = new WindowsManager;
+    if (!windowsManager_) { return FALSE; }
+    inputManager_ = new InputManager;
+    if (!inputManager_) { return FALSE; }
+    graphicsManager_ = new GraphicsManager;
+    if (!graphicsManager_) { return FALSE; }
     config_ = new Configuration;
+    if (!config_) { return FALSE; }
     result = configManager_->LoadConfig(LPSTR("config.ini"));
     if (!result) { return FALSE; }
     configManager_->ApplyConfig(config_);

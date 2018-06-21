@@ -21,21 +21,21 @@ BOOL InputManager::InitializeDevices(HINSTANCE h_instance, HWND h_window)
     result = DirectInput8Create(h_instance, DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)&dInputDevice_, NULL);
     if (FAILED(result)) { return FALSE; }
     result = dInputDevice_->CreateDevice(GUID_SysKeyboard, &keyboard_, NULL);
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = keyboard_->SetDataFormat(&c_dfDIKeyboard);
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = keyboard_->SetCooperativeLevel(h_window, DISCL_EXCLUSIVE | DISCL_FOREGROUND);
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = keyboard_->Acquire();
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = dInputDevice_->CreateDevice(GUID_SysMouse, &mouse_, NULL);
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = mouse_->SetDataFormat(&c_dfDIMouse);
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = mouse_->SetCooperativeLevel(h_window, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
     result = mouse_->Acquire();
-    if (FAILED(result)) { return false; }
+    if (FAILED(result)) { return FALSE; }
 
     return true;
 }
@@ -72,7 +72,7 @@ BOOL InputManager::Update()
         {
             keyboard_->Acquire();
         }
-        else { return false; }
+        else { return FALSE; }
     }
     result = mouse_->GetDeviceState(sizeof DIMOUSESTATE, &mouseState_);
     if (FAILED(result))
@@ -81,7 +81,7 @@ BOOL InputManager::Update()
         {
             mouse_->Acquire();
         }
-        else { return false; }
+        else { return FALSE; }
     }
 
     return TRUE;
@@ -95,5 +95,5 @@ VOID InputManager::GetMouseDelta(INT& x, INT& y)
 
 BOOL InputManager::IsKeyboardKeyPressed(BYTE key)
 {
-    return keyboardState_[key] && 0b10000000;
+    return keyboardState_[key] & 0b10000000;
 }
