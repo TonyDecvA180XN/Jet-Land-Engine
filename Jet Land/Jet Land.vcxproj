@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="ConfigManager.cpp" />
     <ClCompile Include="CrashManager.cpp" />
+    <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="INIReader\ini.c" />
@@ -137,6 +138,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +148,7 @@
     <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="CrashManager.h" />
+    <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="IncluderDX.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="WindowsManager.h" />
   </ItemGroup>
   <ItemGroup>

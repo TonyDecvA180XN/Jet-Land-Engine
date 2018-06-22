@@ -2,6 +2,8 @@
 
 #include "IncluderW.h"
 #include "RenderManager.h"
+#include "Timer.h"
+#include "FpsCounter.h"
 
 class GraphicsManager
 {
@@ -16,5 +18,7 @@ public:
 
 private:
     RenderManager * renderManager_;
+    Timer * timer;
+    FpsCounter * fps;
 };
 

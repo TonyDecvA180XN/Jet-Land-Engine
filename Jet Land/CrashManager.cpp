@@ -22,3 +22,11 @@ VOID CrashManager::CrashLog(LPCTSTR filename, std::wstring &log)
     output << log;
     output.close();
 }
+
+VOID CrashManager::CrashLog(LPCTSTR filename, LPCTSTR log)
+{
+    std::wofstream output;
+    output.open(filename, std::wofstream::app);
+    output << log;
+    output.close();
+}

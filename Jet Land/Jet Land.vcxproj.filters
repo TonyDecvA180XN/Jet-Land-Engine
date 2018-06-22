@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Includers">
       <UniqueIdentifier>{f6789b40-0082-4ce6-adac-b1608492af2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Perfomance">
+      <UniqueIdentifier>{ce9239c5-e1a8-4535-ae88-6e03d322ac4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="RenderManager.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\Perfomance</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsCounter.cpp">
+      <Filter>Source Files\Perfomance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +110,12 @@
     </ClInclude>
     <ClInclude Include="RenderManager.h">
       <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files\Perfomance</Filter>
+    </ClInclude>
+    <ClInclude Include="FpsCounter.h">
+      <Filter>Source Files\Perfomance</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

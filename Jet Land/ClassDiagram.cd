@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GameManager">
-    <Position X="8" Y="4" Width="1.5" />
+    <Position X="12" Y="4.25" Width="1.5" />
     <Members>
       <Method Name="~GameManager" Hidden="true" />
       <Method Name="GameManager" Hidden="true" />
     </Members>
-    <AssociationLine Name="graphicsManager_" Type="GraphicsManager">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.258" Y="0.11" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AQAAgAAABAAQAQQAAAAAAEAAAAAAACAAAAAEAABQAAA=</HashCode>
       <FileName>GameManager.h</FileName>
@@ -19,12 +14,12 @@
       <Field Name="configManager_" />
       <Field Name="windowsManager_" />
       <Field Name="inputManager_" />
-      <Field Name="config_" />
       <Field Name="graphicsManager_" />
+      <Field Name="config_" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WindowsManager">
-    <Position X="8.5" Y="7" Width="2" />
+    <Position X="13.75" Y="7.25" Width="2" />
     <Members>
       <Method Name="~WindowsManager" Hidden="true" />
       <Method Name="WindowsManager" Hidden="true" />
@@ -35,7 +30,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConfigManager">
-    <Position X="4.5" Y="6.25" Width="1.5" />
+    <Position X="8.5" Y="6.75" Width="1.5" />
     <Members>
       <Method Name="~ConfigManager" Hidden="true" />
     </Members>
@@ -48,7 +43,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="INIReader">
-    <Position X="4.75" Y="9.25" Width="1.5" />
+    <Position X="8.5" Y="9.5" Width="1.5" />
     <Members>
       <Method Name="INIReader" Hidden="true" />
       <Method Name="MakeKey" Hidden="true" />
@@ -60,14 +55,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CrashManager">
-    <Position X="10.5" Y="0.75" Width="2.25" />
+    <Position X="14.75" Y="1.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CrashManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputManager">
-    <Position X="7.5" Y="0.5" Width="2" />
+    <Position X="15" Y="3.5" Width="2" />
     <Members>
       <Method Name="~InputManager" Hidden="true" />
       <Method Name="InputManager" Hidden="true" />
@@ -81,21 +76,23 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GraphicsManager">
-    <Position X="1.5" Y="3.75" Width="2.25" />
+    <Position X="8" Y="4" Width="2.25" />
     <Members>
       <Method Name="~GraphicsManager" Hidden="true" />
       <Method Name="GraphicsManager" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AQQAAAAAAAKAAAAAAAAAAAAgAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AQQAAAAAAAKAAAAAAAAAAAAgAAAAAAAAABAABAAAAAA=</HashCode>
       <FileName>GraphicsManager.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="renderManager_" />
+      <Field Name="fps" />
+      <Field Name="timer" />
     </ShowAsAssociation>
   </Class>
   <Class Name="RenderManager">
-    <Position X="1.25" Y="6.25" Width="2.75" />
+    <Position X="1.25" Y="0.5" Width="2.75" />
     <Members>
       <Method Name="~RenderManager" Hidden="true" />
       <Field Name="depthStencilBuffer_" Hidden="true" />
@@ -108,8 +105,36 @@
       <FileName>RenderManager.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Timer">
+    <Position X="7.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="~Timer" Hidden="true" />
+      <Method Name="Timer" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAQAAAAEAAAAEgAAAAAACAAAAAICEAAEAEEAE=</HashCode>
+      <FileName>Timer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FpsCounter">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="~FpsCounter" Hidden="true" />
+      <Method Name="FpsCounter" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAUAAAAAAAAAAAQAAAAAAAAAAAIAAQgAAAABE=</HashCode>
+      <FileName>FpsCounter.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Configuration">
-    <Position X="10.75" Y="4" Width="1.5" />
+    <Position X="12" Y="2" Width="1.5" />
     <NestedTypes>
       <Struct Name="Configuration::ScreenSettings" Collapsed="true">
         <TypeIdentifier>
