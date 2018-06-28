@@ -67,7 +67,14 @@ BOOL RenderManager::Initialize(UINT window_width, UINT window_height, BOOL enabl
     if (result)
     {
         sample.Count = msaa_count;
-        sample.Quality--;
+        if (sample.Quality > 0)
+        { 
+            sample.Quality--;
+        } else
+        {
+            sample.Quality = 0;
+            sample.Count = 1;
+        }
     }
     else
     {

@@ -18,8 +18,8 @@ Mesh::~Mesh()
 
 BOOL Mesh::Create()
 {
-    vertexCount_ = 3;
-    indexCount_ = 3;
+    vertexCount_ = 8;
+    indexCount_ = 36;
 
     indexArray_ = new UINT[indexCount_];
     if (!indexArray_) { return FALSE; }
@@ -27,18 +27,77 @@ BOOL Mesh::Create()
     if (!vertexArray_) { return FALSE; }
     
 
-    vertexArray_[0].position = DirectX::XMFLOAT3(-1.0f, -1.0f, 0.0f);
-    vertexArray_[0].color = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+    vertexArray_[0].position = DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f);
+    vertexArray_[0].color = DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
 
-    vertexArray_[1].position = DirectX::XMFLOAT3(0.0f, 1.0f, 0.0f);
-    vertexArray_[1].color = DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+    vertexArray_[1].position = DirectX::XMFLOAT3(-1.0f, -1.0f, 1.0f);
+    vertexArray_[1].color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 
-    vertexArray_[2].position = DirectX::XMFLOAT3(1.0f, -1.0f, 0.0f);
-    vertexArray_[2].color = DirectX::XMFLOAT4(0.0f, 0.0, 1.0f, 1.0f);
+    vertexArray_[2].position = DirectX::XMFLOAT3(-1.0f, 1.0f, -1.0f);
+    vertexArray_[2].color = DirectX::XMFLOAT4(1.0f, 0.0, 0.0f, 1.0f);
 
-    indexArray_[0] = 2;
-    indexArray_[1] = 1;
-    indexArray_[2] = 0;
+    vertexArray_[3].position = DirectX::XMFLOAT3(-1.0f, 1.0f, 1.0f);
+    vertexArray_[3].color = DirectX::XMFLOAT4(0.0f, 1.0, 0.0f, 1.0f);
+
+    vertexArray_[4].position = DirectX::XMFLOAT3(1.0f, -1.0f, -1.0f);
+    vertexArray_[4].color = DirectX::XMFLOAT4(0.0f, 0.0, 1.0f, 1.0f);
+
+    vertexArray_[5].position = DirectX::XMFLOAT3(1.0f, -1.0f, 1.0f);
+    vertexArray_[5].color = DirectX::XMFLOAT4(1.0f, 0.0, 1.0f, 1.0f);
+
+    vertexArray_[6].position = DirectX::XMFLOAT3(1.0f, 1.0f, -1.0f);
+    vertexArray_[6].color = DirectX::XMFLOAT4(0.0f, 1.0, 1.0f, 1.0f);
+
+    vertexArray_[7].position = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
+    vertexArray_[7].color = DirectX::XMFLOAT4(1.0f, 1.0, 0.0f, 1.0f);
+
+    indexArray_[0] = 7;
+    indexArray_[1] = 3;
+    indexArray_[2] = 1;
+
+    indexArray_[3] = 7;
+    indexArray_[4] = 1;
+    indexArray_[5] = 5;
+
+    indexArray_[6] = 2;
+    indexArray_[7] = 6;
+    indexArray_[8] = 0;
+
+    indexArray_[9] = 0;
+    indexArray_[10] = 6;
+    indexArray_[11] = 4;
+
+    indexArray_[12] = 2;
+    indexArray_[13] = 3;
+    indexArray_[14] = 7;
+
+    indexArray_[15] = 2;
+    indexArray_[16] = 7;
+    indexArray_[17] = 6;
+
+    indexArray_[18] = 4;
+    indexArray_[19] = 6;
+    indexArray_[20] = 7;
+
+    indexArray_[21] = 4;
+    indexArray_[22] = 7;
+    indexArray_[23] = 5;
+
+    indexArray_[24] = 1;
+    indexArray_[25] = 3;
+    indexArray_[26] = 2;
+
+    indexArray_[27] = 1;
+    indexArray_[28] = 2;
+    indexArray_[29] = 0;
+
+    indexArray_[30] = 5;
+    indexArray_[31] = 1;
+    indexArray_[32] = 0;
+
+    indexArray_[33] = 5;
+    indexArray_[34] = 0;
+    indexArray_[35] = 4;
 
     return TRUE;
 }

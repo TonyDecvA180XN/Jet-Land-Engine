@@ -81,16 +81,10 @@ VOID GraphicsManager::TerminateGraphicsSystem()
 BOOL GraphicsManager::Update()
 {
     // ---------------------------------------------------------------------------
-    static float color = 0.0f;
-    color += 0.004f;
-    if (color >= 1.0f)
-    {
-        color = 0.0f;
-    }
-    camera_->SetPosition(0.0f, 0.0f, 10.0f);
-    camera_->SetRotation(0.0f, 180.0f, 0.0f);
+    camera_->SetPosition(2.5f, 1.5f, 5.0f);
+    camera_->SetRotation(15.0f, 207.0f, 0.0f);
     // ---------------------------------------------------------------------------
-    renderManager_->StartScene(color, color, color, 1.0f);
+    renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
     camera_->Frame();
     object_->Render(renderManager_->GetDirectXDeviceContext(), DirectX::XMMatrixIdentity(), camera_->GetViewMatrix(), camera_->GetProjMatrix());
     // TODO : RenderActions
