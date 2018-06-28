@@ -16,6 +16,8 @@ public:
     VOID StartScene(float r, float g, float b, float a);
     VOID FinishSceneAndPresent();
 
+    ID3D11Device * GetDirectXDevice();
+    ID3D11DeviceContext * GetDirectXDeviceContext();
 private:
     BOOL DiscoverAdapterAndOutput();
 
@@ -47,8 +49,7 @@ private:
     BOOL CreateViewportAndBind(UINT width, UINT height);
     VOID DestroyViewport();
 
-    ID3D11Device * GetDirectXDevice();
-    ID3D11DeviceContext * GetDirectXDeviceContext();
+
 
 private:
     BOOL enableVSync_;

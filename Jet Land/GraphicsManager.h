@@ -4,6 +4,8 @@
 #include "RenderManager.h"
 #include "Timer.h"
 #include "FpsCounter.h"
+#include "Camera.h"
+#include "Object.h"
 
 class GraphicsManager
 {
@@ -18,7 +20,9 @@ public:
 
 private:
     RenderManager * renderManager_;
-    Timer * timer;
-    FpsCounter * fps;
+    Timer * timer_;
+    FpsCounter * fps_;
+    Camera * camera_;
+    Object * object_;
 };
 

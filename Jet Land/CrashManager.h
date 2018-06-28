@@ -2,6 +2,7 @@
 
 #include "IncluderW.h"
 #include "IncluderSTD.h"
+#include "IncluderDX.h"
 
 class CrashManager
 {
@@ -10,5 +11,6 @@ public:
     static VOID CrashLog(LPCTSTR filename, std::wstringstream &log);
     static VOID CrashLog(LPCTSTR filename, std::wstring &log);
     static VOID CrashLog(LPCTSTR filename, LPCTSTR log);
+    static VOID CrashLog(LPCTSTR filename, ID3D10Blob * log);
 };
 

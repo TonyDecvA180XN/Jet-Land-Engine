@@ -30,3 +30,11 @@ VOID CrashManager::CrashLog(LPCTSTR filename, LPCTSTR log)
     output << log;
     output.close();
 }
+
+VOID CrashManager::CrashLog(LPCTSTR filename, ID3D10Blob * log)
+{
+    std::ofstream output;
+    output.open(filename, std::ofstream::app);
+    output << LPSTR(log->GetBufferPointer());
+    output.close();
+}

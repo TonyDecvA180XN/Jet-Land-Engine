@@ -104,6 +104,5 @@ VOID GameManager::Execute()
         if (inputManager_->IsKeyboardKeyPressed(DIK_ESCAPE)) { isExit_ = TRUE; }
         result = graphicsManager_->Update();
         if (!result) { isExit_ = TRUE; }
-        Sleep(5);
     }
 }

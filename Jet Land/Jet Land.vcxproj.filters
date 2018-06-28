@@ -18,11 +18,14 @@
     <Filter Include="Source Files\Parsers\INIReader">
       <UniqueIdentifier>{c486b23a-a6c7-4715-92b7-d89ab53fe409}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Includers">
-      <UniqueIdentifier>{f6789b40-0082-4ce6-adac-b1608492af2e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Perfomance">
       <UniqueIdentifier>{ce9239c5-e1a8-4535-ae88-6e03d322ac4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{2ddf7a55-fd3b-49c4-8afe-149abf74394d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Declarators">
+      <UniqueIdentifier>{f6789b40-0082-4ce6-adac-b1608492af2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +65,18 @@
     <ClCompile Include="FpsCounter.cpp">
       <Filter>Source Files\Perfomance</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -94,13 +109,13 @@
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="IncluderDX.h">
-      <Filter>Source Files\Includers</Filter>
+      <Filter>Source Files\Declarators</Filter>
     </ClInclude>
     <ClInclude Include="IncluderSTD.h">
-      <Filter>Source Files\Includers</Filter>
+      <Filter>Source Files\Declarators</Filter>
     </ClInclude>
     <ClInclude Include="IncluderW.h">
-      <Filter>Source Files\Includers</Filter>
+      <Filter>Source Files\Declarators</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Source Files\Managers</Filter>
@@ -116,6 +131,21 @@
     </ClInclude>
     <ClInclude Include="FpsCounter.h">
       <Filter>Source Files\Perfomance</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexModeSelector.h">
+      <Filter>Source Files\Declarators</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Source Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
