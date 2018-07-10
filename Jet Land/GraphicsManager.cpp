@@ -8,7 +8,7 @@ GraphicsManager::GraphicsManager()
     timer_ = NULL;
     fps_ = NULL;
     camera_ = NULL;
-    object_ = NULL;
+    cube_ = NULL;
 }
 
 
@@ -27,8 +27,8 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!fps_) { return FALSE; }
     camera_ = new Camera;
     if (!camera_) { return FALSE; }
-    object_ = new Object;
-    if (!object_) { return FALSE; }
+    cube_ = new ObjectMesh;
+    if (!cube_) { return FALSE; }
 
     result = renderManager_->Initialize(window_width, window_height, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
@@ -36,9 +36,9 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
-    result = object_->CreateMesh(renderManager_->GetDirectXDevice());
+    result = cube_->CreateMesh(renderManager_->GetDirectXDevice());
     if (!result) { return FALSE; }
-    result = object_->CreateMaterial(renderManager_->GetDirectXDevice(), LPTSTR(L"color_shader.fx"), LPTSTR(L"color_shader.fx"));
+    result = cube_->CreateMaterial(renderManager_->GetDirectXDevice(), LPTSTR(L"color_shader.fx"));
     if (!result) { return FALSE; }
 
     return TRUE;
@@ -69,24 +69,23 @@ VOID GraphicsManager::TerminateGraphicsSystem()
         delete camera_;
         camera_ = NULL;
     }
-    if (object_)
+    if (cube_)
     {
-        object_->DestroyMesh();
-        object_->DestroyMaterial();
-        delete object_;
-        object_ = NULL;
+        cube_->Destroy();
+        delete cube_;
+        cube_ = NULL;
     }
 }
 
 BOOL GraphicsManager::Update()
 {
     // ---------------------------------------------------------------------------
-    camera_->SetPosition(2.5f, 1.5f, 5.0f);
-    camera_->SetRotation(15.0f, 207.0f, 0.0f);
+    camera_->SetPosition(DirectX::XMVectorSet(2.5f, 1.5f, 5.0f, 0.0f));
+    camera_->SetRotation(DirectX::XMVectorSet(15.0f, 207.0f, 0.0f, 0.0f));
     // ---------------------------------------------------------------------------
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
     camera_->Frame();
-    object_->Render(renderManager_->GetDirectXDeviceContext(), DirectX::XMMatrixIdentity(), camera_->GetViewMatrix(), camera_->GetProjMatrix());
+    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera_);
     // TODO : RenderActions
     renderManager_->FinishSceneAndPresent();
     timer_->Frame();

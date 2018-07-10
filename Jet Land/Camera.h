@@ -2,8 +2,9 @@
 
 #include "IncluderW.h"
 #include "IncluderDX.h"
+#include "Object3D.h"
 
-class Camera
+class Camera : public Object3D
 {
 public:
     Camera();
@@ -16,16 +17,9 @@ public:
     DirectX::XMMATRIX GetProjMatrix();
     DirectX::XMMATRIX GetOrthoMatrix();
 
-    DirectX::XMVECTOR GetPosition();
-    DirectX::XMVECTOR GetRotation();
-    VOID SetPosition(FLOAT x, FLOAT y, FLOAT z);
-    VOID SetRotation(FLOAT x, FLOAT y, FLOAT z);
-
 private:
     DirectX::XMMATRIX viewMatrix_;
     DirectX::XMMATRIX projMatrix_;
     DirectX::XMMATRIX orthoMatrix_;
-    DirectX::XMFLOAT3 position_;
-    DirectX::XMFLOAT3 rotation_; // in degrees
 };
 

@@ -21,11 +21,11 @@
     <Filter Include="Source Files\Perfomance">
       <UniqueIdentifier>{ce9239c5-e1a8-4535-ae88-6e03d322ac4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object">
-      <UniqueIdentifier>{2ddf7a55-fd3b-49c4-8afe-149abf74394d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Declarators">
       <UniqueIdentifier>{f6789b40-0082-4ce6-adac-b1608492af2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3D Object">
+      <UniqueIdentifier>{2ddf7a55-fd3b-49c4-8afe-149abf74394d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,17 +65,20 @@
     <ClCompile Include="FpsCounter.cpp">
       <Filter>Source Files\Perfomance</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Object</Filter>
+      <Filter>Source Files\3D Object</Filter>
     </ClCompile>
     <ClCompile Include="Material.cpp">
-      <Filter>Source Files\Object</Filter>
+      <Filter>Source Files\3D Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>Source Files\3D Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\3D Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectMesh.cpp">
+      <Filter>Source Files\3D Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,20 +135,23 @@
     <ClInclude Include="FpsCounter.h">
       <Filter>Source Files\Perfomance</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Source Files\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Source Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\3D Object</Filter>
     </ClInclude>
     <ClInclude Include="VertexModeSelector.h">
       <Filter>Source Files\Declarators</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
-      <Filter>Source Files\Object</Filter>
+      <Filter>Source Files\3D Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D.h">
+      <Filter>Source Files\3D Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\3D Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectMesh.h">
+      <Filter>Source Files\3D Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

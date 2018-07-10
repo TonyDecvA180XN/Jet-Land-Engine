@@ -5,7 +5,7 @@
 #include "Timer.h"
 #include "FpsCounter.h"
 #include "Camera.h"
-#include "Object.h"
+#include "ObjectMesh.h"
 
 class GraphicsManager
 {
@@ -23,6 +23,6 @@ private:
     Timer * timer_;
     FpsCounter * fps_;
     Camera * camera_;
-    Object * object_;
+    ObjectMesh * cube_;
 };
 

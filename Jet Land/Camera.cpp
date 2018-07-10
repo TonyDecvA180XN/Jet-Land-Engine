@@ -7,8 +7,6 @@ Camera::Camera()
     viewMatrix_ = DirectX::XMMatrixIdentity();
     projMatrix_ = DirectX::XMMatrixIdentity();
     orthoMatrix_ = DirectX::XMMatrixIdentity();
-    position_ = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
-    rotation_ = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
 }
 
 
@@ -53,28 +51,4 @@ DirectX::XMMATRIX Camera::GetProjMatrix()
 DirectX::XMMATRIX Camera::GetOrthoMatrix()
 {
     return orthoMatrix_;
-}
-
-DirectX::XMVECTOR Camera::GetPosition()
-{
-    return XMLoadFloat3(&position_);
-}
-
-DirectX::XMVECTOR Camera::GetRotation()
-{
-    return XMLoadFloat3((&rotation_));
-}
-
-VOID Camera::SetPosition(FLOAT x, FLOAT y, FLOAT z)
-{
-    position_.x = x;
-    position_.y = y;
-    position_.z = z;
-}
-
-VOID Camera::SetRotation(FLOAT x, FLOAT y, FLOAT z)
-{
-    rotation_.x = x;
-    rotation_.y = y;
-    rotation_.z = z;
 }
