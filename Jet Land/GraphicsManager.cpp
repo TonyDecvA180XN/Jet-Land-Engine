@@ -27,7 +27,7 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!fps_) { return FALSE; }
     camera_ = new Camera;
     if (!camera_) { return FALSE; }
-    cube_ = new ObjectMesh;
+    cube_ = new StaticMesh;
     if (!cube_) { return FALSE; }
 
     result = renderManager_->Initialize(window_width, window_height, enable_fullscreen, enable_vsync, msaa_count, h_window);
@@ -82,6 +82,11 @@ BOOL GraphicsManager::Update()
     // ---------------------------------------------------------------------------
     camera_->SetPosition(DirectX::XMVectorSet(2.5f, 1.5f, 5.0f, 0.0f));
     camera_->SetRotation(DirectX::XMVectorSet(15.0f, 207.0f, 0.0f, 0.0f));
+    static float zrot = 0;
+    zrot += 1;
+    if (zrot > 360.0f)
+        zrot -= 360.0f;
+    cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
     // ---------------------------------------------------------------------------
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
     camera_->Frame();

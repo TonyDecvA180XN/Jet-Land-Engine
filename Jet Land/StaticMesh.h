@@ -7,11 +7,11 @@
 #include "Material.h"
 #include "Camera.h"
 
-class ObjectMesh : Object3D
+class StaticMesh : public Object3D
 {
 public:
-    ObjectMesh();
-    ~ObjectMesh();
+    StaticMesh();
+    ~StaticMesh();
 
     BOOL CreateMesh(ID3D11Device * device);
     BOOL CreateMaterial(ID3D11Device * device, LPTSTR shader_filename);

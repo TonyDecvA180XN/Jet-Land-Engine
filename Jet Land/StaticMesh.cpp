@@ -1,19 +1,19 @@
-#include "ObjectMesh.h"
+#include "StaticMesh.h"
 
 
 
-ObjectMesh::ObjectMesh()
+StaticMesh::StaticMesh()
 {
     mesh_ = NULL;
     material_ = NULL;
 }
 
 
-ObjectMesh::~ObjectMesh()
+StaticMesh::~StaticMesh()
 {
 }
 
-BOOL ObjectMesh::CreateMesh(ID3D11Device * device)
+BOOL StaticMesh::CreateMesh(ID3D11Device * device)
 {
     mesh_ = new Mesh;
     if (!mesh_) { return FALSE; }
@@ -29,7 +29,7 @@ BOOL ObjectMesh::CreateMesh(ID3D11Device * device)
     return TRUE;
 }
 
-BOOL ObjectMesh::CreateMaterial(ID3D11Device * device, LPTSTR shader_filename)
+BOOL StaticMesh::CreateMaterial(ID3D11Device * device, LPTSTR shader_filename)
 {
     material_ = new Material;
     if (!material_) { return FALSE; }
@@ -44,7 +44,7 @@ BOOL ObjectMesh::CreateMaterial(ID3D11Device * device, LPTSTR shader_filename)
     return TRUE;
 }
 
-BOOL ObjectMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera)
+BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera)
 {
     mesh_->ApplyBuffers(device_context);
     BOOL result = material_->UpdateTransformation(device_context, this->GetWorldMatrix(), target_camera->GetViewMatrix(), target_camera->GetProjMatrix());
@@ -54,7 +54,7 @@ BOOL ObjectMesh::Render(ID3D11DeviceContext * device_context, Camera * target_ca
     return TRUE;
 }
 
-VOID ObjectMesh::Destroy()
+VOID StaticMesh::Destroy()
 {
     if (mesh_)
     {
