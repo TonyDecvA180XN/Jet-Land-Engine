@@ -7,6 +7,7 @@ GraphicsManager::GraphicsManager()
     renderManager_ = NULL;
     timer_ = NULL;
     fps_ = NULL;
+    player_ = NULL;
     camera_ = NULL;
     cube_ = NULL;
 }
@@ -27,12 +28,18 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!fps_) { return FALSE; }
     camera_ = new Camera;
     if (!camera_) { return FALSE; }
+    player_ = new PlayerActor;
+    if (!player_) { return FALSE; }
     cube_ = new StaticMesh;
     if (!cube_) { return FALSE; }
 
     result = renderManager_->Initialize(window_width, window_height, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
     camera_->Create(45.0f, window_width, window_height, 0.1f, 1000.0f);
+    player_->SetCamera(camera_);
+    player_->SetOffset(DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f), DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f));
+    player_->SetPosition(DirectX::XMVectorSet(0.0f, 0.0f, 5.0f, 0.0f));
+    player_->SetRotation(DirectX::XMVectorSet(0.0f, 180.0f, 0.0f, 0.0f));
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
@@ -69,6 +76,11 @@ VOID GraphicsManager::TerminateGraphicsSystem()
         delete camera_;
         camera_ = NULL;
     }
+    if (player_)
+    {
+        delete player_;
+        player_ = NULL;
+    }
     if (cube_)
     {
         cube_->Destroy();
@@ -80,17 +92,18 @@ VOID GraphicsManager::TerminateGraphicsSystem()
 BOOL GraphicsManager::Update()
 {
     // ---------------------------------------------------------------------------
-    camera_->SetPosition(DirectX::XMVectorSet(2.5f, 1.5f, 5.0f, 0.0f));
-    camera_->SetRotation(DirectX::XMVectorSet(15.0f, 207.0f, 0.0f, 0.0f));
-    static float zrot = 0;
-    zrot += 1;
-    if (zrot > 360.0f)
-        zrot -= 360.0f;
-    cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
+    //camera_->SetPosition(DirectX::XMVectorSet(2.5f, 1.5f, 5.0f, 0.0f));
+    //camera_->SetRotation(DirectX::XMVectorSet(15.0f, 207.0f, 0.0f, 0.0f));
+    static float zrot = 50;
+    zrot -= 1.0f;
+    if (zrot < -50.0f)
+        zrot += 100.0f;
+    //cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
+    player_->MoveTo(DirectX::XMVectorSet(0.0f, 0.0f, zrot, 0.0f));
     // ---------------------------------------------------------------------------
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
-    camera_->Frame();
-    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera_);
+    player_->Update();
+    cube_->Render(renderManager_->GetDirectXDeviceContext(), player_->GetCamera());
     // TODO : RenderActions
     renderManager_->FinishSceneAndPresent();
     timer_->Frame();

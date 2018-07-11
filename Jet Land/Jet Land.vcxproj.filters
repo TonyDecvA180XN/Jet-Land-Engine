@@ -80,6 +80,12 @@
     <ClCompile Include="StaticMesh.cpp">
       <Filter>Source Files\3D Object</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\3D Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerActor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -153,6 +159,10 @@
     <ClInclude Include="StaticMesh.h">
       <Filter>Source Files\3D Object</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Source Files\3D Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerActor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
