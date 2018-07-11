@@ -8,6 +8,7 @@ GameManager::GameManager()
     windowsManager_ = NULL;
     inputManager_ = NULL;
     graphicsManager_ = NULL;
+    gameplayManager_ = NULL;
     config_ = NULL;
     isExit_ = FALSE;
 }
@@ -28,6 +29,8 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
     if (!inputManager_) { return FALSE; }
     graphicsManager_ = new GraphicsManager;
     if (!graphicsManager_) { return FALSE; }
+    gameplayManager_ = new GameplayManager;
+    if (!gameplayManager_) { return FALSE; }
     config_ = new Configuration;
     if (!config_) { return FALSE; }
     result = configManager_->LoadConfig(LPSTR("config.ini"));
@@ -53,6 +56,9 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
         config_->Screen.enableVSync,
         config_->Screen.multiSampleAACount,
         windowsManager_->GetWindowHandle());
+    if (!result) { return FALSE; }
+
+    result = gameplayManager_->Initialize(graphicsManager_, inputManager_);
     if (!result) { return FALSE; }
 
     return TRUE;
@@ -84,6 +90,12 @@ VOID GameManager::Terminate()
         delete graphicsManager_;
         graphicsManager_ = NULL;
     }
+    if (gameplayManager_)
+    {
+        gameplayManager_->Termianate();
+        delete gameplayManager_;
+        gameplayManager_ = NULL;
+    }
     if (config_)
     {
         delete config_;
@@ -100,6 +112,8 @@ VOID GameManager::Execute()
         result = windowsManager_->Update();
         if (!result) { isExit_ = TRUE; }
         result = inputManager_->Update();
+        if (!result) { isExit_ = TRUE; }
+        result = gameplayManager_->Update();
         if (!result) { isExit_ = TRUE; }
         if (inputManager_->IsKeyboardKeyPressed(DIK_ESCAPE)) { isExit_ = TRUE; }
         result = graphicsManager_->Update();

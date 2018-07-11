@@ -38,8 +38,8 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     camera_->Create(45.0f, window_width, window_height, 0.1f, 1000.0f);
     player_->SetCamera(camera_);
     player_->SetOffset(DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f), DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f));
-    player_->SetPosition(DirectX::XMVectorSet(0.0f, 0.0f, 5.0f, 0.0f));
-    player_->SetRotation(DirectX::XMVectorSet(0.0f, 180.0f, 0.0f, 0.0f));
+    player_->SetPosition(DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f));
+    player_->SetRotation(DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f));
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
@@ -94,12 +94,11 @@ BOOL GraphicsManager::Update()
     // ---------------------------------------------------------------------------
     //camera_->SetPosition(DirectX::XMVectorSet(2.5f, 1.5f, 5.0f, 0.0f));
     //camera_->SetRotation(DirectX::XMVectorSet(15.0f, 207.0f, 0.0f, 0.0f));
-    static float zrot = 50;
-    zrot -= 1.0f;
-    if (zrot < -50.0f)
-        zrot += 100.0f;
+    //static float zrot = 50;
+    //zrot -= 1.0f;
+    //if (zrot < -50.0f)
+    //    zrot += 100.0f;
     //cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
-    player_->MoveTo(DirectX::XMVectorSet(0.0f, 0.0f, zrot, 0.0f));
     // ---------------------------------------------------------------------------
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
     player_->Update();
@@ -109,4 +108,9 @@ BOOL GraphicsManager::Update()
     timer_->Frame();
     fps_->Frame();
     return TRUE;
+}
+
+PlayerActor * GraphicsManager::GetPlayerActor()
+{
+    return player_;
 }

@@ -4,6 +4,7 @@
 #include "WindowsManager.h"
 #include "InputManager.h"
 #include "GraphicsManager.h"
+#include "GameplayManager.h"
 
 class GameManager
 {
@@ -20,6 +21,7 @@ private:
     WindowsManager * windowsManager_;
     InputManager * inputManager_;
     GraphicsManager * graphicsManager_;
+    GameplayManager * gameplayManager_;
     Configuration * config_;
     BOOL isExit_;
 };

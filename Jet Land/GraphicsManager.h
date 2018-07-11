@@ -19,6 +19,8 @@ public:
 
     BOOL Update();
 
+    PlayerActor * GetPlayerActor();
+
 private:
     RenderManager * renderManager_;
     Timer * timer_;
