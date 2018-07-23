@@ -9,97 +9,118 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Managers">
-      <UniqueIdentifier>{dd25d3d2-029c-4a64-98c7-49d911850405}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Parsers">
       <UniqueIdentifier>{aefd88a3-6fed-47f2-bc69-1e10ad3993ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Parsers\INIReader">
       <UniqueIdentifier>{c486b23a-a6c7-4715-92b7-d89ab53fe409}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Perfomance">
-      <UniqueIdentifier>{ce9239c5-e1a8-4535-ae88-6e03d322ac4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Declarators">
       <UniqueIdentifier>{f6789b40-0082-4ce6-adac-b1608492af2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\3D Object">
-      <UniqueIdentifier>{2ddf7a55-fd3b-49c4-8afe-149abf74394d}</UniqueIdentifier>
+    <Filter Include="Source Files\Subsystems">
+      <UniqueIdentifier>{7f66f5c1-40ed-4798-bca9-8d6449188a7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Input">
+      <UniqueIdentifier>{72092a9c-e2fc-4db0-bbe4-ff99eab768c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Graphics">
+      <UniqueIdentifier>{c8edf41b-fa43-4f15-919d-55384b0b89a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Audio">
+      <UniqueIdentifier>{73d8404a-bf89-4ba4-ac75-79806b83061c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Physics">
+      <UniqueIdentifier>{4574f17a-9dbb-422c-a864-e7d911cdec7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Gameplay">
+      <UniqueIdentifier>{e0a682c6-816a-417a-8f3f-533a4faca9a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Perfomance">
+      <UniqueIdentifier>{d3f94601-83ed-4bd8-87c7-0be69820fa80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Maintenance">
+      <UniqueIdentifier>{15f01119-d30e-4209-bb25-32a3227ea29b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Graphics\Elements">
+      <UniqueIdentifier>{7f67e831-eb04-4640-80ec-9c750cc3b85f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Subsystems\Gameplay\Actor">
+      <UniqueIdentifier>{9d8b266f-cbb0-452a-9f57-8d4d75c5f70f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="INIReader\INIReader.cpp">
       <Filter>Source Files\Parsers\INIReader</Filter>
     </ClCompile>
     <ClCompile Include="INIReader\ini.c">
       <Filter>Source Files\Parsers\INIReader</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="CrashManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Source Files\Perfomance</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Subsystems</Filter>
     </ClCompile>
     <ClCompile Include="FpsCounter.cpp">
-      <Filter>Source Files\Perfomance</Filter>
+      <Filter>Source Files\Subsystems\Perfomance</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\3D Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files\3D Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Object3D.cpp">
-      <Filter>Source Files\3D Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\3D Object</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticMesh.cpp">
-      <Filter>Source Files\3D Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\3D Object</Filter>
+    <ClCompile Include="GraphicsManager.cpp">
+      <Filter>Source Files\Subsystems\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="GameplayManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Subsystems\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandlerBaseState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandlerIgnoreState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Subsystems\Input</Filter>
     </ClCompile>
     <ClCompile Include="InputHandlerActorFreeCamState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandlerBaseState.cpp">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandlerIgnoreState.cpp">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\Subsystems\Perfomance</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXManager.cpp">
+      <Filter>Source Files\Subsystems\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClCompile>
+    <ClCompile Include="CrashManager.cpp">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMesh.cpp">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsManager.cpp">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\Subsystems\Gameplay\Actor</Filter>
     </ClCompile>
     <ClCompile Include="ActorFreeCam.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Subsystems\Gameplay\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,26 +132,11 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
     <ClInclude Include="INIReader\INIReader.h">
       <Filter>Source Files\Parsers\INIReader</Filter>
     </ClInclude>
     <ClInclude Include="INIReader\ini.h">
       <Filter>Source Files\Parsers\INIReader</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Configuration.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="CrashManager.h">
-      <Filter>Source Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="IncluderDX.h">
       <Filter>Source Files\Declarators</Filter>
@@ -141,48 +147,75 @@
     <ClInclude Include="IncluderW.h">
       <Filter>Source Files\Declarators</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Source Files\Perfomance</Filter>
-    </ClInclude>
-    <ClInclude Include="FpsCounter.h">
-      <Filter>Source Files\Perfomance</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Source Files\3D Object</Filter>
-    </ClInclude>
     <ClInclude Include="VertexModeSelector.h">
       <Filter>Source Files\Declarators</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Source Files\3D Object</Filter>
+    <ClInclude Include="FpsCounter.h">
+      <Filter>Source Files\Subsystems\Perfomance</Filter>
     </ClInclude>
-    <ClInclude Include="Object3D.h">
-      <Filter>Source Files\3D Object</Filter>
+    <ClInclude Include="GraphicsManager.h">
+      <Filter>Source Files\Subsystems\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayManager.h">
+      <Filter>Source Files\Subsystems\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandlerActorFreeCamState.h">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandlerBaseState.h">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandlerIgnoreState.h">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Source Files\Subsystems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files\Subsystems\Perfomance</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXManager.h">
+      <Filter>Source Files\Subsystems\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Source Files\3D Object</Filter>
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigManager.h">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClInclude>
+    <ClInclude Include="CrashManager.h">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D.h">
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
     </ClInclude>
     <ClInclude Include="StaticMesh.h">
-      <Filter>Source Files\3D Object</Filter>
+      <Filter>Source Files\Subsystems\Graphics\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsManager.h">
+      <Filter>Source Files\Subsystems\Maintenance</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Source Files\3D Object</Filter>
+      <Filter>Source Files\Subsystems\Gameplay\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="GameplayManager.h" />
-    <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="InputHandlerBaseState.h" />
-    <ClInclude Include="InputHandlerIgnoreState.h" />
-    <ClInclude Include="InputHandlerActorFreeCamState.h" />
-    <ClInclude Include="ActorFreeCam.h" />
+    <ClInclude Include="ActorFreeCam.h">
+      <Filter>Source Files\Subsystems\Gameplay\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

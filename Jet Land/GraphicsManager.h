@@ -22,7 +22,7 @@ public:
     ActorFreeCam * GetPlayerActor();
 
 private:
-    RenderManager * renderManager_;
+    DirectXManager * renderManager_;
     Timer * timer_;
     FpsCounter * fps_;
     ActorFreeCam * player_;

@@ -20,7 +20,7 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
 {
     BOOL result;
 
-    renderManager_ = new RenderManager;
+    renderManager_ = new DirectXManager;
     if (!renderManager_) { return FALSE; }
     timer_ = new Timer;
     if (!timer_) { return FALSE; }

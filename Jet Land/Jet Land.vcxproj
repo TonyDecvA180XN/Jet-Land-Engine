@@ -149,7 +149,7 @@
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="ActorFreeCam.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
-    <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="DirectXManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
   </ItemGroup>
@@ -181,7 +181,7 @@
     <ClInclude Include="Object3D.h" />
     <ClInclude Include="ActorFreeCam.h" />
     <ClInclude Include="StaticMesh.h" />
-    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="DirectXManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="VertexModeSelector.h" />

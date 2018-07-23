@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GameManager">
-    <Position X="12" Y="4.25" Width="1.5" />
+    <Position X="7.75" Y="8" Width="1.5" />
     <Members>
       <Method Name="~GameManager" Hidden="true" />
       <Method Name="GameManager" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AQAAgAAABAAQAQQAAAAAAEAAAAAAACAAAAAEAABQAAA=</HashCode>
+      <HashCode>AQAAgAAABAAYAQQAAAAAAEAAAAAAACAAAAAEAABQAAA=</HashCode>
       <FileName>GameManager.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -16,21 +16,22 @@
       <Field Name="inputManager_" />
       <Field Name="graphicsManager_" />
       <Field Name="config_" />
+      <Field Name="gameplayManager_" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WindowsManager">
-    <Position X="13.75" Y="7.25" Width="2" />
+    <Position X="4.5" Y="7.25" Width="2" />
     <Members>
       <Method Name="~WindowsManager" Hidden="true" />
       <Method Name="WindowsManager" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAYQACAAAIAAAAAAAABwAAAAEgAAAAAAAAAAAAAAQIA=</HashCode>
+      <HashCode>AAYQACAAAIAAAAAAAABwAAAAEgAAAAAAAAIAAAAAQIA=</HashCode>
       <FileName>WindowsManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConfigManager">
-    <Position X="8.5" Y="6.75" Width="1.5" />
+    <Position X="5.75" Y="12.75" Width="1.5" />
     <Members>
       <Method Name="~ConfigManager" Hidden="true" />
     </Members>
@@ -43,7 +44,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="INIReader">
-    <Position X="8.5" Y="9.5" Width="1.5" />
+    <Position X="2.75" Y="12.25" Width="1.5" />
     <Members>
       <Method Name="INIReader" Hidden="true" />
       <Method Name="MakeKey" Hidden="true" />
@@ -54,15 +55,15 @@
       <FileName>INIReader\INIReader.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CrashManager">
-    <Position X="14.75" Y="1.75" Width="2.25" />
+  <Class Name="CrashManager" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CrashManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputManager">
-    <Position X="15" Y="3.5" Width="2" />
+    <Position X="10.5" Y="8" Width="2" />
     <Members>
       <Method Name="~InputManager" Hidden="true" />
       <Method Name="InputManager" Hidden="true" />
@@ -76,23 +77,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GraphicsManager">
-    <Position X="8" Y="4" Width="2.25" />
+    <Position X="4.25" Y="3" Width="2.25" />
     <Members>
       <Method Name="~GraphicsManager" Hidden="true" />
       <Method Name="GraphicsManager" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AQQAAAAAAAKAAAAAAAAAAAAgAAAAAAAAABAABAAAAAA=</HashCode>
+      <HashCode>AQQAAAgAAAKAAAAAAAQAACAgAAAAAAQAAAAABAAAAgA=</HashCode>
       <FileName>GraphicsManager.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="renderManager_" />
-      <Field Name="fps" />
-      <Field Name="timer" />
     </ShowAsAssociation>
   </Class>
   <Class Name="RenderManager">
-    <Position X="1.25" Y="0.5" Width="2.75" />
+    <Position X="0.5" Y="0.5" Width="2.75" />
     <Members>
       <Method Name="~RenderManager" Hidden="true" />
       <Field Name="depthStencilBuffer_" Hidden="true" />
@@ -105,8 +104,8 @@
       <FileName>RenderManager.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Timer">
-    <Position X="7.75" Y="0.5" Width="1.75" />
+  <Class Name="Timer" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
     <Members>
       <Method Name="~Timer" Hidden="true" />
       <Method Name="Timer" Hidden="true" />
@@ -119,8 +118,8 @@
       <FileName>Timer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FpsCounter">
-    <Position X="5" Y="3.75" Width="1.5" />
+  <Class Name="FpsCounter" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
     <Members>
       <Method Name="~FpsCounter" Hidden="true" />
       <Method Name="FpsCounter" Hidden="true" />
@@ -133,8 +132,123 @@
       <FileName>FpsCounter.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Actor">
+    <Position X="8" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Camera">
+    <Position X="10.5" Y="17.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAAAAEQEAAAAAAACAggEBAAAAgAAAAAAA=</HashCode>
+      <FileName>Camera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Material" Collapsed="true">
+    <Position X="5.75" Y="15.75" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="Material::TransformMatrixBuffer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Material.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAABAAAAEgAAAAAAAAAAAAAJAAACkAAACEIAAAAA=</HashCode>
+      <FileName>Material.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mesh">
+    <Position X="2.75" Y="16.5" Width="1.75" />
+    <NestedTypes>
+      <Struct Name="Mesh::VERTEX" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Mesh.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAoCCBAAECAAAQAQAAAAAAABBAIEAAARABAAAAAAA=</HashCode>
+      <FileName>Mesh.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Object3D">
+    <Position X="8" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAEAAAECCAAAAAAACYYAAGEAAAAggAEQAFAACBAAA=</HashCode>
+      <FileName>Object3D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaticMesh">
+    <Position X="5.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAIACAAAAAAAABAAAAAABAABAFAAAA=</HashCode>
+      <FileName>StaticMesh.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="mesh_" />
+      <Field Name="material_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameplayManager">
+    <Position X="10.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAIAAAAQAAAAQABgEAAAAAAAAAIA=</HashCode>
+      <FileName>GameplayManager.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="inputHandler_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InputHandler">
+    <Position X="13.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAQAAAAAAAAAAAAAAAAAAIEAAAAAAABAAI=</HashCode>
+      <FileName>InputHandler.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="inputManager_" />
+      <Field Name="state_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InputHandlerActorFreeCamState">
+    <Position X="11.5" Y="13.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAQAIAAAAAAAABAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>InputHandlerActorFreeCamState.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="actor_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InputHandlerBaseState">
+    <Position X="13.25" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAEAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputHandlerBaseState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputHandlerIgnoreState">
+    <Position X="15" Y="13.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAEAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputHandlerIgnoreState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActorFreeCam">
+    <Position X="8" Y="20" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQADAAAAAAAAAAAAAYCIIAAQAAAIAAAAABAIgAAoAg=</HashCode>
+      <FileName>ActorFreeCam.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="camera_" />
+    </ShowAsAssociation>
+  </Class>
   <Struct Name="Configuration">
-    <Position X="12" Y="2" Width="1.5" />
+    <Position X="7.75" Y="6" Width="1.5" />
     <NestedTypes>
       <Struct Name="Configuration::ScreenSettings" Collapsed="true">
         <TypeIdentifier>
@@ -147,5 +261,33 @@
       <FileName>Configuration.h</FileName>
     </TypeIdentifier>
   </Struct>
+  <Struct Name="__unnamed_struct_0015_1" Collapsed="true">
+    <Position X="14.75" Y="17.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>INIReader\ini.c</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="ini_parse_string_ctx" Collapsed="true">
+    <Position X="13.75" Y="19.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INIReader\ini.c</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ini_handler" Collapsed="true">
+    <Position X="18.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INIReader\ini.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ini_reader" Collapsed="true">
+    <Position X="20" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INIReader\ini.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
   <Font Name="Segoe UI" Size="9.75" />
 </ClassDiagram>

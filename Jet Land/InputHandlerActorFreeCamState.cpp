@@ -16,7 +16,14 @@ VOID InputHandlerActorFreeCamState::AttachActor(ActorFreeCam * actor)
 
 VOID InputHandlerActorFreeCamState::HandleInput(InputManager * input)
 {
-    FLOAT velocity = 0.4f;
+    FLOAT velocity = 0.2f;
+    if (input->IsKeyboardKeyPressed(DIK_LSHIFT))
+    {
+        velocity *= 4;
+    } else if (input->IsKeyboardKeyPressed(DIK_LALT))
+    {
+        velocity /= 4;
+    }
     if (input->IsKeyboardKeyPressed(DIK_W))
     {
         actor_->Walk(velocity);

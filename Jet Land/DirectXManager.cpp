@@ -1,6 +1,6 @@
-#include "RenderManager.h"
+#include "DirectXManager.h"
 
-RenderManager::RenderManager()
+DirectXManager::DirectXManager()
 {
     enableVSync_ = FALSE;
     displayModesCount_ = 0;
@@ -17,12 +17,12 @@ RenderManager::RenderManager()
     viewport_ = NULL;
 }
 
-RenderManager::~RenderManager()
+DirectXManager::~DirectXManager()
 {
 
 }
 
-BOOL RenderManager::Initialize(UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL enable_vsync, UINT msaa_count, HWND h_window)
+BOOL DirectXManager::Initialize(UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL enable_vsync, UINT msaa_count, HWND h_window)
 {
     enableVSync_ = enable_vsync;
 
@@ -98,7 +98,7 @@ BOOL RenderManager::Initialize(UINT window_width, UINT window_height, BOOL enabl
 }
 
 
-VOID RenderManager::Terminate()
+VOID DirectXManager::Terminate()
 {
     DestroyDepthStencilBufferAndView();
     DestroyRenderTargetView();
@@ -107,14 +107,14 @@ VOID RenderManager::Terminate()
 }
 
 
-VOID RenderManager::StartScene(float r, float g, float b, float a)
+VOID DirectXManager::StartScene(float r, float g, float b, float a)
 {
     float color[4] = { r, g ,b, a };
     directXDeviceContext_->ClearRenderTargetView(renderTargetView_, color);
     directXDeviceContext_->ClearDepthStencilView(depthStencilView_, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
-VOID RenderManager::FinishSceneAndPresent()
+VOID DirectXManager::FinishSceneAndPresent()
 {
     if (enableVSync_)
     {
@@ -126,7 +126,7 @@ VOID RenderManager::FinishSceneAndPresent()
     }
 }
 
-BOOL RenderManager::DiscoverAdapterAndOutput()
+BOOL DirectXManager::DiscoverAdapterAndOutput()
 {
     HRESULT result;
 
@@ -172,7 +172,7 @@ BOOL RenderManager::DiscoverAdapterAndOutput()
     return TRUE;
 }
 
-BOOL RenderManager::CreateDeviceAndContext()
+BOOL DirectXManager::CreateDeviceAndContext()
 {
     UINT deviceCreationFlags = 0;
 #if defined(DEBUG) || defined(_DEBUG)
@@ -197,7 +197,7 @@ BOOL RenderManager::CreateDeviceAndContext()
     return TRUE;
 }
 
-VOID RenderManager::DestroyDeviceAndContext()
+VOID DirectXManager::DestroyDeviceAndContext()
 {
     if (directXDeviceContext_)
     {
@@ -211,13 +211,13 @@ VOID RenderManager::DestroyDeviceAndContext()
     }
 }
 
-BOOL RenderManager::CheckMsaa(UINT count, UINT * quality)
+BOOL DirectXManager::CheckMsaa(UINT count, UINT * quality)
 {
     HRESULT result = directXDevice_->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, count, quality);
     return SUCCEEDED(result);
 }
 
-BOOL RenderManager::CreateSwapChain_(DXGI_MODE_DESC * mode_desc, DXGI_SAMPLE_DESC * sample_desc, HWND h_window, BOOL enable_fullscreen)
+BOOL DirectXManager::CreateSwapChain_(DXGI_MODE_DESC * mode_desc, DXGI_SAMPLE_DESC * sample_desc, HWND h_window, BOOL enable_fullscreen)
 {
     DXGI_SWAP_CHAIN_DESC description;
     description.BufferDesc = *mode_desc;
@@ -256,7 +256,7 @@ BOOL RenderManager::CreateSwapChain_(DXGI_MODE_DESC * mode_desc, DXGI_SAMPLE_DES
     return TRUE;
 }
 
-VOID RenderManager::DestroySwapChain()
+VOID DirectXManager::DestroySwapChain()
 {
     if (swapChain_)
     {
@@ -266,7 +266,7 @@ VOID RenderManager::DestroySwapChain()
     }
 }
 
-VOID RenderManager::CreateRenderTargetView()
+VOID DirectXManager::CreateRenderTargetView()
 {
     ID3D11Texture2D * backBuffer;
     swapChain_->GetBuffer(0, __uuidof(ID3D11Texture2D), (VOID **)(&backBuffer));
@@ -275,13 +275,13 @@ VOID RenderManager::CreateRenderTargetView()
     backBuffer->Release();
 }
 
-VOID RenderManager::DestroyRenderTargetView()
+VOID DirectXManager::DestroyRenderTargetView()
 {
     renderTargetView_->Release();
     renderTargetView_ = NULL;
 }
 
-BOOL RenderManager::CreateDepthStencilBufferAndView(UINT width, UINT height, DXGI_SAMPLE_DESC * sample_desc)
+BOOL DirectXManager::CreateDepthStencilBufferAndView(UINT width, UINT height, DXGI_SAMPLE_DESC * sample_desc)
 {
     D3D11_TEXTURE2D_DESC depthStencilBufferDesc;
     depthStencilBufferDesc.Width = width;
@@ -305,7 +305,7 @@ BOOL RenderManager::CreateDepthStencilBufferAndView(UINT width, UINT height, DXG
     return TRUE;
 }
 
-VOID RenderManager::DestroyDepthStencilBufferAndView()
+VOID DirectXManager::DestroyDepthStencilBufferAndView()
 {
     if (depthStencilView_)
     {
@@ -320,45 +320,45 @@ VOID RenderManager::DestroyDepthStencilBufferAndView()
 }
 
 
-BOOL RenderManager::CreateDepthStencilState(BOOL depth)
+BOOL DirectXManager::CreateDepthStencilState(BOOL depth)
 {
     // TODO : Implement this
     return TRUE;
 }
 
-VOID RenderManager::DestroyDepthStencilState(BOOL depth)
+VOID DirectXManager::DestroyDepthStencilState(BOOL depth)
 {
     // TODO : Implement this
 }
 
-BOOL RenderManager::CreateRasterizerState_()
-{
-    // TODO : Implement this
-    return TRUE;
-}
-
-VOID RenderManager::DestroyRasterizerState_()
-{
-    // TODO : Implement this
-}
-
-BOOL RenderManager::CreateBlendingState(BOOL with_alpha)
+BOOL DirectXManager::CreateRasterizerState_()
 {
     // TODO : Implement this
     return TRUE;
 }
 
-VOID RenderManager::DestroyBlendingState(BOOL with_alpha)
+VOID DirectXManager::DestroyRasterizerState_()
 {
     // TODO : Implement this
 }
 
-VOID RenderManager::BindDSViewToOM()
+BOOL DirectXManager::CreateBlendingState(BOOL with_alpha)
+{
+    // TODO : Implement this
+    return TRUE;
+}
+
+VOID DirectXManager::DestroyBlendingState(BOOL with_alpha)
+{
+    // TODO : Implement this
+}
+
+VOID DirectXManager::BindDSViewToOM()
 {
     directXDeviceContext_->OMSetRenderTargets(1, &renderTargetView_, depthStencilView_);
 }
 
-BOOL RenderManager::CreateViewportAndBind(UINT width, UINT height)
+BOOL DirectXManager::CreateViewportAndBind(UINT width, UINT height)
 {
     viewport_ = new D3D11_VIEWPORT;
     if (!viewport_) { return FALSE; }
@@ -375,7 +375,7 @@ BOOL RenderManager::CreateViewportAndBind(UINT width, UINT height)
     return TRUE;
 }
 
-VOID RenderManager::DestroyViewport()
+VOID DirectXManager::DestroyViewport()
 {
     if (viewport_)
     {
@@ -384,12 +384,12 @@ VOID RenderManager::DestroyViewport()
     }
 }
 
-ID3D11Device * RenderManager::GetDirectXDevice()
+ID3D11Device * DirectXManager::GetDirectXDevice()
 {
     return directXDevice_;
 }
 
-ID3D11DeviceContext * RenderManager::GetDirectXDeviceContext()
+ID3D11DeviceContext * DirectXManager::GetDirectXDeviceContext()
 {
     return directXDeviceContext_;
 }
