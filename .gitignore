@@ -289,3 +289,6 @@ __pycache__/
 
 # Compiled working executables
 Runtime/*.exe
+
+# Doxygen documentation
+Docs/
