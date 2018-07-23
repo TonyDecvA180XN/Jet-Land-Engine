@@ -16,7 +16,7 @@ WindowsManager::WindowsManager()
 WindowsManager::~WindowsManager()
 = default;
 
-VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL use_force_resolution, BOOL enable_borderless_window)
+VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, UINT window_height, BOOL enable_fullscreen, BOOL use_force_resolution, BOOL enable_borderless_window, BOOL hide_cursor)
 {
     WNDCLASSEX windowClass;
     windowClass.cbSize = sizeof windowClass;
@@ -40,6 +40,7 @@ VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, U
     windowWidth_ = window_width;
     windowHeight_ = window_height;
     enableFullscreen_ = enable_fullscreen;
+    hideCursor_ = hide_cursor;
     hInstance_ = h_instance;
 
     if (enableFullscreen_ && !use_force_resolution)
@@ -94,10 +95,19 @@ VOID WindowsManager::CreateGameWindow(HINSTANCE h_instance, UINT window_width, U
     ShowWindow(windowHandle_, SW_SHOW);
     SetForegroundWindow(windowHandle_);
     SetFocus(windowHandle_);
+
+    if (hideCursor_)
+    {
+        ShowCursor(FALSE);
+    }
 }
 
 VOID WindowsManager::DestroyGameWindow()
 {
+    if (hideCursor_)
+    {
+        ShowCursor(TRUE);
+    }
     if (enableFullscreen_)
     {
         ChangeDisplaySettings(NULL, 0);

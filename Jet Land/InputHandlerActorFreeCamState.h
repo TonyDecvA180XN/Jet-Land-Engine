@@ -1,19 +1,19 @@
 #pragma once
 
 #include "InputHandlerBaseState.h"
-#include "Actor.h"
+#include "ActorFreeCam.h"
 
 class InputHandlerActorFreeCamState :
     public InputHandlerBaseState
 {
 public:
-    InputHandlerActorFreeCamState(Actor * actor);
+    InputHandlerActorFreeCamState(ActorFreeCam * actor);
     ~InputHandlerActorFreeCamState();
 
-    VOID AttachActor(Actor * actor);
+    VOID AttachActor(ActorFreeCam * actor);
     VOID HandleInput(InputManager * input) override;
 
 private:
-    Actor * actor_;
+    ActorFreeCam * actor_;
 };
 

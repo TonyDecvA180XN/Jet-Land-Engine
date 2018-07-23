@@ -5,7 +5,7 @@
 #include "Timer.h"
 #include "FpsCounter.h"
 #include "Camera.h"
-#include "PlayerActor.h"
+#include "ActorFreeCam.h"
 #include "StaticMesh.h"
 
 class GraphicsManager
@@ -19,13 +19,13 @@ public:
 
     BOOL Update();
 
-    PlayerActor * GetPlayerActor();
+    ActorFreeCam * GetPlayerActor();
 
 private:
     RenderManager * renderManager_;
     Timer * timer_;
     FpsCounter * fps_;
-    PlayerActor * player_;
+    ActorFreeCam * player_;
     Camera * camera_;
     StaticMesh * cube_;
 };

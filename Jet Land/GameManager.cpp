@@ -43,7 +43,8 @@ BOOL GameManager::Initialize(HINSTANCE h_instance)
         config_->Screen.windowHeight,
         config_->Screen.enableFullscreen,
         config_->Screen.useForceResolution,
-        config_->Screen.enableBorderlessWindow
+        config_->Screen.enableBorderlessWindow,
+        config_->Screen.hideCursor
     );
 
     result = inputManager_->InitializeDevices(h_instance, windowsManager_->GetWindowHandle());

@@ -20,11 +20,11 @@ VOID Camera::Create(FLOAT vertical_fov, UINT width, UINT height, FLOAT near_dept
 
 }
 
-VOID Camera::Frame()
+VOID Camera::FrameOnAngles()
 {
     DirectX::XMVECTOR eyePos, focusPos, upDir;
 
-    eyePos = GetPosition();    
+    eyePos = GetPositionXM();    
     focusPos = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
     upDir = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
@@ -34,7 +34,6 @@ VOID Camera::Frame()
     focusPos = DirectX::XMVector3TransformCoord(focusPos, rotMatrix);
     upDir = DirectX::XMVector3TransformCoord(upDir, rotMatrix);
     focusPos = DirectX::XMVectorAdd(focusPos, eyePos);
-
     viewMatrix_ = DirectX::XMMatrixLookAtLH(eyePos, focusPos, upDir);
 }
 
@@ -51,4 +50,11 @@ DirectX::XMMATRIX Camera::GetProjMatrix()
 DirectX::XMMATRIX Camera::GetOrthoMatrix()
 {
     return orthoMatrix_;
+}
+
+VOID Camera::FrameOnAxes(DirectX::XMVECTOR look_vector, DirectX::XMVECTOR up_vector)
+{
+    DirectX::XMVECTOR eyePos = GetPositionXM();
+    DirectX::XMVECTOR focusPos = DirectX::XMVectorAdd(eyePos, look_vector);
+    viewMatrix_ = DirectX::XMMatrixLookAtLH(eyePos, focusPos, up_vector);
 }

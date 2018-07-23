@@ -11,11 +11,12 @@ public:
     ~Camera();
 
     VOID Create(FLOAT vertical_fov, UINT width, UINT height, FLOAT near_depth, FLOAT far_depth);
-    VOID Frame();
+    VOID FrameOnAngles();
+    VOID FrameOnAxes(DirectX::XMVECTOR look_vector, DirectX::XMVECTOR up_vector);
 
     DirectX::XMMATRIX GetViewMatrix();
     DirectX::XMMATRIX GetProjMatrix();
-    DirectX::XMMATRIX GetOrthoMatrix();
+    DirectX::XMMATRIX GetOrthoMatrix();    
 
 private:
     DirectX::XMMATRIX viewMatrix_;

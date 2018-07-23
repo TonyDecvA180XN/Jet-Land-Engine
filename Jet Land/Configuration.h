@@ -11,6 +11,7 @@ struct Configuration
         BOOL enableFullscreen;
         BOOL useForceResolution;
         BOOL enableBorderlessWindow;
+        BOOL hideCursor;
         BOOL enableVSync;
         UINT multiSampleAACount;
     } Screen;
