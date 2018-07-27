@@ -3,6 +3,7 @@
 #include "IncluderW.h"
 #include "IncluderDX.h"
 #include "GraphicsManager.h"
+#include "LightSourceDirect.h"
 #include "InputManager.h"
 #include "InputHandler.h"
 
@@ -24,7 +25,7 @@ private:
     InputManager * input_;
     InputHandler * inputHandler_;
     InputHandlerBaseState * state_;
-
+    LightSourceDirect * sun_;
     ActorFreeCam * player_;
     Camera * camera_;
 };

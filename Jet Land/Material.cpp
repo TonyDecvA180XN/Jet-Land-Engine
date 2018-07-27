@@ -9,6 +9,7 @@ Material::Material()
     il_ = NULL;
 
     transformMatrixBuffer_ = NULL;
+    lightBuffer_ = NULL;
 }
 
 
@@ -69,6 +70,17 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR file
     descriptions[ilElementsCount].InstanceDataStepRate = 0;
     ilElementsCount++;
 #endif // VS_COLOR
+
+#ifdef VS_NORMAL
+    descriptions[ilElementsCount].SemanticName = "NORMAL";
+    descriptions[ilElementsCount].SemanticIndex = 0;
+    descriptions[ilElementsCount].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+    descriptions[ilElementsCount].InputSlot = 0;
+    descriptions[ilElementsCount].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+    descriptions[ilElementsCount].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+    descriptions[ilElementsCount].InstanceDataStepRate = 0;
+    ilElementsCount++;
+#endif // VS_NORMAL
 
     result = device->CreateInputLayout(descriptions, ilElementsCount, shaderBuffer->GetBufferPointer(), shaderBuffer->GetBufferSize(), &il_);
     if (FAILED(result)) { return FALSE; }
@@ -150,12 +162,44 @@ BOOL Material::UpdateTransformation(ID3D11DeviceContext * device_context, Direct
     return TRUE;
 }
 
+BOOL Material::CreateLightBuffer(ID3D11Device * device)
+{
+    D3D11_BUFFER_DESC description;
+    description.Usage = D3D11_USAGE_DYNAMIC;
+    description.ByteWidth = sizeof LightBuffer;
+    description.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    description.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+    description.MiscFlags = 0;
+    description.StructureByteStride = 0;
+
+    HRESULT result = device->CreateBuffer(&description, NULL, &lightBuffer_);
+    if (FAILED(result)) { return FALSE; }
+
+    return TRUE;
+}
+
+BOOL Material::UpdateLight(ID3D11DeviceContext * device_context, LightSourceDirect * light)
+{
+    D3D11_MAPPED_SUBRESOURCE resource;
+    HRESULT result = device_context->Map(lightBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+    if (FAILED(result)) { return FALSE; }
+
+    auto inside_data = (LightBuffer *)(resource.pData);
+    inside_data->sunColor = light->GetColor();
+    inside_data->direction = light->GetDirection();
+
+    device_context->Unmap(lightBuffer_, 0);
+
+    return TRUE;
+}
+
 VOID Material::DrawObject(ID3D11DeviceContext * device_context, UINT index_count)
 {
     device_context->IASetInputLayout(il_);
     device_context->VSSetShader(vs_, NULL, 0);
     device_context->PSSetShader(ps_, NULL, 0);
     device_context->VSSetConstantBuffers(0, 1, &transformMatrixBuffer_);
+    device_context->PSSetConstantBuffers(0, 1, &lightBuffer_);
     device_context->DrawIndexed(index_count, 0, 0);
 }
 
@@ -180,5 +224,10 @@ VOID Material::Destroy()
     {
         transformMatrixBuffer_->Release();
         transformMatrixBuffer_ = NULL;
+    }
+    if (lightBuffer_)
+    {
+        lightBuffer_->Release();
+        lightBuffer_ = NULL;
     }
 }

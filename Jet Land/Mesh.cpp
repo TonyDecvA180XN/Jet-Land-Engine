@@ -25,31 +25,43 @@ BOOL Mesh::Create()
     if (!indexArray_) { return FALSE; }
     vertexArray_ = new VERTEX[vertexCount_];
     if (!vertexArray_) { return FALSE; }
-    
+
 
     vertexArray_[0].position = DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f);
-    vertexArray_[0].color = DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+    vertexArray_[0].normal = DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f);
 
     vertexArray_[1].position = DirectX::XMFLOAT3(-1.0f, -1.0f, 1.0f);
-    vertexArray_[1].color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+    vertexArray_[1].normal = DirectX::XMFLOAT3(-1.0f, -1.0f, 1.0f);
 
     vertexArray_[2].position = DirectX::XMFLOAT3(-1.0f, 1.0f, -1.0f);
-    vertexArray_[2].color = DirectX::XMFLOAT4(1.0f, 0.0, 0.0f, 1.0f);
+    vertexArray_[2].normal = DirectX::XMFLOAT3(-1.0f, 1.0f, -1.0f);
 
     vertexArray_[3].position = DirectX::XMFLOAT3(-1.0f, 1.0f, 1.0f);
-    vertexArray_[3].color = DirectX::XMFLOAT4(0.0f, 1.0, 0.0f, 1.0f);
+    vertexArray_[3].normal = DirectX::XMFLOAT3(-1.0f, 1.0f, 1.0f);
 
     vertexArray_[4].position = DirectX::XMFLOAT3(1.0f, -1.0f, -1.0f);
-    vertexArray_[4].color = DirectX::XMFLOAT4(0.0f, 0.0, 1.0f, 1.0f);
+    vertexArray_[4].normal = DirectX::XMFLOAT3(1.0f, -1.0f, -1.0f);
 
     vertexArray_[5].position = DirectX::XMFLOAT3(1.0f, -1.0f, 1.0f);
-    vertexArray_[5].color = DirectX::XMFLOAT4(1.0f, 0.0, 1.0f, 1.0f);
+    vertexArray_[5].normal = DirectX::XMFLOAT3(1.0f, -1.0f, 1.0f);
 
     vertexArray_[6].position = DirectX::XMFLOAT3(1.0f, 1.0f, -1.0f);
-    vertexArray_[6].color = DirectX::XMFLOAT4(0.0f, 1.0, 1.0f, 1.0f);
+    vertexArray_[6].normal = DirectX::XMFLOAT3(1.0f, 1.0f, -1.0f);
 
     vertexArray_[7].position = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
+    vertexArray_[7].normal = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
+
+
+#ifdef  VS_COLOR
+    vertexArray_[0].color = DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+    vertexArray_[1].color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+    vertexArray_[2].color = DirectX::XMFLOAT4(1.0f, 0.0, 0.0f, 1.0f);
+    vertexArray_[3].color = DirectX::XMFLOAT4(0.0f, 1.0, 0.0f, 1.0f);
+    vertexArray_[4].color = DirectX::XMFLOAT4(0.0f, 0.0, 1.0f, 1.0f);
+    vertexArray_[5].color = DirectX::XMFLOAT4(1.0f, 0.0, 1.0f, 1.0f);
+    vertexArray_[6].color = DirectX::XMFLOAT4(0.0f, 1.0, 1.0f, 1.0f);
     vertexArray_[7].color = DirectX::XMFLOAT4(1.0f, 1.0, 0.0f, 1.0f);
+#endif //  VS_COLOR
 
     indexArray_[0] = 7;
     indexArray_[1] = 3;

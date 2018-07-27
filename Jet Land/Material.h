@@ -4,6 +4,7 @@
 #include "IncluderDX.h"
 #include "VertexModeSelector.h"
 #include "CrashManager.h"
+#include "LightSourceDirect.h"
 
 class Material
 {
@@ -17,6 +18,9 @@ public:
     BOOL CreateTransformMatrixBuffer(ID3D11Device * device);
     BOOL UpdateTransformation(ID3D11DeviceContext * device_context, DirectX::XMMATRIX world_matrix, DirectX::XMMATRIX view_matrix, DirectX::XMMATRIX projection_matrix);
 
+    BOOL CreateLightBuffer(ID3D11Device * device);
+    BOOL UpdateLight(ID3D11DeviceContext * device_context, LightSourceDirect * light);
+
     VOID DrawObject(ID3D11DeviceContext * device_context, UINT index_count);
 
     VOID Destroy();
@@ -29,12 +33,19 @@ private:
         DirectX::XMMATRIX projection;
     };
 
+    struct LightBuffer
+    {
+        DirectX::XMVECTOR sunColor;
+        DirectX::XMVECTOR direction;
+    };
+
 
 private:
     ID3D11VertexShader * vs_;
     ID3D11PixelShader * ps_;
     ID3D11InputLayout * il_;
     ID3D11Buffer * transformMatrixBuffer_;
+    ID3D11Buffer * lightBuffer_;
 
 };
 

@@ -9,6 +9,7 @@ GraphicsManager::GraphicsManager()
     fps_ = NULL;
     cube_ = NULL;
     camera_ = NULL;
+    sun_ = NULL;
     windowWidth_ = 0;
     windowHeight_ = 0;
 }
@@ -32,6 +33,10 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!fps_) { return FALSE; }
     cube_ = new StaticMesh;
     if (!cube_) { return FALSE; }
+    sun_ = new LightSourceDirect;
+    if (!sun_) { return FALSE; }
+    sun_->SetColor(DirectX::XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f));
+    sun_->SetDirection(DirectX::XMVector3Normalize(DirectX::XMVectorSet(1.0f, 0.0f, 1.0f, 0.0f)));
 
     result = renderManager_->Initialize(windowWidth_, windowHeight_, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
@@ -72,6 +77,11 @@ VOID GraphicsManager::TerminateGraphicsSystem()
         delete cube_;
         cube_ = NULL;
     }
+    if (sun_)
+    {
+        delete sun_;
+        sun_ = NULL;
+    }
 }
 
 BOOL GraphicsManager::Update()
@@ -94,7 +104,7 @@ BOOL GraphicsManager::Update()
 BOOL GraphicsManager::Render(Camera * camera)
 {
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
-    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera);
+    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera, sun_);
     // TODO : RenderActions
     renderManager_->FinishSceneAndPresent();
     return TRUE;

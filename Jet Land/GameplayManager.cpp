@@ -9,6 +9,7 @@ GameplayManager::GameplayManager()
     inputHandler_ = NULL;
     state_ = NULL;
     player_ = NULL;
+    sun_ = NULL;
     camera_ = NULL;
 }
 
@@ -30,6 +31,7 @@ BOOL GameplayManager::Initialize(GraphicsManager * graphics, InputManager * inpu
     if (!player_) { return FALSE; }
     state_ = new InputHandlerActorFreeCamState(player_);
     if (!state_) { return FALSE; }
+    
 
     camera_->Create(45.0f, graphics->GetWindowWidth(), graphics->GetWindowHeight(), 0.1f, 1000.0f);
     player_->SetCamera(camera_);
@@ -37,6 +39,7 @@ BOOL GameplayManager::Initialize(GraphicsManager * graphics, InputManager * inpu
     player_->SetPosition(0.0f, 0.0f, 10.0f);
     player_->SetRotation(0.0f, 15.0f, 0.0f);
     player_->Update(0);
+
 
     inputHandler_->SetState(state_);
 

@@ -32,6 +32,10 @@ private:
 #ifdef VS_COLOR
         DirectX::XMFLOAT4 color{};
 #endif // VS_COLOR
+
+#ifdef VS_NORMAL
+        DirectX::XMFLOAT3 normal{};
+#endif // VS_NORMAL
     };
 
 private:

@@ -4,4 +4,5 @@
 
 // TODO : Select Vertex mode
 #define VS_POSITION
-#define VS_COLOR
+//#define VS_COLOR
+#define VS_NORMAL

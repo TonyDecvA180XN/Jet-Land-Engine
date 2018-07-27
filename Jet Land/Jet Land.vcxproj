@@ -143,6 +143,8 @@
     <ClCompile Include="InputHandlerBaseState.cpp" />
     <ClCompile Include="InputHandlerIgnoreState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="LightSource.cpp" />
+    <ClCompile Include="LightSourceDirect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -176,6 +178,8 @@
     <ClInclude Include="InputHandlerBaseState.h" />
     <ClInclude Include="InputHandlerIgnoreState.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LightSource.h" />
+    <ClInclude Include="LightSourceDirect.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object3D.h" />

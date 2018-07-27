@@ -122,6 +122,12 @@
     <ClCompile Include="ActorFreeCam.cpp">
       <Filter>Source Files\Subsystems\Gameplay\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="LightSourceDirect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -216,6 +222,8 @@
     <ClInclude Include="ActorFreeCam.h">
       <Filter>Source Files\Subsystems\Gameplay\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="LightSource.h" />
+    <ClInclude Include="LightSourceDirect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

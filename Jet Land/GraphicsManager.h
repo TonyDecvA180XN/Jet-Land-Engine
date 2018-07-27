@@ -29,6 +29,7 @@ public:
 private:
     DirectXManager * renderManager_;
     Camera * camera_;
+    LightSourceDirect * sun_;
     Timer * timer_;
     FpsCounter * fps_;
     StaticMesh * cube_;
