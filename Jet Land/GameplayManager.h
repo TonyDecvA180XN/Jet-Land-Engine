@@ -24,5 +24,8 @@ private:
     InputManager * input_;
     InputHandler * inputHandler_;
     InputHandlerBaseState * state_;
+
+    ActorFreeCam * player_;
+    Camera * camera_;
 };
 

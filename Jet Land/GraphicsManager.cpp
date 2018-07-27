@@ -7,9 +7,10 @@ GraphicsManager::GraphicsManager()
     renderManager_ = NULL;
     timer_ = NULL;
     fps_ = NULL;
-    player_ = NULL;
-    camera_ = NULL;
     cube_ = NULL;
+    camera_ = NULL;
+    windowWidth_ = 0;
+    windowHeight_ = 0;
 }
 
 
@@ -20,26 +21,20 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
 {
     BOOL result;
 
+    windowWidth_ = window_width;
+    windowHeight_ = window_height;
+
     renderManager_ = new DirectXManager;
     if (!renderManager_) { return FALSE; }
     timer_ = new Timer;
     if (!timer_) { return FALSE; }
     fps_ = new FpsCounter;
     if (!fps_) { return FALSE; }
-    camera_ = new Camera;
-    if (!camera_) { return FALSE; }
-    player_ = new ActorFreeCam;
-    if (!player_) { return FALSE; }
     cube_ = new StaticMesh;
     if (!cube_) { return FALSE; }
 
-    result = renderManager_->Initialize(window_width, window_height, enable_fullscreen, enable_vsync, msaa_count, h_window);
+    result = renderManager_->Initialize(windowWidth_, windowHeight_, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
-    camera_->Create(45.0f, window_width, window_height, 0.1f, 1000.0f);
-    player_->SetCamera(camera_);
-    player_->SetPosition(0.0f, 0.0f, 10.0f);
-    player_->SetRotation(0.0f, 15.0f, 0.0f);
-    player_->Update(0);
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
@@ -71,16 +66,6 @@ VOID GraphicsManager::TerminateGraphicsSystem()
         delete fps_;
         fps_ = NULL;
     }
-    if (camera_)
-    {
-        delete camera_;
-        camera_ = NULL;
-    }
-    if (player_)
-    {
-        delete player_;
-        player_ = NULL;
-    }
     if (cube_)
     {
         cube_->Destroy();
@@ -100,17 +85,32 @@ BOOL GraphicsManager::Update()
     //    zrot += 100.0f;
     //cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
     // ---------------------------------------------------------------------------
-    renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
-    player_->Update(1);
-    cube_->Render(renderManager_->GetDirectXDeviceContext(), player_->GetCamera());
-    // TODO : RenderActions
-    renderManager_->FinishSceneAndPresent();
+    this->Render(camera_);
     timer_->Frame();
     fps_->Frame();
     return TRUE;
 }
 
-ActorFreeCam * GraphicsManager::GetPlayerActor()
+BOOL GraphicsManager::Render(Camera * camera)
 {
-    return player_;
+    renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
+    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera);
+    // TODO : RenderActions
+    renderManager_->FinishSceneAndPresent();
+    return TRUE;
+}
+
+UINT GraphicsManager::GetWindowWidth()
+{
+    return windowWidth_;
+}
+
+UINT GraphicsManager::GetWindowHeight()
+{
+    return windowHeight_;
+}
+
+VOID GraphicsManager::SetRenderCamera(Camera * camera)
+{
+    camera_ = camera;
 }

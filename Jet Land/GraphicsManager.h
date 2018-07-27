@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IncluderW.h"
-#include "RenderManager.h"
+#include "DirectXManager.h"
 #include "Timer.h"
 #include "FpsCounter.h"
 #include "Camera.h"
@@ -19,14 +19,19 @@ public:
 
     BOOL Update();
 
-    ActorFreeCam * GetPlayerActor();
+    BOOL Render(Camera * camera);
+
+    UINT GetWindowWidth();
+    UINT GetWindowHeight();
+
+    VOID SetRenderCamera(Camera * camera);
 
 private:
     DirectXManager * renderManager_;
+    Camera * camera_;
     Timer * timer_;
     FpsCounter * fps_;
-    ActorFreeCam * player_;
-    Camera * camera_;
     StaticMesh * cube_;
+    UINT windowWidth_, windowHeight_;
 };
 
