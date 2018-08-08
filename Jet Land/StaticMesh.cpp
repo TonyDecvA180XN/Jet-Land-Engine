@@ -13,28 +13,23 @@ StaticMesh::~StaticMesh()
 {
 }
 
-BOOL StaticMesh::CreateMesh(ID3D11Device * device)
+BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_filename)
 {
     mesh_ = new Mesh;
     if (!mesh_) { return FALSE; }
 
-    BOOL result = mesh_->Create();
-    if (!result) { return FALSE; }
+    BOOL result;
+    mesh_->Load(mesh_filename);
 
     result = mesh_->FillVertexBuffer(device);
     if (!result) { return FALSE; }
     result = mesh_->FillIndexBuffer(device);
     if (!result) { return FALSE; }
 
-    return TRUE;
-}
-
-BOOL StaticMesh::CreateMaterial(ID3D11Device * device, LPTSTR shader_filename)
-{
     material_ = new Material;
     if (!material_) { return FALSE; }
 
-    BOOL result = material_->LoadVertexShaderAndInputLayout(device, shader_filename);
+    result = material_->LoadVertexShaderAndInputLayout(device, shader_filename, mesh_->GetVertexFormat());
     if (!result) { return FALSE; }
     result = material_->LoadPixelShader(device, shader_filename);
     if (!result) { return FALSE; }

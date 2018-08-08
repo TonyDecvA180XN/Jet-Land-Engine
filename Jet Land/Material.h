@@ -2,7 +2,7 @@
 
 #include "IncluderW.h"
 #include "IncluderDX.h"
-#include "VertexModeSelector.h"
+#include "VertexMode.h"
 #include "CrashManager.h"
 #include "LightSourceDirect.h"
 
@@ -12,7 +12,7 @@ public:
     Material();
     ~Material();
 
-    BOOL LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR filename);
+    BOOL LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR filename, VERTEX_FORMAT vertex_format);
     BOOL LoadPixelShader(ID3D11Device * device, LPTSTR filename);
 
     BOOL CreateTransformMatrixBuffer(ID3D11Device * device);

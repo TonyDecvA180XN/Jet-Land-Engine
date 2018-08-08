@@ -2,7 +2,9 @@
 
 #include "IncluderW.h"
 #include "IncluderDX.h"
-#include "VertexModeSelector.h"
+#include "IncluderSTD.h"
+#include "VertexMode.h"
+#include "OBJ_Loader.h"
 
 class Mesh
 {
@@ -11,7 +13,7 @@ public:
     ~Mesh();
 
     BOOL Create();
-    VOID Load();
+    VOID Load(std::wstring * filename);
 
     VOID Destroy();
 
@@ -22,26 +24,16 @@ public:
 
     UINT GetVertexCount();
     UINT GetIndexCount();
-private:
-    struct VERTEX
-    {
-#ifdef VS_POSITION
-        DirectX::XMFLOAT3 position{};
-#endif // VS_POSITION
-
-#ifdef VS_COLOR
-        DirectX::XMFLOAT4 color{};
-#endif // VS_COLOR
-
-#ifdef VS_NORMAL
-        DirectX::XMFLOAT3 normal{};
-#endif // VS_NORMAL
-    };
+    VERTEX_FORMAT GetVertexFormat();
 
 private:
-    VERTEX * vertexArray_;
+
+
+private:
+    VERTEX_FORMAT vertexFormat_;
+    VOID * vertexArray_;
     UINT * indexArray_;
-    UINT vertexCount_, indexCount_;
+    UINT vertexCount_, indexCount_, vertexSize_;
 
     ID3D11Buffer * vertexBuffer_;
     ID3D11Buffer * indexBuffer_;

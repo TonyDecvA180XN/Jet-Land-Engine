@@ -128,6 +128,9 @@
     <ClCompile Include="LightSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OBJ_Loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -224,6 +227,8 @@
     </ClInclude>
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="LightSourceDirect.h" />
+    <ClInclude Include="OBJ_Loader.h" />
+    <ClInclude Include="VertexMode.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

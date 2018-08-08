@@ -44,7 +44,7 @@ PixelInputType VS(VertexInputType input)
 	// Store the input color for the pixel shader to use.
     //output.color = input.color;
 
-    output.normal = normalize(mul(input.normal, world));
+    output.normal = normalize(mul(normalize(input.normal), world));
     
     return output;
 }
@@ -53,5 +53,5 @@ float4 PS(PixelInputType inputPixel) : SV_TARGET
 {
     float4 inputRay = -direction;
     float intensity = saturate(dot(inputRay, inputPixel.normal));
-    return saturate(float4(1.0f, 1.0f, 1.0f, 1.0f) * intensity);
+    return saturate(sunColor * intensity);
 }

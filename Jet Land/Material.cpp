@@ -16,7 +16,7 @@ Material::Material()
 Material::~Material()
 = default;
 
-BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR filename)
+BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR filename, VERTEX_FORMAT vertex_format)
 {
     HRESULT result;
 
@@ -46,21 +46,23 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR file
     if (FAILED(result)) { return FALSE; }
 
     UINT ilElementsCount = 0;
-    D3D11_INPUT_ELEMENT_DESC * descriptions = new D3D11_INPUT_ELEMENT_DESC[MAX_VERTEX_MODES];
+    D3D11_INPUT_ELEMENT_DESC * descriptions = new D3D11_INPUT_ELEMENT_DESC[5];
     if (!descriptions) { return FALSE; }
 
-#ifdef VS_POSITION
-    descriptions[ilElementsCount].SemanticName = "POSITION";
-    descriptions[ilElementsCount].SemanticIndex = 0;
-    descriptions[ilElementsCount].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-    descriptions[ilElementsCount].InputSlot = 0;
-    descriptions[ilElementsCount].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
-    descriptions[ilElementsCount].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-    descriptions[ilElementsCount].InstanceDataStepRate = 0;
-    ilElementsCount++;
-#endif // VS_POSITION
+    if (vertex_format & VertexComponent::HavePosition)
+    {
+        descriptions[ilElementsCount].SemanticName = "POSITION";
+        descriptions[ilElementsCount].SemanticIndex = 0;
+        descriptions[ilElementsCount].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+        descriptions[ilElementsCount].InputSlot = 0;
+        descriptions[ilElementsCount].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+        descriptions[ilElementsCount].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+        descriptions[ilElementsCount].InstanceDataStepRate = 0;
+        ilElementsCount++;
+    }
 
-#ifdef VS_COLOR
+    if (vertex_format & VertexComponent::HaveColor)
+    {
     descriptions[ilElementsCount].SemanticName = "VERTEXCOLOR";
     descriptions[ilElementsCount].SemanticIndex = 0;
     descriptions[ilElementsCount].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
@@ -69,9 +71,10 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR file
     descriptions[ilElementsCount].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
     descriptions[ilElementsCount].InstanceDataStepRate = 0;
     ilElementsCount++;
-#endif // VS_COLOR
+    }
 
-#ifdef VS_NORMAL
+    if (vertex_format & VertexComponent::HaveNormal)
+    {
     descriptions[ilElementsCount].SemanticName = "NORMAL";
     descriptions[ilElementsCount].SemanticIndex = 0;
     descriptions[ilElementsCount].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -80,13 +83,27 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR file
     descriptions[ilElementsCount].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
     descriptions[ilElementsCount].InstanceDataStepRate = 0;
     ilElementsCount++;
-#endif // VS_NORMAL
+    }
+
+    if (vertex_format & VertexComponent::HaveTexcoords)
+    {
+        descriptions[ilElementsCount].SemanticName = "TEXCOORDS";
+        descriptions[ilElementsCount].SemanticIndex = 0;
+        descriptions[ilElementsCount].Format = DXGI_FORMAT_R32G32_FLOAT;
+        descriptions[ilElementsCount].InputSlot = 0;
+        descriptions[ilElementsCount].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+        descriptions[ilElementsCount].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+        descriptions[ilElementsCount].InstanceDataStepRate = 0;
+        ilElementsCount++;
+    }
 
     result = device->CreateInputLayout(descriptions, ilElementsCount, shaderBuffer->GetBufferPointer(), shaderBuffer->GetBufferSize(), &il_);
     if (FAILED(result)) { return FALSE; }
 
     shaderBuffer->Release();
     shaderBuffer = NULL;
+
+    //delete[] descriptions;
 
     return TRUE;
 }

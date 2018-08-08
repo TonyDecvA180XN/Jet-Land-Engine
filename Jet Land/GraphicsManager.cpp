@@ -36,17 +36,15 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     sun_ = new LightSourceDirect;
     if (!sun_) { return FALSE; }
     sun_->SetColor(DirectX::XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f));
-    sun_->SetDirection(DirectX::XMVector3Normalize(DirectX::XMVectorSet(1.0f, 0.0f, 1.0f, 0.0f)));
+    sun_->SetDirection(DirectX::XMVector3Normalize(DirectX::XMVectorSet(1.0f, -1.0f, 1.0f, 0.0f)));
 
     result = renderManager_->Initialize(windowWidth_, windowHeight_, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
-    result = cube_->CreateMesh(renderManager_->GetDirectXDevice());
-    if (!result) { return FALSE; }
-    result = cube_->CreateMaterial(renderManager_->GetDirectXDevice(), LPTSTR(L"color_shader.fx"));
-    if (!result) { return FALSE; }
+    result = cube_->CreateMesh(renderManager_->GetDirectXDevice(), &std::wstring(L"house.obj"), LPTSTR(L"color_shader.fx"));
+
 
     return TRUE;
 }
