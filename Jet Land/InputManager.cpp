@@ -1,6 +1,7 @@
 #include "InputManager.h"
 
 
+#include <comdef.h>
 
 InputManager::InputManager()
 {
@@ -27,7 +28,11 @@ BOOL InputManager::InitializeDevices(HINSTANCE h_instance, HWND h_window)
     result = keyboard_->SetCooperativeLevel(h_window, DISCL_EXCLUSIVE | DISCL_FOREGROUND);
     if (FAILED(result)) { return FALSE; }
     result = keyboard_->Acquire();
-    if (FAILED(result)) { return FALSE; }
+	/*if (FAILED(result))
+	{
+		MessageBox(h_window, _com_error(result).ErrorMessage(), L"ERROR", MB_ICONERROR);
+	}*/
+    //if (FAILED(result)) { return FALSE; }
     result = dInputDevice_->CreateDevice(GUID_SysMouse, &mouse_, NULL);
     if (FAILED(result)) { return FALSE; }
     result = mouse_->SetDataFormat(&c_dfDIMouse);

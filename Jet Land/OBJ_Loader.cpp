@@ -187,11 +187,11 @@ VOID LoadMeshObjFromFile(std::wstring * filename, VERTEX_FORMAT * vertex_mode,
             for (UINT i = 0; i < 3; i++)
             {
                 lineStream >> faces[iFace].p[i];
-                if (*vertex_mode & VertexComponent::HaveTexcoords & VertexComponent::HaveNormal)
+                if (*vertex_mode && VertexComponent::HaveTexcoords && VertexComponent::HaveNormal)
                     lineStream >> padding >> faces[iFace].t[i] >> padding >> faces[iFace].n[i];
-                else if (*vertex_mode & VertexComponent::HaveTexcoords)
+                else if (*vertex_mode && VertexComponent::HaveTexcoords)
                     lineStream >> padding >> faces[iFace].t[i];
-                else if (*vertex_mode & VertexComponent::HaveNormal)
+                else if (*vertex_mode && VertexComponent::HaveNormal)
                     lineStream >> padding >> padding >> faces[iFace].n[i];
             }
 

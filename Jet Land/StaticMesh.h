@@ -16,7 +16,7 @@ public:
 
     BOOL CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_filename);
 
-    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, LightSourceDirect * light);
+    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, LightSourceDirect * light, ID3D11ShaderResourceView * srv);
 
     VOID Destroy();
 private:

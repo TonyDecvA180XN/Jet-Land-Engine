@@ -10,6 +10,8 @@ Material::Material()
 
     transformMatrixBuffer_ = NULL;
     lightBuffer_ = NULL;
+
+	sampler_ = NULL;
 }
 
 
@@ -104,6 +106,28 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR file
     shaderBuffer = NULL;
 
     //delete[] descriptions;
+
+	D3D11_SAMPLER_DESC samplerDesc;
+	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.MipLODBias = 0.0f;
+	samplerDesc.MaxAnisotropy = 1;
+	samplerDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+	samplerDesc.BorderColor[0] = 0;
+	samplerDesc.BorderColor[1] = 0;
+	samplerDesc.BorderColor[2] = 0;
+	samplerDesc.BorderColor[3] = 0;
+	samplerDesc.MinLOD = 0;
+	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+	// Create the texture sampler state.
+	result = device->CreateSamplerState(&samplerDesc, &sampler_);
+	if (FAILED(result))
+	{
+		return false;
+	}
 
     return TRUE;
 }
@@ -210,13 +234,15 @@ BOOL Material::UpdateLight(ID3D11DeviceContext * device_context, LightSourceDire
     return TRUE;
 }
 
-VOID Material::DrawObject(ID3D11DeviceContext * device_context, UINT index_count)
+VOID Material::DrawObject(ID3D11DeviceContext * device_context, UINT index_count, ID3D11ShaderResourceView * srv)
 {
     device_context->IASetInputLayout(il_);
     device_context->VSSetShader(vs_, NULL, 0);
     device_context->PSSetShader(ps_, NULL, 0);
     device_context->VSSetConstantBuffers(0, 1, &transformMatrixBuffer_);
     device_context->PSSetConstantBuffers(0, 1, &lightBuffer_);
+	device_context->PSSetSamplers(0, 1, &sampler_);
+	device_context->PSSetShaderResources(0, 1, &srv);
     device_context->DrawIndexed(index_count, 0, 0);
 }
 
@@ -247,4 +273,9 @@ VOID Material::Destroy()
         lightBuffer_->Release();
         lightBuffer_ = NULL;
     }
+	if (sampler_)
+	{
+		sampler_->Release();
+		sampler_ = NULL;
+	}
 }

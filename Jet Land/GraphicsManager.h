@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "ActorFreeCam.h"
 #include "StaticMesh.h"
+#include "Texture.h"
 
 class GraphicsManager
 {
@@ -34,5 +35,6 @@ private:
     FpsCounter * fps_;
     StaticMesh * cube_;
     UINT windowWidth_, windowHeight_;
+	Texture * texture_;
 };
 

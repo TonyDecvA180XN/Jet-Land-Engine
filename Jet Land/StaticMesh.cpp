@@ -42,14 +42,14 @@ BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename,
     return TRUE;
 }
 
-BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera, LightSourceDirect * light)
+BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera, LightSourceDirect * light, ID3D11ShaderResourceView * srv)
 {
     mesh_->ApplyBuffers(device_context);
     BOOL result = material_->UpdateTransformation(device_context, this->GetWorldMatrix(), target_camera->GetViewMatrix(), target_camera->GetProjMatrix());
     if (!result) { return FALSE; }
     result = material_->UpdateLight(device_context, light);
     if (!result) { return FALSE; }
-    material_->DrawObject(device_context, mesh_->GetIndexCount());
+    material_->DrawObject(device_context, mesh_->GetIndexCount(), srv);
 
     return TRUE;
 }

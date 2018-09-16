@@ -12,6 +12,7 @@ GraphicsManager::GraphicsManager()
     sun_ = NULL;
     windowWidth_ = 0;
     windowHeight_ = 0;
+	texture_ = NULL;
 }
 
 
@@ -36,7 +37,8 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     sun_ = new LightSourceDirect;
     if (!sun_) { return FALSE; }
     sun_->SetColor(DirectX::XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f));
-    sun_->SetDirection(DirectX::XMVector3Normalize(DirectX::XMVectorSet(1.0f, -1.0f, 1.0f, 0.0f)));
+    sun_->SetDirection(DirectX::XMVector3Normalize(DirectX::XMVectorSet(-1.0f, -1.0f, -1.0f, 0.0f)));
+	texture_ = new Texture;
 
     result = renderManager_->Initialize(windowWidth_, windowHeight_, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
@@ -45,6 +47,8 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     fps_->Launch();
     result = cube_->CreateMesh(renderManager_->GetDirectXDevice(), &std::wstring(L"house.obj"), LPTSTR(L"color_shader.fx"));
 
+	std::wstring name(L"texture.dds");
+	texture_->LoadFromFile(renderManager_->GetDirectXDevice(), name);
 
     return TRUE;
 }
@@ -80,6 +84,12 @@ VOID GraphicsManager::TerminateGraphicsSystem()
         delete sun_;
         sun_ = NULL;
     }
+	if (texture_)
+	{
+		texture_->Unload();
+		delete texture_;
+		texture_ = NULL;
+	}
 }
 
 BOOL GraphicsManager::Update()
@@ -102,7 +112,7 @@ BOOL GraphicsManager::Update()
 BOOL GraphicsManager::Render(Camera * camera)
 {
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
-    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera, sun_);
+    cube_->Render(renderManager_->GetDirectXDeviceContext(), camera, sun_, texture_->Get());
     // TODO : RenderActions
     renderManager_->FinishSceneAndPresent();
     return TRUE;

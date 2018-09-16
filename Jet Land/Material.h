@@ -21,7 +21,7 @@ public:
     BOOL CreateLightBuffer(ID3D11Device * device);
     BOOL UpdateLight(ID3D11DeviceContext * device_context, LightSourceDirect * light);
 
-    VOID DrawObject(ID3D11DeviceContext * device_context, UINT index_count);
+    VOID DrawObject(ID3D11DeviceContext * device_context, UINT index_count, ID3D11ShaderResourceView * srv);
 
     VOID Destroy();
 
@@ -46,6 +46,6 @@ private:
     ID3D11InputLayout * il_;
     ID3D11Buffer * transformMatrixBuffer_;
     ID3D11Buffer * lightBuffer_;
-
+	ID3D11SamplerState * sampler_;
 };
 

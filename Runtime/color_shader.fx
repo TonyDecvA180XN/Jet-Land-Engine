@@ -12,11 +12,15 @@ cbuffer LightBuffer
     float4 direction;
 };
 
+Texture2D my_texture;
+SamplerState my_sampler;
+
 // Typedef for structure which represents vertex data from vertex buffer.
 struct VertexInputType
 {
     float4 position : POSITION;
     //float4 color : VERTEXCOLOR;
+	float2 texcoords : TEXCOORDS;
     float4 normal : NORMAL;
 };
 
@@ -25,6 +29,7 @@ struct PixelInputType
 {
     float4 position : SV_POSITION;
     //float4 color : VERTEXCOLOR;
+	float2 texcoords : TEXCOORDS;
     float4 normal : NORMAL;
 };
 
@@ -45,13 +50,15 @@ PixelInputType VS(VertexInputType input)
     //output.color = input.color;
 
     output.normal = normalize(mul(normalize(input.normal), world));
+	output.texcoords = input.texcoords;
     
     return output;
 }
 
 float4 PS(PixelInputType inputPixel) : SV_TARGET
 {
+	float4 texColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
     float4 inputRay = -direction;
     float intensity = saturate(dot(inputRay, inputPixel.normal));
-    return saturate(sunColor * intensity);
+    return saturate(sunColor * intensity * texColor);
 }
