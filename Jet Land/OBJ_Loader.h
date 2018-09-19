@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "IncluderW.h"
+
 #include <fstream>
 #include <string>
 #include <sstream>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderDX.h"
-#include "IncluderSTD.h"
+
+
+
 #include "VertexMode.h"
 #include "OBJ_Loader.h"
 

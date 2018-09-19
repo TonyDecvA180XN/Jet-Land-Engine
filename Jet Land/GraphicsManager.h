@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IncluderW.h"
+
 #include "DirectXManager.h"
 #include "Timer.h"
 #include "FpsCounter.h"
@@ -30,7 +30,7 @@ public:
 private:
     DirectXManager * renderManager_;
     Camera * camera_;
-    LightSourceDirect * sun_;
+    Light * sun_;
     Timer * timer_;
     FpsCounter * fps_;
     StaticMesh * cube_;

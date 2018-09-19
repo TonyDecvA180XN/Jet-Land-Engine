@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderDX.h"
+
+
 #include "Actor.h"
 #include "Camera.h"
 

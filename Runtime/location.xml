@@ -1,0 +1,25 @@
+<?xml version="1.0", encoding="utf-8"?>
+<location>
+
+<world>
+<!-- There will be setting of the game world. -->
+</world>
+
+<layout>
+
+<meshes>
+
+<StaticMesh filename="house.obj">
+<Position x = 0.0, y = 0.0, z = 0.0/>
+<Rotation x = 0.0, y = 0.0, z = 0.0/>
+<Scale x = 1.0, y = 1.0, z = 1.0/>
+<Material name = "Checker_Shaded"/>
+</StaticMesh>
+
+</meshes>
+<lights></lights>
+<camera></camera>
+
+</layout>
+
+</location>

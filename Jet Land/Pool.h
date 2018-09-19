@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderSTD.h"
+
+
 #include <vector>
 
 

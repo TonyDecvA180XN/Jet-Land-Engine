@@ -18,16 +18,13 @@
     <Filter Include="src\INIReader">
       <UniqueIdentifier>{c486b23a-a6c7-4715-92b7-d89ab53fe409}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TinyXML">
+      <UniqueIdentifier>{5e267557-4419-45a3-82b3-3f6fd9d92e3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="INIReader\INIReader.cpp">
       <Filter>src\INIReader</Filter>
-    </ClCompile>
-    <ClCompile Include="INIReader\ini.c">
-      <Filter>src\INIReader</Filter>
-    </ClCompile>
-    <ClCompile Include="LightSourceDirect.cpp">
-      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="LightSource.cpp">
       <Filter>src</Filter>
@@ -110,6 +107,18 @@
     <ClCompile Include="Pool.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="TinyXML\tinyxml2.cpp">
+      <Filter>src\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="LibraryPCH.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="INIReader\ini.c">
+      <Filter>src\INIReader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -130,9 +139,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="OBJ_Loader.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="LightSourceDirect.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="LightSource.h">
@@ -216,9 +222,24 @@
     <ClInclude Include="StaticMesh.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="PoolObject.h" />
-    <ClInclude Include="Pool.h" />
+    <ClInclude Include="Pool.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="PoolObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinyxml2.h">
+      <Filter>src\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="LibraryPCH.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -227,5 +248,13 @@
     <None Include="ClassDiagram.cd">
       <Filter>docs</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="color_shader_p.hlsl">
+      <Filter>src</Filter>
+    </FxCompile>
+    <FxCompile Include="color_shader_v.hlsl">
+      <Filter>src</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

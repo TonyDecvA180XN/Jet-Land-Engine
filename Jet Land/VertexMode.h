@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderDX.h"
+
+
 
 enum VERTEX_FORMAT : UINT
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderSTD.h"
-#include "IncluderDX.h"
+
+
+
 
 class CrashManager
 {

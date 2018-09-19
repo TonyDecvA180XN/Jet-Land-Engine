@@ -13,7 +13,7 @@ StaticMesh::~StaticMesh()
 {
 }
 
-BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_filename)
+BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_v_filename, LPTSTR shader_p_filename)
 {
     mesh_ = new Mesh;
     if (!mesh_) { return FALSE; }
@@ -29,9 +29,9 @@ BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename,
     material_ = new Material;
     if (!material_) { return FALSE; }
 
-    result = material_->LoadVertexShaderAndInputLayout(device, shader_filename, mesh_->GetVertexFormat());
+    result = material_->LoadVertexShaderAndInputLayout(device, shader_v_filename, mesh_->GetVertexFormat());
     if (!result) { return FALSE; }
-    result = material_->LoadPixelShader(device, shader_filename);
+    result = material_->LoadPixelShader(device, shader_p_filename);
     if (!result) { return FALSE; }
     result = material_->CreateTransformMatrixBuffer(device);
     if (!result) { return FALSE; }
@@ -42,7 +42,7 @@ BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename,
     return TRUE;
 }
 
-BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera, LightSourceDirect * light, ID3D11ShaderResourceView * srv)
+BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera, Light * light, ID3D11ShaderResourceView * srv)
 {
     mesh_->ApplyBuffers(device_context);
     BOOL result = material_->UpdateTransformation(device_context, this->GetWorldMatrix(), target_camera->GetViewMatrix(), target_camera->GetProjMatrix());

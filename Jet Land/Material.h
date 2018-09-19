@@ -1,10 +1,11 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderDX.h"
+
+#include "LightSource.h"
+
+
 #include "VertexMode.h"
 #include "CrashManager.h"
-#include "LightSourceDirect.h"
 
 class Material
 {
@@ -19,7 +20,7 @@ public:
     BOOL UpdateTransformation(ID3D11DeviceContext * device_context, DirectX::XMMATRIX world_matrix, DirectX::XMMATRIX view_matrix, DirectX::XMMATRIX projection_matrix);
 
     BOOL CreateLightBuffer(ID3D11Device * device);
-    BOOL UpdateLight(ID3D11DeviceContext * device_context, LightSourceDirect * light);
+    BOOL UpdateLight(ID3D11DeviceContext * device_context, Light * light);
 
     VOID DrawObject(ID3D11DeviceContext * device_context, UINT index_count, ID3D11ShaderResourceView * srv);
 
@@ -31,12 +32,6 @@ private:
         DirectX::XMMATRIX world;
         DirectX::XMMATRIX view;
         DirectX::XMMATRIX projection;
-    };
-
-    struct LightBuffer
-    {
-        DirectX::XMVECTOR sunColor;
-        DirectX::XMVECTOR direction;
     };
 
 

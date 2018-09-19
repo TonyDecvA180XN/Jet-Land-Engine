@@ -1,8 +1,8 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderDX.h"
-#include "IncluderSTD.h"
+
+
+
 #include "Object3D.h"
 #include "Mesh.h"
 #include "Material.h"
@@ -14,9 +14,9 @@ public:
     StaticMesh();
     ~StaticMesh();
 
-    BOOL CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_filename);
+    BOOL CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_v_filename, LPTSTR shader_p_filename);
 
-    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, LightSourceDirect * light, ID3D11ShaderResourceView * srv);
+    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, Light * light, ID3D11ShaderResourceView * srv);
 
     VOID Destroy();
 private:

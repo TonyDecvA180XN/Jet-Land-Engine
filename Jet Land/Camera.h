@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IncluderW.h"
-#include "IncluderDX.h"
+
+
 #include "Object3D.h"
 
 class Camera : public Object3D

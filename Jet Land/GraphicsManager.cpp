@@ -34,10 +34,10 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!fps_) { return FALSE; }
     cube_ = new StaticMesh;
     if (!cube_) { return FALSE; }
-    sun_ = new LightSourceDirect;
+    sun_ = new Light(LightProperties::LIGHT_TYPE_SUN);
     if (!sun_) { return FALSE; }
-    sun_->SetColor(DirectX::XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f));
-    sun_->SetDirection(DirectX::XMVector3Normalize(DirectX::XMVectorSet(-1.0f, -1.0f, -1.0f, 0.0f)));
+    //sun_->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+    sun_->SetDirection(0.0f, -1.0f, 1.0f);
 	texture_ = new Texture;
 
     result = renderManager_->Initialize(windowWidth_, windowHeight_, enable_fullscreen, enable_vsync, msaa_count, h_window);
@@ -45,7 +45,7 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
-    result = cube_->CreateMesh(renderManager_->GetDirectXDevice(), &std::wstring(L"house.obj"), LPTSTR(L"color_shader.fx"));
+    result = cube_->CreateMesh(renderManager_->GetDirectXDevice(), &std::wstring(L"house.obj"), LPTSTR(L"color_shader_v.cso"), LPTSTR(L"color_shader_p.cso"));
 
 	std::wstring name(L"texture.dds");
 	texture_->LoadFromFile(renderManager_->GetDirectXDevice(), name);
@@ -97,11 +97,12 @@ BOOL GraphicsManager::Update()
     // ---------------------------------------------------------------------------
     //camera_->SetPosition(DirectX::XMVectorSet(2.5f, 1.5f, 5.0f, 0.0f));
     //camera_->SetRotation(DirectX::XMVectorSet(15.0f, 207.0f, 0.0f, 0.0f));
-    //static float zrot = 50;
-    //zrot -= 1.0f;
-    //if (zrot < -50.0f)
-    //    zrot += 100.0f;
+    static float zrot = 0.0f;
+    zrot += 1.0f;
+    if (zrot > 90.0f)
+        zrot -= 90.0f;
     //cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
+	//sun_->SetDirection(1.0f, 1.0f, 1.0f);
     // ---------------------------------------------------------------------------
     this->Render(camera_);
     timer_->Frame();

@@ -9,7 +9,6 @@ GameplayManager::GameplayManager()
     inputHandler_ = NULL;
     state_ = NULL;
     player_ = NULL;
-    sun_ = NULL;
     camera_ = NULL;
 }
 
