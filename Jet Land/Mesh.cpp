@@ -118,7 +118,7 @@ BOOL Mesh::Create()
 }
 
 
-VOID Mesh::Load(std::wstring * filename)
+VOID Mesh::Load(std::string * filename)
 {
     LoadMeshObjFromFile(filename, &vertexFormat_, &vertexArray_, &vertexCount_, &vertexSize_, &indexArray_, &indexCount_);
     /*for (int i = 0; i != vertexCount_; i++)

@@ -101,12 +101,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="PoolObject.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Pool.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="TinyXML\tinyxml2.cpp">
       <Filter>src\TinyXML</Filter>
     </ClCompile>
@@ -247,6 +241,9 @@
     </None>
     <None Include="ClassDiagram.cd">
       <Filter>docs</Filter>
+    </None>
+    <None Include="Pool.cpp">
+      <Filter>src</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

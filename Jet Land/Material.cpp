@@ -1,6 +1,6 @@
 #include "Material.h"
 
-std::ifstream::pos_type filesize(LPTSTR filename)
+std::ifstream::pos_type filesize(LPSTR filename)
 {
 	std::ifstream in(filename, std::ifstream::ate | std::ifstream::binary);
 	return in.tellg();
@@ -22,7 +22,7 @@ Material::Material()
 Material::~Material()
 = default;
 
-BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR filename, VERTEX_FORMAT vertex_format)
+BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filename, VERTEX_FORMAT vertex_format)
 {
 	HRESULT result;
 
@@ -152,7 +152,7 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR file
 	return TRUE;
 }
 
-BOOL Material::LoadPixelShader(ID3D11Device * device, LPTSTR filename)
+BOOL Material::LoadPixelShader(ID3D11Device * device, LPSTR filename)
 {
 	HRESULT result;
 	/*

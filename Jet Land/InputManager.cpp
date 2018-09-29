@@ -40,7 +40,8 @@ BOOL InputManager::InitializeDevices(HINSTANCE h_instance, HWND h_window)
     result = mouse_->SetCooperativeLevel(h_window, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
     if (FAILED(result)) { return FALSE; }
     result = mouse_->Acquire();
-    if (FAILED(result)) { return FALSE; }
+    //if (FAILED(result)) { return FALSE; }
+
 
     return true;
 }

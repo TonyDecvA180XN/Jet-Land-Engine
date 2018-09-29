@@ -7,8 +7,8 @@ class PoolObject
 public:
 	PoolObject() : m_isActive(FALSE) {};
 
-	virtual BOOL Initialize() = 0;
-	virtual VOID Terminate() = 0;
+	virtual VOID Initialize() { this->Activate(TRUE); };
+	virtual VOID Terminate() { this->Activate(FALSE); };
 
 	BOOL IsActive() { return this->m_isActive; };
 

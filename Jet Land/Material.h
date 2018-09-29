@@ -13,8 +13,8 @@ public:
     Material();
     ~Material();
 
-    BOOL LoadVertexShaderAndInputLayout(ID3D11Device * device, LPTSTR filename, VERTEX_FORMAT vertex_format);
-    BOOL LoadPixelShader(ID3D11Device * device, LPTSTR filename);
+    BOOL LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filename, VERTEX_FORMAT vertex_format);
+    BOOL LoadPixelShader(ID3D11Device * device, LPSTR filename);
 
     BOOL CreateTransformMatrixBuffer(ID3D11Device * device);
     BOOL UpdateTransformation(ID3D11DeviceContext * device_context, DirectX::XMMATRIX world_matrix, DirectX::XMMATRIX view_matrix, DirectX::XMMATRIX projection_matrix);

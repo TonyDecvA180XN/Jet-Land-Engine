@@ -13,7 +13,7 @@ public:
     ~Mesh();
 
     BOOL Create();
-    VOID Load(std::wstring * filename);
+    VOID Load(std::string * filename);
 
     VOID Destroy();
 

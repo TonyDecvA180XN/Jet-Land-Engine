@@ -1,23 +1,25 @@
 #pragma once
 
+#include "PoolObject.h"
+
 namespace LightProperties
 {
 	enum LightType : INT32
 	{
-		LIGHT_TYPE_SUN,
-		LIGHT_TYPE_POINT,
-		LIGHT_TYPE_SPOT
+		LIGHT_TYPE_SUN   = 0,
+		LIGHT_TYPE_POINT = 1,
+		LIGHT_TYPE_SPOT  = 2
 	};
 	enum LightFalloff : INT32
 	{
-		LIGHT_FALLOFF_DISABLED,
-		LIGHT_FALLOFF_LINEAR,
-		LIGHT_FALLOFF_QUAD,
-		LIGHT_FALLOFF_SPHERE
+		LIGHT_FALLOFF_DISABLED = 0,
+		LIGHT_FALLOFF_LINEAR   = 1,
+		LIGHT_FALLOFF_QUAD     = 2,
+		LIGHT_FALLOFF_SPHERE   = 3
 	};
 }
 
-class Light
+class Light : public PoolObject
 {
 public:
 	struct LightBuffer
@@ -34,8 +36,12 @@ public:
 		//                                      Total: 56(64)
 	};
 
+	Light() : Light(LightProperties::LIGHT_TYPE_POINT) {};
 	Light(LightProperties::LightType type);
 	~Light() = default;
+
+	LightProperties::LightType GetType();
+	VOID SetType(LightProperties::LightType type);
 
 	DirectX::XMVECTOR GetColorXM();
 	VOID SetColorXM(DirectX::XMVECTOR color);

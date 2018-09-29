@@ -11,6 +11,16 @@ Light::Light(LightProperties::LightType type) :
 {
 }
 
+LightProperties::LightType Light::GetType()
+{
+	return m_type;
+}
+
+VOID Light::SetType(LightProperties::LightType type)
+{
+	m_type = type;
+}
+
 DirectX::XMVECTOR Light::GetColorXM()
 {
 	return DirectX::XMLoadFloat4(&m_color);

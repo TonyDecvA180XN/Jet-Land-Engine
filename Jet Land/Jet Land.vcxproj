@@ -202,8 +202,12 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="ActorFreeCam.cpp" />
     <ClCompile Include="OBJ_Loader.cpp" />
-    <ClCompile Include="Pool.cpp" />
-    <ClCompile Include="PoolObject.cpp" />
+    <None Include="Pool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </None>
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="DirectXManager.cpp" />
     <ClCompile Include="Texture.cpp" />

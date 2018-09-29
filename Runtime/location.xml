@@ -1,25 +1,40 @@
-<?xml version="1.0", encoding="utf-8"?>
-<location>
+<?xml version="1.0" encoding="utf-8"?>
+<Location>
+    <World>
+        <!-- There will be setting of the game world. -->
+    </World>
+    <Layout>
+        <Meshes>
 
-<world>
-<!-- There will be setting of the game world. -->
-</world>
+            <StaticMesh>
+                <Model filename = "house.obj"/>
+                <Position x = "0.0" y = "0.0" z = "0.0"/>
+                <Rotation x = "0.0" y = "0.0" z = "0.0"/>
+                <Scale x = "1.0" y = "1.0" z = "1.0"/>
+                <Shader filename = "color_shader"/>
+            </StaticMesh>
 
-<layout>
+            <StaticMesh>
+                <Model filename = "surface.obj"/>
+                <Position x = "0.0" y = "0.0" z = "0.0"/>
+                <Rotation x = "180.0" y = "0.0" z = "0.0"/>
+                <Scale x = "1.0" y = "1.0" z = "1.0"/>
+                <Shader filename = "color_shader"/>
+            </StaticMesh>
 
-<meshes>
-
-<StaticMesh filename="house.obj">
-<Position x = 0.0, y = 0.0, z = 0.0/>
-<Rotation x = 0.0, y = 0.0, z = 0.0/>
-<Scale x = 1.0, y = 1.0, z = 1.0/>
-<Material name = "Checker_Shaded"/>
-</StaticMesh>
-
-</meshes>
-<lights></lights>
-<camera></camera>
-
-</layout>
-
-</location>
+        </Meshes>
+        <Lights>
+            <!-- For sun use Light->Type->type 0, for point - 1, for spot - 2. -->
+            <Light>
+                <Type type="0"/>
+                <Falloff falloff="LIGHT_FALLOFF_DISABLED"/>
+                <Color r = "1.0" g = "1.0" b = "1.0" a = "1.0"/>
+                <Position x="0.0" y ="0.0" z="0.0"/>
+                <Direction x = "0.0" y = "-1.0" z = "0.5"/>
+                <Radius r="100.0"/>
+                <Angle a="45.0"/>
+            </Light>
+        </Lights>
+        <Camera></Camera>
+    </Layout>
+</Location>

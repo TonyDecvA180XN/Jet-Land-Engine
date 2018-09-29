@@ -13,7 +13,10 @@ StaticMesh::~StaticMesh()
 {
 }
 
-BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename, LPTSTR shader_v_filename, LPTSTR shader_p_filename)
+BOOL StaticMesh::CreateMesh(ID3D11Device * device,
+	std::string * mesh_filename,
+	std::string * shader_v_filename,
+	std::string * shader_p_filename)
 {
     mesh_ = new Mesh;
     if (!mesh_) { return FALSE; }
@@ -29,9 +32,9 @@ BOOL StaticMesh::CreateMesh(ID3D11Device * device, std::wstring * mesh_filename,
     material_ = new Material;
     if (!material_) { return FALSE; }
 
-    result = material_->LoadVertexShaderAndInputLayout(device, shader_v_filename, mesh_->GetVertexFormat());
+    result = material_->LoadVertexShaderAndInputLayout(device, (LPSTR)shader_v_filename->c_str(), mesh_->GetVertexFormat());
     if (!result) { return FALSE; }
-    result = material_->LoadPixelShader(device, shader_p_filename);
+    result = material_->LoadPixelShader(device, (LPSTR)shader_p_filename->c_str());
     if (!result) { return FALSE; }
     result = material_->CreateTransformMatrixBuffer(device);
     if (!result) { return FALSE; }
@@ -56,6 +59,7 @@ BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_ca
 
 VOID StaticMesh::Destroy()
 {
+	this->Terminate();
     if (mesh_)
     {
         mesh_->Destroy();

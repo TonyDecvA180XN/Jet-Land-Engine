@@ -17,10 +17,7 @@ Pool<T>::~Pool()
 {
 	for (auto it = m_pool.begin(); it != m_pool.end(); ++it)
 	{
-		if (it)
-		{
-			it->Terminate();
-		}
+		it->Terminate();
 	}
 }
 
@@ -31,8 +28,8 @@ VOID Pool<T>::Allocate(T ** object)
 	{
 		if (!elem->IsActive())
 		{
-			elem->Activate(TRUE);
-			object = &(*elem);
+			elem->Initialize();
+			*object = &(*elem);
 			return;
 		}
 	}
@@ -44,12 +41,18 @@ VOID Pool<T>::Release(T * object)
 	if (object->IsActive())
 	{
 		object->Terminate();
-		object->Activate(FALSE);
 	}
 }
 
 template<class T>
 VOID Pool<T>::Resize(size_t new_size)
 {
+	m_size = new_size;
 	m_pool.resize(new_size);
+}
+
+template<class T>
+VOID Pool<T>::Clear()
+{
+	m_pool.clear();
 }
