@@ -26,10 +26,10 @@
         <Lights>
             <!-- For sun use Light->Type->type 0, for point - 1, for spot - 2. -->
             <Light>
-                <Type type="0"/>
+                <Type type="1"/>
                 <Falloff falloff="LIGHT_FALLOFF_DISABLED"/>
                 <Color r = "1.0" g = "1.0" b = "1.0" a = "1.0"/>
-                <Position x="0.0" y ="0.0" z="0.0"/>
+                <Position x="0.0" y ="2.0" z="10.0"/>
                 <Direction x = "0.0" y = "-1.0" z = "0.5"/>
                 <Radius r="100.0"/>
                 <Angle a="45.0"/>
