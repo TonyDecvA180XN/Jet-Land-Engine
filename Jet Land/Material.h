@@ -1,7 +1,8 @@
 #pragma once
 
-
+#include "Globals.h"
 #include "LightSource.h"
+#include "Pool.h"
 
 
 #include "VertexMode.h"
@@ -20,7 +21,7 @@ public:
     BOOL UpdateTransformation(ID3D11DeviceContext * device_context, DirectX::XMMATRIX world_matrix, DirectX::XMMATRIX view_matrix, DirectX::XMMATRIX projection_matrix);
 
     BOOL CreateLightBuffer(ID3D11Device * device);
-    BOOL UpdateLight(ID3D11DeviceContext * device_context, Light * light);
+    BOOL UpdateLight(ID3D11DeviceContext * device_context, Pool<Light> * lights);
 
     VOID DrawObject(ID3D11DeviceContext * device_context, UINT index_count, ID3D11ShaderResourceView * srv);
 

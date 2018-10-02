@@ -45,12 +45,12 @@ BOOL StaticMesh::CreateMesh(ID3D11Device * device,
     return TRUE;
 }
 
-BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera, Light * light, ID3D11ShaderResourceView * srv)
+BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_camera, Pool<Light> * lights, ID3D11ShaderResourceView * srv)
 {
     mesh_->ApplyBuffers(device_context);
     BOOL result = material_->UpdateTransformation(device_context, this->GetWorldMatrix(), target_camera->GetViewMatrix(), target_camera->GetProjMatrix());
     if (!result) { return FALSE; }
-    result = material_->UpdateLight(device_context, light);
+    result = material_->UpdateLight(device_context, lights);
     if (!result) { return FALSE; }
     material_->DrawObject(device_context, mesh_->GetIndexCount(), srv);
 

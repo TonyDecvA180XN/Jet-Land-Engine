@@ -227,6 +227,7 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameplayManager.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="IncluderDX.h" />
     <ClInclude Include="IncluderSTD.h" />

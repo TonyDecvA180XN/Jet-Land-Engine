@@ -37,7 +37,7 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!fps_) { return FALSE; }
     //cube_ = new StaticMesh;
     //if (!cube_) { return FALSE; }
-	m_lights = new Pool<Light>(10);
+	m_lights = new Pool<Light>(MAX_LIGHT_PER_LOCATION_COUNT);
 	if (!m_lights) { return FALSE; }
 	m_meshes = new Pool<StaticMesh>(10);
 	if (!m_meshes) { return FALSE; }
@@ -64,7 +64,7 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
 	m_locManager->Connect(m_lights);
 
 	result = m_locManager->LoadFromFile(renderManager_->GetDirectXDevice(), LPSTR("location.xml"));
-	std::wstring name(L"texture.dds");
+	std::wstring name(L"Data/Textures/garbage container.dds");
 	texture_->LoadFromFile(renderManager_->GetDirectXDevice(), name);
 
     return TRUE;
@@ -143,7 +143,7 @@ BOOL GraphicsManager::Render(Camera * camera)
 	{
 		if (mesh->IsActive())
 		{
-			mesh->Render(renderManager_->GetDirectXDeviceContext(), camera, (Light *)&(*(m_lights->Begin())), texture_->Get());
+			mesh->Render(renderManager_->GetDirectXDeviceContext(), camera, m_lights, texture_->Get());
 		}
 	}
     renderManager_->FinishSceneAndPresent();

@@ -5,6 +5,7 @@
 #include "Material.h"
 #include "Camera.h"
 #include "PoolObject.h"
+#include "Pool.h"
 
 class StaticMesh : public Object3D, public PoolObject
 {
@@ -17,7 +18,7 @@ public:
 		std::string * shader_v_filename,
 		std::string * shader_p_filename);
 
-    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, Light * light, ID3D11ShaderResourceView * srv);
+    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, Pool<Light> * lights, ID3D11ShaderResourceView * srv);
 
     VOID Destroy();
 private:

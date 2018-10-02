@@ -6,9 +6,10 @@ namespace LightProperties
 {
 	enum LightType : INT32
 	{
-		LIGHT_TYPE_SUN   = 0,
-		LIGHT_TYPE_POINT = 1,
-		LIGHT_TYPE_SPOT  = 2
+		LIGHT_TYPE_NONE  = 0,
+		LIGHT_TYPE_SUN   = 1,
+		LIGHT_TYPE_POINT = 2,
+		LIGHT_TYPE_SPOT  = 3
 	};
 	enum LightFalloff : INT32
 	{
@@ -36,7 +37,7 @@ public:
 		//                                      Total: 56(64)
 	};
 
-	Light() : Light(LightProperties::LIGHT_TYPE_POINT) {};
+	Light() : Light(LightProperties::LIGHT_TYPE_NONE) {};
 	Light(LightProperties::LightType type);
 	~Light() = default;
 

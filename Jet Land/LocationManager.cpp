@@ -110,17 +110,17 @@ BOOL LocationManager::LoadLight(tinyxml2::XMLElement * light)
 	m_lights->Allocate(&newLight);
 	switch (type->IntAttribute("type"))
 	{
-	case 0:
+	case LightProperties::LIGHT_TYPE_SUN:
 	{
 		newLight->SetType(LightProperties::LIGHT_TYPE_SUN);
 		break;
 	}
-	case 1:
+	case LightProperties::LIGHT_TYPE_POINT:
 	{
 		newLight->SetType(LightProperties::LIGHT_TYPE_POINT);
 		break;
 	}
-	case 2:
+	case LightProperties::LIGHT_TYPE_SPOT:
 	{
 		newLight->SetType(LightProperties::LIGHT_TYPE_SPOT);
 		break;

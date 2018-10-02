@@ -236,7 +236,7 @@ BOOL Material::CreateLightBuffer(ID3D11Device * device)
 {
 	D3D11_BUFFER_DESC description;
 	description.Usage = D3D11_USAGE_DYNAMIC;
-	description.ByteWidth = sizeof Light::LightBuffer;
+	description.ByteWidth = sizeof Light::LightBuffer * MAX_LIGHT_PER_LOCATION_COUNT;
 	description.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	description.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	description.MiscFlags = 0;
@@ -248,14 +248,19 @@ BOOL Material::CreateLightBuffer(ID3D11Device * device)
 	return TRUE;
 }
 
-BOOL Material::UpdateLight(ID3D11DeviceContext * device_context, Light * light)
+BOOL Material::UpdateLight(ID3D11DeviceContext * device_context, Pool<Light> * lights)
 {
 	D3D11_MAPPED_SUBRESOURCE resource;
 	HRESULT result = device_context->Map(lightBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 	if (FAILED(result)) { return FALSE; }
 
 	Light::LightBuffer * ptr = reinterpret_cast<Light::LightBuffer *>(resource.pData);
-	*ptr = light->GenerateBuffer();
+	for (auto iLight = lights->Begin(); iLight != lights->End(); ++iLight)
+	{
+		*ptr = iLight->GenerateBuffer();
+		++ptr;
+	}
+	//*ptr = light->GenerateBuffer();
 	device_context->Unmap(lightBuffer_, 0);
 
 	return TRUE;

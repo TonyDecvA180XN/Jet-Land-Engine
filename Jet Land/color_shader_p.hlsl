@@ -1,18 +1,22 @@
+#define MAX_LIGHTS_PER_LOCATION_COUNT 32
+
 Texture2D my_texture;
 SamplerState my_sampler;
 
 cbuffer LightBuffer
 {
-	
-	float4 lColor;                           // 4*4=16 bytes
-	float3 lPosition;                        // 4*3=12 bytes
-	float lRadius;                           // 4 bytes
-	float3 lDirection;                       // 4*3=12 bytes
-	float lAngle;                            // 4 bytes
-	int lType;                               // 4 bytes
-	int lFalloff;                            // 4 bytes
-	float2 _padding;                         // (8) bytes
-	//                                   Total: 56(64)
+	struct LightSrc
+	{
+		float4 lColor;                           // 4*4=16 bytes
+		float3 lPosition;                        // 4*3=12 bytes
+		float lRadius;                           // 4 bytes
+		float3 lDirection;                       // 4*3=12 bytes
+		float lAngle;                            // 4 bytes
+		int lType;                               // 4 bytes
+		int lFalloff;                            // 4 bytes
+		float2 _padding;                         // (8) bytes
+		//                                   Total: 56(64)
+	} lights[MAX_LIGHTS_PER_LOCATION_COUNT];
 };
 
 struct PixelInputType
@@ -31,35 +35,46 @@ float4 PS(PixelInputType inputPixel) : SV_TARGET
 	float i = saturate(dot(inputRay, normalize(inputPixel.normal)));
 	return saturate(0.2f + 0.8f * i) * texColor;*/
 
-	float intensity = 1.0f;
-	float4 textureColor;
-	float4 lightColor;
+	float f_intensity = 0.0f;
+	float4 f_textureColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
+	float4 f_lightColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
 	float4 outputColor;
 
-	lightColor = lColor;
-	textureColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
-	switch (lType)
-	{
-	case 0: // sun
-	{
-		float3 inputRay = -lDirection;
-		intensity = dot(inputRay, inputPixel.normal);
-		intensity = saturate(intensity); // optimize ifn't need
-		break;
-	}
-	case 1: // point
-	{
-		float3 inputRay = normalize(inputPixel.positionW - lPosition);
-		intensity = dot(inputRay, inputPixel.normal);
-		intensity = saturate(intensity); // optimize ifn't need
-		break;
-	}
-	case 2: // spot
-	{
-		break;
-	}
-	}
 
-	outputColor = textureColor * lightColor * intensity;
+	for (uint iL = 0; iL < MAX_LIGHTS_PER_LOCATION_COUNT; ++iL)
+	{
+		float intensity = 0.0f;
+		float3 lightColor = lights[iL].lColor.rgb;
+		switch (lights[iL].lType)
+		{
+		case 1: // sun
+		{
+			float3 inputRay = -lights[iL].lDirection;
+			intensity = dot(inputRay, inputPixel.normal);
+			intensity = saturate(intensity); // optimize ifn't need
+			break;
+		}
+		case 2: // point
+		{
+			float3 inputRay = normalize(inputPixel.positionW - lights[iL].lPosition);
+			intensity = dot(inputRay, inputPixel.normal);
+			intensity = saturate(intensity); // optimize ifn't need
+			break;
+		}
+		case 3: // spot
+		{
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+		if (intensity > f_intensity) f_intensity = intensity;
+		if (lightColor.r > f_lightColor.r) f_lightColor.r = lightColor.r;
+		if (lightColor.g > f_lightColor.g) f_lightColor.g = lightColor.g;
+		if (lightColor.b > f_lightColor.b) f_lightColor.b = lightColor.b;
+	}
+	outputColor = f_textureColor * f_lightColor * f_intensity;
 	return outputColor;
 }
