@@ -41,6 +41,8 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
 	if (!m_lights) { return FALSE; }
 	m_meshes = new Pool<StaticMesh>(10);
 	if (!m_meshes) { return FALSE; }
+	m_materials = new Pool<Material>(10);
+	if (!m_materials) { return FALSE; }
 	//m_lights->Allocate(&sun_);
 	//m_meshes->Allocate(&cube_);
 	////m_lights->Release(sun_); // danger
@@ -62,6 +64,7 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
 	if (!m_locManager) { return FALSE; }
 	m_locManager->Connect(m_meshes);
 	m_locManager->Connect(m_lights);
+	m_locManager->Connect(m_materials);
 
 	result = m_locManager->LoadFromFile(renderManager_->GetDirectXDevice(), LPSTR("location.xml"));
 	std::wstring name(L"Data/Textures/garbage container.dds");

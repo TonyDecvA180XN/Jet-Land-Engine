@@ -36,6 +36,7 @@ private:
     Camera * camera_;
 	Pool<Light> * m_lights;
 	Pool<StaticMesh> * m_meshes;
+	Pool<Material> * m_materials;
     Light * sun_;
     Timer * timer_;
     FpsCounter * fps_;

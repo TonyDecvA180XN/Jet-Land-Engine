@@ -6,19 +6,6 @@ std::ifstream::pos_type filesize(LPSTR filename)
 	return in.tellg();
 }
 
-Material::Material()
-{
-	vs_ = NULL;
-	ps_ = NULL;
-	il_ = NULL;
-
-	transformMatrixBuffer_ = NULL;
-	lightBuffer_ = NULL;
-
-	sampler_ = NULL;
-}
-
-
 Material::~Material()
 = default;
 
@@ -266,6 +253,40 @@ BOOL Material::UpdateLight(ID3D11DeviceContext * device_context, Pool<Light> * l
 	return TRUE;
 }
 
+BOOL Material::CreateMaterialBuffer(ID3D11Device * device)
+{
+	D3D11_BUFFER_DESC description;
+	description.Usage = D3D11_USAGE_DYNAMIC;
+	description.ByteWidth = sizeof MaterialBuffer;
+	description.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	description.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	description.MiscFlags = 0;
+	description.StructureByteStride = 0;
+
+	HRESULT result = device->CreateBuffer(&description, NULL, &m_materialBuffer);
+	if (FAILED(result)) { return FALSE; }
+
+	return TRUE;
+}
+
+BOOL Material::UpdateMaterialBuffer(ID3D11DeviceContext * device_context)
+{
+	D3D11_MAPPED_SUBRESOURCE resource;
+	HRESULT result = device_context->Map(m_materialBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+	if (FAILED(result)) { return FALSE; }
+
+	MaterialBuffer * ptr = reinterpret_cast<MaterialBuffer *>(resource.pData);
+	ptr->mDiffuse = m_diffuse;
+	ptr->mAmbient = m_ambient;
+	ptr->mSpecular = m_specular;
+	ptr->mRoughness = m_roughness;
+	ptr->mTransparency = m_transparency;
+	ptr->mMirror = m_mirror;
+	ptr->mIOR = m_IOR;
+	device_context->Unmap(m_materialBuffer, 0);
+	return TRUE;
+}
+
 VOID Material::DrawObject(ID3D11DeviceContext * device_context, UINT index_count, ID3D11ShaderResourceView * srv)
 {
 	device_context->IASetInputLayout(il_);
@@ -273,6 +294,7 @@ VOID Material::DrawObject(ID3D11DeviceContext * device_context, UINT index_count
 	device_context->PSSetShader(ps_, NULL, 0);
 	device_context->VSSetConstantBuffers(0, 1, &transformMatrixBuffer_);
 	device_context->PSSetConstantBuffers(0, 1, &lightBuffer_);
+	device_context->PSSetConstantBuffers(1, 1, &m_materialBuffer);
 	device_context->PSSetSamplers(0, 1, &sampler_);
 	device_context->PSSetShaderResources(0, 1, &srv);
 	device_context->DrawIndexed(index_count, 0, 0);
@@ -310,4 +332,116 @@ VOID Material::Destroy()
 		sampler_->Release();
 		sampler_ = NULL;
 	}
+}
+
+DirectX::XMVECTOR Material::GetDiffuseXM()
+{  
+	return DirectX::XMVectorSet(m_diffuse.x, m_diffuse.y, m_diffuse.z, 1.0f);
+}
+
+VOID Material::SetDiffuseXM(DirectX::XMVECTOR diffuse)
+{ 
+	DirectX::XMStoreFloat4(&m_diffuse, diffuse);
+}
+
+VOID Material::GetDiffuse(FLOAT &r, FLOAT &g, FLOAT &b)
+{
+	r = m_diffuse.x;
+	g = m_diffuse.y;
+	b = m_diffuse.z;
+}
+
+VOID Material::SetDiffuse(FLOAT r, FLOAT g, FLOAT b)
+{
+	m_diffuse.x = r;
+	m_diffuse.y = g;
+	m_diffuse.z = b;
+}
+
+DirectX::XMVECTOR Material::GetAmbientXM()
+{
+	return DirectX::XMVectorSet(m_ambient.x, m_ambient.y, m_ambient.z, 1.0f);
+}
+
+VOID Material::SetAmbientXM(DirectX::XMVECTOR ambient)
+{
+	DirectX::XMStoreFloat4(&m_ambient, ambient);
+}
+
+VOID Material::GetAmbient(FLOAT &r, FLOAT &g, FLOAT &b)
+{
+	r = m_ambient.x;
+	g = m_ambient.y;
+	b = m_ambient.z;
+}
+
+VOID Material::SetAmbient(FLOAT r, FLOAT g, FLOAT b)
+{
+	m_ambient.x = r;
+	m_ambient.y = g;
+	m_ambient.z = b;
+}
+
+DirectX::XMVECTOR Material::GetSpecularXM()
+{
+	return DirectX::XMVectorSet(m_specular.x, m_specular.y, m_specular.z, 1.0f);
+}
+
+VOID Material::SetSpecularXM(DirectX::XMVECTOR specular)
+{
+	DirectX::XMStoreFloat4(&m_specular, specular);
+}
+
+VOID Material::GetSpecular(FLOAT &r, FLOAT &g, FLOAT &b)
+{
+	r = m_specular.x;
+	g = m_specular.y;
+	b = m_specular.z;
+}
+
+VOID Material::SetSpecular(FLOAT r, FLOAT g, FLOAT b)
+{
+	m_specular.x = r;
+	m_specular.y = g;
+	m_specular.z = b;
+}
+
+FLOAT Material::GåtRoughness()
+{
+	return m_roughness;
+}
+
+VOID Material::SetRoughness(FLOAT roughness)
+{
+	m_roughness = roughness;
+}
+
+FLOAT Material::GåtTransparency()
+{
+	return m_transparency;
+}
+
+VOID Material::SetTransparency(FLOAT transparency)
+{
+	m_transparency = transparency;
+}
+
+FLOAT Material::GåtMirror()
+{
+	return m_mirror;
+}
+
+VOID Material::SetMirror(FLOAT mirror)
+{
+	m_mirror = mirror;
+}
+
+FLOAT Material::GåtIOR()
+{
+	return m_IOR;
+}
+
+VOID Material::SetIOR(FLOAT ior)
+{
+	m_IOR = ior;
 }

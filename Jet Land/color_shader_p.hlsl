@@ -1,9 +1,9 @@
-#define MAX_LIGHTS_PER_LOCATION_COUNT 32
+#define MAX_LIGHTS_PER_LOCATION_COUNT 8
 
 Texture2D my_texture;
 SamplerState my_sampler;
 
-cbuffer LightBuffer
+cbuffer cbLightBuffer : register (b0)
 {
 	struct LightSrc
 	{
@@ -18,6 +18,17 @@ cbuffer LightBuffer
 		//                                   Total: 56(64)
 	} lights[MAX_LIGHTS_PER_LOCATION_COUNT];
 };
+
+cbuffer cbMaterialBuffer : register (b1)
+{
+	float4 mDiffuse;
+	float4 mAmbient;
+	float4 mSpecular;
+	float mRoughness;
+	float mTransparency;
+	float mMirror;
+	float mIOR;
+}
 
 struct PixelInputType
 {
@@ -75,6 +86,6 @@ float4 PS(PixelInputType inputPixel) : SV_TARGET
 		if (lightColor.g > f_lightColor.g) f_lightColor.g = lightColor.g;
 		if (lightColor.b > f_lightColor.b) f_lightColor.b = lightColor.b;
 	}
-	outputColor = f_textureColor * f_lightColor * f_intensity;
+	outputColor = f_textureColor * (mDiffuse * f_lightColor * f_intensity + mAmbient);
 	return outputColor;
 }

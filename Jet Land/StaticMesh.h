@@ -13,10 +13,10 @@ public:
     StaticMesh();
     ~StaticMesh();
 
-    BOOL CreateMesh(ID3D11Device * device,
+	BOOL CreateMesh(ID3D11Device * device,
 		std::string * mesh_filename,
-		std::string * shader_v_filename,
-		std::string * shader_p_filename);
+		Material * material,
+		std::string * shader_filename);
 
     BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, Pool<Light> * lights, ID3D11ShaderResourceView * srv);
 

@@ -15,8 +15,8 @@ StaticMesh::~StaticMesh()
 
 BOOL StaticMesh::CreateMesh(ID3D11Device * device,
 	std::string * mesh_filename,
-	std::string * shader_v_filename,
-	std::string * shader_p_filename)
+	Material * material,
+	std::string * shader_filename)
 {
     mesh_ = new Mesh;
     if (!mesh_) { return FALSE; }
@@ -29,18 +29,19 @@ BOOL StaticMesh::CreateMesh(ID3D11Device * device,
     result = mesh_->FillIndexBuffer(device);
     if (!result) { return FALSE; }
 
-    material_ = new Material;
+	material_ = material;
     if (!material_) { return FALSE; }
 
-    result = material_->LoadVertexShaderAndInputLayout(device, (LPSTR)shader_v_filename->c_str(), mesh_->GetVertexFormat());
+    result = material_->LoadVertexShaderAndInputLayout(device, (LPSTR)(*shader_filename + "_v.cso").c_str(), mesh_->GetVertexFormat());
     if (!result) { return FALSE; }
-    result = material_->LoadPixelShader(device, (LPSTR)shader_p_filename->c_str());
+    result = material_->LoadPixelShader(device, (LPSTR)(*shader_filename + "_p.cso").c_str());
     if (!result) { return FALSE; }
     result = material_->CreateTransformMatrixBuffer(device);
     if (!result) { return FALSE; }
     result = material_->CreateLightBuffer(device);
     if (!result) { return FALSE; }
-
+	result = material_->CreateMaterialBuffer(device);
+	if (!result) { return FALSE; }
 
     return TRUE;
 }
@@ -52,6 +53,8 @@ BOOL StaticMesh::Render(ID3D11DeviceContext * device_context, Camera * target_ca
     if (!result) { return FALSE; }
     result = material_->UpdateLight(device_context, lights);
     if (!result) { return FALSE; }
+	result = material_->UpdateMaterialBuffer(device_context);
+	if (!result) { return FALSE; }
     material_->DrawObject(device_context, mesh_->GetIndexCount(), srv);
 
     return TRUE;
@@ -68,8 +71,6 @@ VOID StaticMesh::Destroy()
     }
     if (material_)
     {
-        material_->Destroy();
-        delete material_;
-        material_ = NULL;
+		// \todo destroy
     }
 }

@@ -22,6 +22,11 @@ VOID LocationManager::Connect(Pool<StaticMesh> * meshes)
 	m_meshes = meshes;
 }
 
+VOID LocationManager::Connect(Pool<Material> * materials)
+{
+	m_materials = materials;
+}
+
 VOID LocationManager::Disconnect()
 {
 	m_lights = NULL;
@@ -79,20 +84,23 @@ BOOL LocationManager::LoadMesh(ID3D11Device * device, tinyxml2::XMLElement * mes
 	tinyxml2::XMLElement * position = mesh->FirstChildElement("Position");
 	tinyxml2::XMLElement * rotation = mesh->FirstChildElement("Rotation");
 	tinyxml2::XMLElement * scale = mesh->FirstChildElement("Scale");
-	tinyxml2::XMLElement * shaderName = mesh->FirstChildElement("Shader");
+	tinyxml2::XMLElement * materialName = mesh->FirstChildElement("Material");
 
 	StaticMesh * newMesh;
 	m_meshes->Allocate(&newMesh);
-	std::string mf(modelName->Attribute("filename"));
-	std::string vsf(shaderName->Attribute("filename"));
-	std::string psf(shaderName->Attribute("filename"));
-	vsf += "_v.cso";
-	psf += "_p.cso";
-	newMesh->CreateMesh(device, &mf, &vsf, &psf);
+	Material * newMaterial;
+	m_materials->Allocate(&newMaterial);
+
+	std::string * mfn = new std::string(modelName->Attribute("filename"));
+	std::string * sfn = this->LoadMaterial(LPSTR(materialName->Attribute("filename")), newMaterial);
+	newMesh->CreateMesh(device, mfn, newMaterial, sfn);
 
 	newMesh->SetPosition(position->FloatAttribute("x"), position->FloatAttribute("y"), position->FloatAttribute("z"));
 	newMesh->SetRotation(rotation->FloatAttribute("x"), rotation->FloatAttribute("y"), rotation->FloatAttribute("z"));
 	newMesh->SetScaling(scale->FloatAttribute("x"), scale->FloatAttribute("y"), scale->FloatAttribute("z"));
+
+	delete mfn;
+	delete sfn;
 	return TRUE;
 }
 
@@ -145,4 +153,32 @@ BOOL LocationManager::LoadLight(tinyxml2::XMLElement * light)
 	newLight->SetAngle(angle->FloatAttribute("a"));
 	// \todo Set radius
 	return TRUE;
+}
+
+std::string * LocationManager::LoadMaterial(LPSTR filename, Material * material)
+{
+	tinyxml2::XMLDocument materialFile;
+
+	materialFile.LoadFile(filename);
+
+	tinyxml2::XMLElement * materialBlock = materialFile.FirstChildElement("Material");
+
+	tinyxml2::XMLElement * shader = materialBlock->FirstChildElement("Shader");
+	tinyxml2::XMLElement * diffuse = materialBlock->FirstChildElement("Diffuse");
+	tinyxml2::XMLElement * ambient = materialBlock->FirstChildElement("Ambient");
+	tinyxml2::XMLElement * specular = materialBlock->FirstChildElement("Specular");
+	tinyxml2::XMLElement * roughness = materialBlock->FirstChildElement("Roughness");
+	tinyxml2::XMLElement * transparency = materialBlock->FirstChildElement("Transparency");
+	tinyxml2::XMLElement * mirror = materialBlock->FirstChildElement("Mirror");
+	tinyxml2::XMLElement * ior = materialBlock->FirstChildElement("IOR");
+
+	material->SetDiffuse(diffuse->FloatAttribute("r"), diffuse->FloatAttribute("g"), diffuse->FloatAttribute("b"));
+	material->SetAmbient(ambient->FloatAttribute("r"), ambient->FloatAttribute("g"), ambient->FloatAttribute("b"));
+	material->SetSpecular(specular->FloatAttribute("r"), specular->FloatAttribute("g"), specular->FloatAttribute("b"));
+	material->SetRoughness(roughness->FloatAttribute("v"));
+	material->SetTransparency(transparency->FloatAttribute("v"));
+	material->SetMirror(mirror->FloatAttribute("v"));
+	material->SetIOR(ior->FloatAttribute("v"));
+
+	return new std::string(shader->Attribute("filename"));
 }

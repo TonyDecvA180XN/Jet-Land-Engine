@@ -11,30 +11,13 @@
                 <Position x = "0.0" y = "0.0" z = "0.0"/>
                 <Rotation x = "0.0" y = "0.0" z = "0.0"/>
                 <Scale x = "1.0" y = "1.0" z = "1.0"/>
-                <Shader filename = "color_shader"/>
+                <Material filename = "material.xml"/>
+                <Texture filename ="Data/Textures/garbage container.dds"/>
             </StaticMesh>
 
         </Meshes>
         <Lights>
             <!-- For sun use Light->Type->type 1, for point - 2, for spot - 3. -->
-            <Light>
-                <Type type="2"/>
-                <Falloff falloff="LIGHT_FALLOFF_DISABLED"/>
-                <Color r = "1.0" g = "1.0" b = "1.0" a = "1.0"/>
-                <Position x="0.0" y ="3.0" z="10.0"/>
-                <Direction x = "0.0" y = "-1.0" z = "0.5"/>
-                <Radius r="100.0"/>
-                <Angle a="45.0"/>
-            </Light>
-            <Light>
-                <Type type="2"/>
-                <Falloff falloff="LIGHT_FALLOFF_DISABLED"/>
-                <Color r = "1.0" g = "1.0" b = "1.0" a = "1.0"/>
-                <Position x="0.0" y ="3.0" z="-10.0"/>
-                <Direction x = "0.0" y = "-1.0" z = "0.5"/>
-                <Radius r="100.0"/>
-                <Angle a="45.0"/>
-            </Light>
             <Light>
                 <Type type="2"/>
                 <Falloff falloff="LIGHT_FALLOFF_DISABLED"/>
