@@ -84,15 +84,26 @@ BOOL LocationManager::LoadMesh(ID3D11Device * device, tinyxml2::XMLElement * mes
 	tinyxml2::XMLElement * position = mesh->FirstChildElement("Position");
 	tinyxml2::XMLElement * rotation = mesh->FirstChildElement("Rotation");
 	tinyxml2::XMLElement * scale = mesh->FirstChildElement("Scale");
-	tinyxml2::XMLElement * materialName = mesh->FirstChildElement("Material");
+	tinyxml2::XMLElement * material = mesh->FirstChildElement("Material");
 
 	StaticMesh * newMesh;
 	m_meshes->Allocate(&newMesh);
-	Material * newMaterial;
-	m_materials->Allocate(&newMaterial);
-
 	std::string * mfn = new std::string(modelName->Attribute("filename"));
-	std::string * sfn = this->LoadMaterial(LPSTR(materialName->Attribute("filename")), newMaterial);
+	std::string * sfn = NULL;
+
+	Material * newMaterial;
+	if (Pool<Material>::FindObject(m_materials, std::string(material->Attribute("name"))))
+	{
+		newMaterial = Pool<Material>::UseObject(m_materials, material->Attribute("name"));
+	}
+	else
+	{
+		m_materials->Allocate(&newMaterial);
+		sfn = this->LoadMaterial(LPSTR(), LPSTR(material->Attribute("filename")), newMaterial);
+		newMaterial->SetName(material->Attribute("name"));
+	}
+	
+
 	newMesh->CreateMesh(device, mfn, newMaterial, sfn);
 
 	newMesh->SetPosition(position->FloatAttribute("x"), position->FloatAttribute("y"), position->FloatAttribute("z"));
@@ -155,7 +166,7 @@ BOOL LocationManager::LoadLight(tinyxml2::XMLElement * light)
 	return TRUE;
 }
 
-std::string * LocationManager::LoadMaterial(LPSTR filename, Material * material)
+std::string * LocationManager::LoadMaterial(LPSTR name, LPSTR filename, Material * material)
 {
 	tinyxml2::XMLDocument materialFile;
 

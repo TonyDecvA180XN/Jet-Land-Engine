@@ -13,6 +13,7 @@ class Material : public PoolObject
 public:
 	Material() :
 		Material(
+			"default",
 			DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f),
 			DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f),
 			DirectX::XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f),
@@ -22,6 +23,7 @@ public:
 			FLOAT(1.45f)
 		) {};
 	Material(
+		std::string name,
 		DirectX::XMFLOAT4 diffuse,
 		DirectX::XMFLOAT4 ambient,
 		DirectX::XMFLOAT4 specular,
@@ -30,6 +32,7 @@ public:
 		FLOAT mirror,
 		FLOAT IOR
 	) :
+		PoolObject(name),
 		m_diffuse(diffuse),
 		m_ambient(ambient),
 		m_specular(specular),
@@ -63,32 +66,32 @@ public:
 
 	VOID Destroy();
 
-	DirectX::XMVECTOR GetDiffuseXM();
-	VOID SetDiffuseXM(DirectX::XMVECTOR diffuse);
-	VOID GetDiffuse(FLOAT &r, FLOAT &g, FLOAT &b);
-	VOID SetDiffuse(FLOAT r, FLOAT g, FLOAT b);
+	DirectX::XMVECTOR GetDiffuseXM    ();
+	VOID              SetDiffuseXM    (DirectX::XMVECTOR diffuse);
+	VOID              GetDiffuse      (FLOAT &r, FLOAT &g, FLOAT &b);
+	VOID              SetDiffuse      (FLOAT  r, FLOAT  g, FLOAT  b);
 
-	DirectX::XMVECTOR GetAmbientXM();
-	VOID SetAmbientXM(DirectX::XMVECTOR ambient);
-	VOID GetAmbient(FLOAT &r, FLOAT &g, FLOAT &b);
-	VOID SetAmbient(FLOAT r, FLOAT g, FLOAT b);
+	DirectX::XMVECTOR GetAmbientXM    ();
+	VOID              SetAmbientXM    (DirectX::XMVECTOR ambient);
+	VOID              GetAmbient      (FLOAT &r, FLOAT &g, FLOAT &b);
+	VOID              SetAmbient      (FLOAT r, FLOAT g, FLOAT b);
 
-	DirectX::XMVECTOR GetSpecularXM();
-	VOID SetSpecularXM(DirectX::XMVECTOR specular);
-	VOID GetSpecular(FLOAT &r, FLOAT &g, FLOAT &b);
-	VOID SetSpecular(FLOAT r, FLOAT g, FLOAT b);
+	DirectX::XMVECTOR GetSpecularXM   ();
+	VOID              SetSpecularXM   (DirectX::XMVECTOR specular);
+	VOID              GetSpecular     (FLOAT &r, FLOAT &g, FLOAT &b);
+	VOID              SetSpecular     (FLOAT r, FLOAT g, FLOAT b);
 
-	FLOAT GåtRoughness();
-	VOID SetRoughness(FLOAT roughness);
+	FLOAT             GåtRoughness    ();
+	VOID              SetRoughness    (FLOAT roughness);
 
-	FLOAT GåtTransparency();
-	VOID SetTransparency(FLOAT transparency);
+	FLOAT             GåtTransparency ();
+	VOID              SetTransparency (FLOAT transparency);
 
-	FLOAT GåtMirror();
-	VOID SetMirror(FLOAT mirror);
+	FLOAT             GåtMirror       ();
+	VOID              SetMirror       (FLOAT mirror);
 
-	FLOAT GåtIOR();
-	VOID SetIOR(FLOAT ior);
+	FLOAT             GåtIOR          ();
+	VOID              SetIOR          (FLOAT ior);
 
 private:
 	struct TransformMatrixBuffer

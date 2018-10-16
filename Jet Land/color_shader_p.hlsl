@@ -67,7 +67,7 @@ float4 PS(PixelInputType inputPixel) : SV_TARGET
 		}
 		case 2: // point
 		{
-			float3 inputRay = normalize(inputPixel.positionW - lights[iL].lPosition);
+			float3 inputRay = normalize(lights[iL].lPosition - inputPixel.positionW);
 			intensity = dot(inputRay, inputPixel.normal);
 			intensity = saturate(intensity); // optimize ifn't need
 			break;

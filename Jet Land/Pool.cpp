@@ -56,3 +56,22 @@ VOID Pool<T>::Clear()
 {
 	m_pool.clear();
 }
+
+template<class T>
+BOOL Pool<T>::FindObject(Pool<T> * pool, std::string name)
+{
+	return std::find_if(
+		pool->Begin(),
+		pool->End(),
+		[name](T instance) -> BOOL { return instance.GetName() == name; })
+		!= pool->End();
+}
+
+template<class T>
+T * Pool<T>::UseObject(Pool<T> * pool, std::string name)
+{
+	return &*std::find_if(
+		pool->Begin(),
+		pool->End(),
+		[name](T instance) -> BOOL { return instance.GetName() == name; });
+}

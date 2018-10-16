@@ -25,7 +25,7 @@ public:
 private:
 	BOOL LoadMesh(ID3D11Device * device, tinyxml2::XMLElement * mesh);
 	BOOL LoadLight(tinyxml2::XMLElement * light);
-	std::string * LoadMaterial(LPSTR filename, Material * material);
+	std::string * LoadMaterial(LPSTR name, LPSTR filename, Material * material);
 
 private:
 	tinyxml2::XMLDocument * m_locationDesc;

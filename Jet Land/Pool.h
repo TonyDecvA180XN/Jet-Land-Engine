@@ -3,7 +3,7 @@
 
 
 #include <vector>
-
+#include <algorithm>
 
 template <class T>
 class Pool
@@ -23,9 +23,13 @@ public:
 	size_t GetSize() { return m_size; };
 
 	VOID Clear();
+
+	static BOOL FindObject(Pool<T> * pool, std::string name);
+	static T * UseObject(Pool<T> * pool, std::string name);
 private:
 	std::vector<T> m_pool;
 	size_t m_size;
 };
+
 
 #include "Pool.cpp"

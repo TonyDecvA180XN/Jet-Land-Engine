@@ -81,15 +81,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>LibraryPCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>LibraryPCH.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
+copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
+copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -98,7 +98,7 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>LibraryPCH.h</PrecompiledHeaderFile>
@@ -106,8 +106,8 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
     </ClCompile>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
+copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
+copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>dinput8.lib;dxguid.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -121,7 +121,7 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>LibraryPCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>LibraryPCH.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -132,8 +132,8 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
+copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
+copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,7 +144,7 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>LibraryPCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>LibraryPCH.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -155,8 +155,8 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime"</Command>
+copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
+copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
