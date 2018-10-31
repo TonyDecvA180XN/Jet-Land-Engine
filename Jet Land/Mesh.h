@@ -2,9 +2,9 @@
 
 
 
-
-#include "VertexMode.h"
+#include "VFormat.h"
 #include "OBJ_Loader.h"
+#include "JMH_Loader.h"
 
 class Mesh
 {
@@ -24,13 +24,13 @@ public:
 
     UINT GetVertexCount();
     UINT GetIndexCount();
-    VERTEX_FORMAT GetVertexFormat();
+    VFORMAT GetVertexFormat();
 
 private:
 
 
 private:
-    VERTEX_FORMAT vertexFormat_;
+    VFORMAT vertexFormat_;
     VOID * vertexArray_;
     UINT * indexArray_;
     UINT vertexCount_, indexCount_, vertexSize_;

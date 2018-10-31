@@ -7,7 +7,7 @@
         <Meshes>
 
             <StaticMesh>
-                <Model filename = "Data/Meshes/container.obj"/>
+                <Model filename = "Data/Meshes/container.jmh"/>
                 <Position x = "0.0" y = "0.0" z = "0.0"/>
                 <Rotation x = "0.0" y = "0.0" z = "0.0"/>
                 <Scale x = "1.0" y = "1.0" z = "1.0"/>
@@ -15,6 +15,14 @@
                 <Texture filename ="Data/Textures/garbage container.dds"/>
             </StaticMesh>
 
+            <StaticMesh>
+                <Model filename = "Data/Meshes/cube.jmh"/>
+                <Position x = "0.0" y = "12.0" z = "0.0"/>
+                <Rotation x = "0.0" y = "0.0" z = "0.0"/>
+                <Scale x = "1.0" y = "1.0" z = "1.0"/>
+                <Material name = "middle" filename ="material.xml"/>
+            </StaticMesh>
+        
         </Meshes>
         <Lights>
             <!-- For sun use Light->Type->type 1, for point - 2, for spot - 3. -->

@@ -188,6 +188,7 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <ClCompile Include="InputHandlerBaseState.cpp" />
     <ClCompile Include="InputHandlerIgnoreState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="JMH_Loader.cpp" />
     <ClCompile Include="LibraryPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -239,6 +240,7 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <ClInclude Include="InputHandlerBaseState.h" />
     <ClInclude Include="InputHandlerIgnoreState.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="JMH_Loader.h" />
     <ClInclude Include="LibraryPCH.h" />
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="LocationManager.h" />

@@ -5,7 +5,7 @@
 #include "Pool.h"
 #include "PoolObject.h"
 
-#include "VertexMode.h"
+#include "VFormat.h"
 #include "CrashManager.h"
 
 class Material : public PoolObject 
@@ -50,7 +50,7 @@ public:
 	{}
 	~Material();
 
-	BOOL LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filename, VERTEX_FORMAT vertex_format);
+	BOOL LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filename, VFORMAT vertex_format);
 	BOOL LoadPixelShader(ID3D11Device * device, LPSTR filename);
 
 	BOOL CreateTransformMatrixBuffer(ID3D11Device * device);

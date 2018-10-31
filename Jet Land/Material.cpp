@@ -9,7 +9,7 @@ std::ifstream::pos_type filesize(LPSTR filename)
 Material::~Material()
 = default;
 
-BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filename, VERTEX_FORMAT vertex_format)
+BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filename, VFORMAT vertex_format)
 {
 	HRESULT result;
 
@@ -49,7 +49,7 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filen
 	D3D11_INPUT_ELEMENT_DESC * descriptions = new D3D11_INPUT_ELEMENT_DESC[5];
 	if (!descriptions) { return FALSE; }
 
-	if (vertex_format & VertexComponent::HavePosition)
+	if (vertex_format & PositionMask)
 	{
 		descriptions[ilElementsCount].SemanticName = "POSITION";
 		descriptions[ilElementsCount].SemanticIndex = 0;
@@ -61,7 +61,7 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filen
 		ilElementsCount++;
 	}
 
-	if (vertex_format & VertexComponent::HaveColor)
+	if (vertex_format & ColorMask)
 	{
 		descriptions[ilElementsCount].SemanticName = "VERTEXCOLOR";
 		descriptions[ilElementsCount].SemanticIndex = 0;
@@ -73,7 +73,7 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filen
 		ilElementsCount++;
 	}
 
-	if (vertex_format & VertexComponent::HaveTexcoords)
+	if (vertex_format & TexcoordsMask)
 	{
 		descriptions[ilElementsCount].SemanticName = "TEXCOORDS";
 		descriptions[ilElementsCount].SemanticIndex = 0;
@@ -85,7 +85,7 @@ BOOL Material::LoadVertexShaderAndInputLayout(ID3D11Device * device, LPSTR filen
 		ilElementsCount++;
 	}
 
-	if (vertex_format & VertexComponent::HaveNormal)
+	if (vertex_format & NormalsMask)
 	{
 		descriptions[ilElementsCount].SemanticName = "NORMAL";
 		descriptions[ilElementsCount].SemanticIndex = 0;

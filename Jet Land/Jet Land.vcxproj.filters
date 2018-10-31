@@ -113,6 +113,9 @@
     <ClCompile Include="INIReader\ini.c">
       <Filter>src\INIReader</Filter>
     </ClCompile>
+    <ClCompile Include="JMH_Loader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -235,6 +238,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="JMH_Loader.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

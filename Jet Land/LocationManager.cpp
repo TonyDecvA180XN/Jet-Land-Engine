@@ -92,17 +92,10 @@ BOOL LocationManager::LoadMesh(ID3D11Device * device, tinyxml2::XMLElement * mes
 	std::string * sfn = NULL;
 
 	Material * newMaterial;
-	if (Pool<Material>::FindObject(m_materials, std::string(material->Attribute("name"))))
-	{
-		newMaterial = Pool<Material>::UseObject(m_materials, material->Attribute("name"));
-	}
-	else
-	{
-		m_materials->Allocate(&newMaterial);
-		sfn = this->LoadMaterial(LPSTR(), LPSTR(material->Attribute("filename")), newMaterial);
-		newMaterial->SetName(material->Attribute("name"));
-	}
-	
+
+	m_materials->Allocate(&newMaterial);
+	sfn = this->LoadMaterial(LPSTR(), LPSTR(material->Attribute("filename")), newMaterial);
+	newMaterial->SetName(material->Attribute("name"));
 
 	newMesh->CreateMesh(device, mfn, newMaterial, sfn);
 
