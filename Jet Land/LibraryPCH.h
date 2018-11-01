@@ -17,6 +17,7 @@
 // STL headers
 #include <sstream>
 #include <fstream>
+#include <map>
 
 // WinAPI headers
 #include <Windows.h>

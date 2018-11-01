@@ -38,9 +38,6 @@
     <ClCompile Include="ConfigManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="CrashManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -132,25 +129,10 @@
     <ClInclude Include="INIReader\ini.h">
       <Filter>src\INIReader</Filter>
     </ClInclude>
-    <ClInclude Include="VertexMode.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="OBJ_Loader.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="LightSource.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="IncluderDX.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="IncluderSTD.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="IncluderW.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexModeSelector.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="GameplayManager.h">
@@ -160,9 +142,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Configuration.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="CrashManager.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">

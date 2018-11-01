@@ -6,7 +6,7 @@
 #include "PoolObject.h"
 
 #include "VFormat.h"
-#include "CrashManager.h"
+
 
 class Material : public PoolObject 
 {

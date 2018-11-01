@@ -163,7 +163,6 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConfigManager.cpp" />
-    <ClCompile Include="CrashManager.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameplayManager.cpp" />
@@ -224,15 +223,11 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="Configuration.h" />
-    <ClInclude Include="CrashManager.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameplayManager.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GraphicsManager.h" />
-    <ClInclude Include="IncluderDX.h" />
-    <ClInclude Include="IncluderSTD.h" />
-    <ClInclude Include="IncluderW.h" />
     <ClInclude Include="INIReader\ini.h" />
     <ClInclude Include="INIReader\INIReader.h" />
     <ClInclude Include="InputHandler.h" />
@@ -257,8 +252,6 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TinyXML\tinyxml2.h" />
-    <ClInclude Include="VertexMode.h" />
-    <ClInclude Include="VertexModeSelector.h" />
     <ClInclude Include="WindowsManager.h" />
   </ItemGroup>
   <ItemGroup>

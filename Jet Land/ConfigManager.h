@@ -2,7 +2,7 @@
 
 
 
-#include "CrashManager.h"
+
 #include "INIReader/INIReader.h"
 #include "Configuration.h"
 
