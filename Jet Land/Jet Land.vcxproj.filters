@@ -4,10 +4,6 @@
     <Filter Include="docs">
       <UniqueIdentifier>{c205732a-1586-401f-b5e8-05875e7c2ee8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="resources">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -15,104 +11,15 @@
     <Filter Include="inc">
       <UniqueIdentifier>{5c9d5ed4-8103-4ad9-ab6b-d8fe0a4571dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{cd41fbd3-d2c9-4fb8-bf7c-38876d01c630}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\INIReader">
-      <UniqueIdentifier>{c486b23a-a6c7-4715-92b7-d89ab53fe409}</UniqueIdentifier>
+      <UniqueIdentifier>{5e2fc395-163f-42c7-96a9-5faa926d509e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\TinyXML">
-      <UniqueIdentifier>{5e267557-4419-45a3-82b3-3f6fd9d92e3e}</UniqueIdentifier>
+    <Filter Include="src\TinyXML2">
+      <UniqueIdentifier>{46cb4098-af8d-4cc3-9907-d42553e9089f}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="INIReader\INIReader.cpp">
-      <Filter>src\INIReader</Filter>
-    </ClCompile>
-    <ClCompile Include="LightSource.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="OBJ_Loader.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="GameplayManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="ConfigManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="ActorFreeCam.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectXManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="FpsCounter.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandlerActorFreeCamState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandlerBaseState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandlerIgnoreState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Object3D.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticMesh.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\tinyxml2.cpp">
-      <Filter>src\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="LocationManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="LibraryPCH.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="INIReader\ini.c">
-      <Filter>src\INIReader</Filter>
-    </ClCompile>
-    <ClCompile Include="JMH_Loader.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jet Land.rc">
@@ -123,19 +30,13 @@
     <ClInclude Include="resource.h">
       <Filter>resources</Filter>
     </ClInclude>
-    <ClInclude Include="INIReader\INIReader.h">
-      <Filter>src\INIReader</Filter>
-    </ClInclude>
-    <ClInclude Include="INIReader\ini.h">
-      <Filter>src\INIReader</Filter>
-    </ClInclude>
-    <ClInclude Include="OBJ_Loader.h">
+    <ClInclude Include="Actor.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="LightSource.h">
+    <ClInclude Include="ActorFreeCam.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="GameplayManager.h">
+    <ClInclude Include="Camera.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="ConfigManager.h">
@@ -144,28 +45,22 @@
     <ClInclude Include="Configuration.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorFreeCam.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="DirectXManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsManager.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="FpsCounter.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="GameManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsManager.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
@@ -183,7 +78,13 @@
     <ClInclude Include="InputManager.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="JMH_Loader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LibraryPCH.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSource.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
@@ -192,10 +93,10 @@
     <ClInclude Include="Mesh.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Object3D.h">
+    <ClInclude Include="OBJ_Loader.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="StaticMesh.h">
+    <ClInclude Include="Object3D.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Pool.h">
@@ -204,23 +105,43 @@
     <ClInclude Include="PoolObject.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="StaticMesh.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="VFormat.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="CompiledShader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="PipelineElements.h" />
+    <ClInclude Include="Utils.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LightCommonComponent.h" />
+    <ClInclude Include="TransformationBuffer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="INIReader\INIReader.h">
+      <Filter>src\INIReader</Filter>
+    </ClInclude>
+    <ClInclude Include="INIReader\ini.h">
+      <Filter>src\INIReader</Filter>
+    </ClInclude>
     <ClInclude Include="TinyXML\tinyxml2.h">
-      <Filter>src\TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="LibraryPCH.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="LocationManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="JMH_Loader.h">
-      <Filter>src</Filter>
+      <Filter>src\TinyXML2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,9 +151,103 @@
     <None Include="ClassDiagram.cd">
       <Filter>docs</Filter>
     </None>
-    <None Include="Pool.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Actor.cpp">
       <Filter>src</Filter>
-    </None>
+    </ClCompile>
+    <ClCompile Include="ActorFreeCam.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CompiledShader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsCounter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GameplayManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandlerActorFreeCamState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandlerBaseState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandlerIgnoreState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="JMH_Loader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="LibraryPCH.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSource.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJ_Loader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMesh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="PipelineElements.cpp" />
+    <ClCompile Include="LightCommonComponent.cpp" />
+    <ClCompile Include="INIReader\INIReader.cpp">
+      <Filter>src\INIReader</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxml2.cpp">
+      <Filter>src\TinyXML2</Filter>
+    </ClCompile>
+    <ClCompile Include="INIReader\ini.c">
+      <Filter>src\INIReader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="color_shader_p.hlsl">
@@ -241,5 +256,10 @@
     <FxCompile Include="color_shader_v.hlsl">
       <Filter>src</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Pool.cpp">
+      <Filter>src</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -17,7 +17,10 @@
 // STL headers
 #include <sstream>
 #include <fstream>
+#include <vector>
 #include <map>
+#include <algorithm>
+
 
 // WinAPI headers
 #include <Windows.h>

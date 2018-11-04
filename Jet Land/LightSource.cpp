@@ -1,15 +1,10 @@
 #include "LightSource.h"
 
-Light::Light(LightProperties::LightType type) :
-	m_type(type),
-	m_falloff(LightProperties::LIGHT_FALLOFF_DISABLED),
-	m_color(1.0f, 1.0f, 1.0f, 1.0f),
-	m_position(0.0f, 0.0f, 0.0f),
-	m_direction(0.0f, -1.0f, 0.0f),
-	m_angle(45.0f),
-	m_radius(100.0f)
-{
-}
+Light::Light()
+= default;
+
+Light::~Light()
+= default;
 
 LightProperties::LightType Light::GetType()
 {
@@ -19,6 +14,7 @@ LightProperties::LightType Light::GetType()
 VOID Light::SetType(LightProperties::LightType type)
 {
 	m_type = type;
+	PoolObject::Update();
 }
 
 DirectX::XMVECTOR Light::GetColorXM()
@@ -29,6 +25,7 @@ DirectX::XMVECTOR Light::GetColorXM()
 VOID Light::SetColorXM(DirectX::XMVECTOR color)
 {
 	DirectX::XMStoreFloat4(&m_color, color);
+	PoolObject::Update();
 }
 
 VOID Light::GetColor(FLOAT & r, FLOAT & g, FLOAT & b, FLOAT & a)
@@ -45,6 +42,7 @@ VOID Light::SetColor(FLOAT r, FLOAT g, FLOAT b, FLOAT a)
 	m_color.y = g;
 	m_color.z = b;
 	m_color.w = a;
+	PoolObject::Update();
 }
 
 DirectX::XMVECTOR Light::GetPositionXM()
@@ -55,6 +53,7 @@ DirectX::XMVECTOR Light::GetPositionXM()
 VOID Light::SetPositionXM(DirectX::XMVECTOR position)
 {
 	DirectX::XMStoreFloat3(&m_position, position);
+	PoolObject::Update();
 }
 
 VOID Light::GetPosition(FLOAT & x, FLOAT & y, FLOAT & z)
@@ -69,6 +68,7 @@ VOID Light::SetPosition(FLOAT x, FLOAT y, FLOAT z)
 	m_position.x = x;
 	m_position.y = y;
 	m_position.z = z;
+	PoolObject::Update();
 }
 
 DirectX::XMVECTOR Light::GetDirectionXM()
@@ -79,6 +79,7 @@ DirectX::XMVECTOR Light::GetDirectionXM()
 VOID Light::SetDirectionXM(DirectX::XMVECTOR direction)
 {
 	DirectX::XMStoreFloat3(&m_direction, direction);
+	PoolObject::Update();
 }
 
 VOID Light::GetDirection(FLOAT & x, FLOAT & y, FLOAT & z)
@@ -93,6 +94,7 @@ VOID Light::SetDirection(FLOAT x, FLOAT y, FLOAT z)
 	m_direction.x = x;
 	m_direction.y = y;
 	m_direction.z = z;
+	PoolObject::Update();
 }
 
 FLOAT Light::GåtAngle()
@@ -103,6 +105,29 @@ FLOAT Light::GåtAngle()
 VOID Light::SetAngle(FLOAT angle)
 {
 	m_angle = angle;
+	PoolObject::Update();
+}
+
+FLOAT Light::GetRadius()
+{
+	return m_radius;
+}
+
+VOID Light::SetRadius(FLOAT radius)
+{
+	m_radius = radius;
+	PoolObject::Update();
+}
+
+LightProperties::LightFalloff Light::GetFalloffType()
+{
+	return m_falloff;
+}
+
+VOID Light::SetFalloffType(LightProperties::LightFalloff type)
+{
+	m_falloff = type;
+	PoolObject::Update();
 }
 
 Light::LightBuffer Light::GenerateBuffer()

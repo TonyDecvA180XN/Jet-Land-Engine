@@ -22,13 +22,13 @@ Pool<T>::~Pool()
 }
 
 template<class T>
-VOID Pool<T>::Allocate(T ** object)
+VOID Pool<T>::Allocate(std::string name, T ** object)
 {
 	for (auto elem = m_pool.begin(); elem != m_pool.end(); ++elem)
 	{
 		if (!elem->IsActive())
 		{
-			elem->Initialize();
+			elem->Initialize(name);
 			*object = &(*elem);
 			return;
 		}
@@ -38,9 +38,17 @@ VOID Pool<T>::Allocate(T ** object)
 template<class T>
 VOID Pool<T>::Release(T * object)
 {
-	if (object->IsActive())
+	assert((uintptr_t)object >= (uintptr_t)this->m_pool.front &&
+		(uintptr_t)object < (uintptr_t)this->m_pool.end);
+	object->Terminate();
+}
+
+template<class T>
+VOID Pool<T>::Release(std::string name)
+{
+	if (this->HaveObject(name))
 	{
-		object->Terminate();
+		this->FindObject(name)->Terminate();
 	}
 }
 
@@ -58,20 +66,39 @@ VOID Pool<T>::Clear()
 }
 
 template<class T>
-BOOL Pool<T>::FindObject(Pool<T> * pool, std::string name)
+BOOL Pool<T>::HaveObject(std::string name)
 {
 	return std::find_if(
-		pool->Begin(),
-		pool->End(),
+		this->m_pool.begin(),
+		this->m_pool.end(),
 		[name](T instance) -> BOOL { return instance.GetName() == name; })
-		!= pool->End();
+		!= m_pool.end();
 }
 
 template<class T>
-T * Pool<T>::UseObject(Pool<T> * pool, std::string name)
+T * Pool<T>::FindObject(std::string name)
 {
 	return &*std::find_if(
-		pool->Begin(),
-		pool->End(),
+		this->m_pool.begin(),
+		this->m_pool.end(),
 		[name](T instance) -> BOOL { return instance.GetName() == name; });
+}
+
+template<class T>
+T * Pool<T>::GetItem(UINT i)
+{
+	return &m_pool[i];
+}
+
+template<class T>
+BOOL Pool<T>::AnyUpdates()
+{
+	for (auto o : this->m_pool)
+	{
+		if (o.CheckForUpdates())
+		{
+			return TRUE;
+		}
+	}
+	return FALSE;
 }

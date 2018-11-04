@@ -1,6 +1,8 @@
 #pragma once
 
-
+#include "Utils.h"
+#include "Globals.h"
+#include "Loader.h"
 #include "DirectXManager.h"
 #include "Timer.h"
 #include "FpsCounter.h"
@@ -8,9 +10,9 @@
 #include "ActorFreeCam.h"
 #include "StaticMesh.h"
 #include "Texture.h"
-#include "LightSource.h"
+#include "CompiledShader.h"
 #include "Pool.h"
-#include "LocationManager.h"
+#include "LightCommonComponent.h"
 
 
 class GraphicsManager
@@ -29,20 +31,21 @@ public:
     UINT GetWindowWidth();
     UINT GetWindowHeight();
 
-    VOID SetRenderCamera(Camera * camera);
+    Camera * GetCamera();
 
 private:
     DirectXManager * renderManager_;
     Camera * camera_;
-	Pool<Light> * m_lights;
-	Pool<StaticMesh> * m_meshes;
+	LightCommonComponent * m_lightComp;
+
+	Pool<StaticMesh> * m_staticMeshes;
+	Pool<Mesh> * m_geometries;
 	Pool<Material> * m_materials;
-    Light * sun_;
+	Pool<Texture> * m_textures;
+	Pool<CompiledShader> * m_shaders;
+
     Timer * timer_;
     FpsCounter * fps_;
-    StaticMesh * cube_;
     UINT windowWidth_, windowHeight_;
-	Texture * texture_;
-	LocationManager * m_locManager;
 };
 

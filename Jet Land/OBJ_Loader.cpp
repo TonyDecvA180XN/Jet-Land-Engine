@@ -314,11 +314,11 @@ namespace OBJ
 //    *index_buffer_data = index_buffer;
 //}
 
-VOID LoadMeshOBJFromFile(std::string * filename, VFORMAT * vertex_mode,
+VOID LoadMeshOBJFromFile(std::string filename, VFORMAT * vertex_mode,
 	VOID ** vertex_buffer_data, UINT * vertex_count, UINT * vertex_size,
 	UINT ** index_buffer_data, UINT * index_count)
 {
-	std::fstream file(*filename, std::fstream::in);
+	std::fstream file(filename, std::fstream::in);
 	// first stage
 	// create counts for components
 	UINT positionsCount = 0,

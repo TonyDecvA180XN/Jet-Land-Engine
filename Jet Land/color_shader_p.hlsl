@@ -38,7 +38,7 @@ struct PixelInputType
 	float3 normal : NORMAL;
 };
 
-float4 PS(PixelInputType inputPixel) : SV_TARGET
+float4 main(PixelInputType inputPixel) : SV_TARGET
 {
 	/*float4 texColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
 	float3 inputRay = normalize(-direction1);
@@ -60,7 +60,7 @@ float4 PS(PixelInputType inputPixel) : SV_TARGET
 		{
 		case 1: // sun
 		{
-			float3 inputRay = -lights[iL].lDirection;
+			float3 inputRay = normalize(-lights[iL].lDirection);
 			intensity = dot(inputRay, inputPixel.normal);
 			intensity = saturate(intensity); // optimize ifn't need
 			break;
@@ -86,6 +86,13 @@ float4 PS(PixelInputType inputPixel) : SV_TARGET
 		if (lightColor.g > f_lightColor.g) f_lightColor.g = lightColor.g;
 		if (lightColor.b > f_lightColor.b) f_lightColor.b = lightColor.b;
 	}
-	outputColor = f_textureColor * (mDiffuse * f_lightColor * f_intensity + mAmbient);
+	if (any(f_textureColor - float4(0.0f, 0.0f, 0.0f, 0.0f)))
+	{
+		outputColor = f_textureColor * (mDiffuse * f_lightColor * f_intensity + mAmbient);
+	}
+	else
+	{
+		outputColor = mDiffuse * f_lightColor * f_intensity + mAmbient;
+	}
 	return outputColor;
 }

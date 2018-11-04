@@ -1,28 +1,50 @@
 #pragma once
 
 #include "Object3D.h"
+#include "PoolObject.h"
+#include "Utils.h"
 #include "Mesh.h"
 #include "Material.h"
+#include "LightCommonComponent.h"
 #include "Camera.h"
-#include "PoolObject.h"
-#include "Pool.h"
+#include "PipelineElements.h"
+#include "Texture.h"
+#include "CompiledShader.h"
+#include "TransformationBuffer.h"
 
 class StaticMesh : public Object3D, public PoolObject
 {
 public:
-    StaticMesh();
-    ~StaticMesh();
-
-	BOOL CreateMesh(ID3D11Device * device,
-		std::string * mesh_filename,
+	StaticMesh();
+	~StaticMesh();
+	
+	VOID Initiate(
+		ID3D11Device * device,
+		ID3D11DeviceContext * device_context,
+		LightCommonComponent * lights,
+		Camera * camera,
+		Mesh * mesh,
 		Material * material,
-		std::string * shader_filename);
+		Texture * texture,
+		CompiledShader * vs,
+		CompiledShader * ps);
 
-    BOOL Render(ID3D11DeviceContext * device_context, Camera * target_camera, Pool<Light> * lights, ID3D11ShaderResourceView * srv);
+	VOID Terminate() override;
 
-    VOID Destroy();
+	VOID Render(ID3D11DeviceContext * device_context);
+
+	Mesh * GetMesh();
+	Material * GetMaterial();
+	Texture * GetTexture();
+
 private:
-    Mesh * mesh_;
-    Material * material_;
+	Mesh * m_mesh;
+	Material * m_material;
+	Texture * m_texture;
+	PipelineElements * m_pe;
+	CompiledShader * m_vs, * m_ps;
+	TransformationBuffer m_tb;
+
+	Camera * m_cam;
 };
 

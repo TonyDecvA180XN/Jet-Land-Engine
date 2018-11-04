@@ -1,23 +1,19 @@
 #pragma once
 
+#include "PoolObject.h"
 
-
-
-#include <DDSTextureLoader.h>
-
-class Texture
+class Texture : public PoolObject
 {
 public:
 	Texture();
 	~Texture();
 
-	BOOL LoadFromFile(ID3D11Device * device, std::wstring & filename);
-	BOOL LoadFromMem(ID3D11Device * device, uint8_t * data_ptr, size_t data_size);
-
 	ID3D11ShaderResourceView * Get();
 
-	VOID Unload();
+	VOID Terminate() override;
 private:
+	friend class Loader;
+
 	ID3D11ShaderResourceView * m_srv;
 };
 

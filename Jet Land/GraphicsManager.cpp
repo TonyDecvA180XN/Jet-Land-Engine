@@ -7,15 +7,17 @@ GraphicsManager::GraphicsManager()
     renderManager_ = NULL;
     timer_ = NULL;
     fps_ = NULL;
-    cube_ = NULL;
     camera_ = NULL;
-    sun_ = NULL;
-	m_lights = NULL;
-	m_meshes = NULL;
+	
+	m_lightComp = NULL;
+	m_staticMeshes = NULL;
+	m_geometries = NULL;
+	m_materials = NULL;
+	m_textures = NULL;
+	m_shaders = NULL;
+
     windowWidth_ = 0;
     windowHeight_ = 0;
-	texture_ = NULL;
-	m_locManager = NULL;
 }
 
 
@@ -35,40 +37,34 @@ BOOL GraphicsManager::InitializeGraphicsSystem(UINT window_width, UINT window_he
     if (!timer_) { return FALSE; }
     fps_ = new FpsCounter;
     if (!fps_) { return FALSE; }
-    //cube_ = new StaticMesh;
-    //if (!cube_) { return FALSE; }
-	m_lights = new Pool<Light>(MAX_LIGHT_PER_LOCATION_COUNT);
-	if (!m_lights) { return FALSE; }
-	m_meshes = new Pool<StaticMesh>(10);
-	if (!m_meshes) { return FALSE; }
-	m_materials = new Pool<Material>(10);
-	if (!m_materials) { return FALSE; }
-	//m_lights->Allocate(&sun_);
-	//m_meshes->Allocate(&cube_);
-	////m_lights->Release(sun_); // danger
- //   if (!sun_) { return FALSE; }
- //   //sun_->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
- //   sun_->SetDirection(0.0f, -1.0f, 1.0f);
+	camera_ = new Camera;
 
-	
-
-	texture_ = new Texture;
+	m_lightComp = new LightCommonComponent;
+	m_staticMeshes = new Pool<StaticMesh>(LIMIT_AMOUNT_OF_STATIC_MESHES);
+	m_geometries = new Pool<Mesh>(LIMIT_AMOUNT_OF_MESHES);
+	m_materials = new Pool<Material>(LIMIT_AMOUNT_OF_MATERIALS);
+	m_textures = new Pool<Texture>(LIMIT_AMOUNT_OF_TEXTURES);
+	m_shaders = new Pool<CompiledShader>(LIMIT_AMOUNT_OF_SHADERS);
 
     result = renderManager_->Initialize(windowWidth_, windowHeight_, enable_fullscreen, enable_vsync, msaa_count, h_window);
     if (!result) { return FALSE; }
     result = timer_->Launch();
     if (!result) { return FALSE; }
     fps_->Launch();
-    //result = cube_->CreateMesh(renderManager_->GetDirectXDevice(), &std::wstring(L"house.obj"), LPTSTR(L"color_shader_v.cso"), LPTSTR(L"color_shader_p.cso"));
-	m_locManager = new LocationManager;
-	if (!m_locManager) { return FALSE; }
-	m_locManager->Connect(m_meshes);
-	m_locManager->Connect(m_lights);
-	m_locManager->Connect(m_materials);
+	camera_->Create(45.0f, windowWidth_, windowHeight_, 0.1f, 1000.0f);
+	m_lightComp->Create(renderManager_->GetDirectXDevice());
 
-	result = m_locManager->LoadFromFile(renderManager_->GetDirectXDevice(), LPSTR("location.xml"));
-	std::wstring name(L"Data/Textures/garbage container.dds");
-	texture_->LoadFromFile(renderManager_->GetDirectXDevice(), name);
+	Loader::LoadLocation(
+		renderManager_->GetDirectXDevice(),
+		"location.xml",
+		m_staticMeshes,
+		m_geometries,
+		m_textures,
+		m_lightComp,
+		m_materials,
+		camera_,
+		m_shaders
+	);
 
     return TRUE;
 }
@@ -93,30 +89,7 @@ VOID GraphicsManager::TerminateGraphicsSystem()
         delete fps_;
         fps_ = NULL;
     }
-    /*if (cube_)
-    {
-        cube_->Destroy();
-        delete cube_;
-        cube_ = NULL;
-    }*/
-    /*if (sun_)
-    {
-        delete sun_;
-        sun_ = NULL;
-    }*/
-	if (m_locManager)
-	{
-		m_locManager->UnloadAll();
-		m_locManager->Disconnect();
-		delete m_locManager;
-		m_locManager = NULL;
-	}
-	if (texture_)
-	{
-		texture_->Unload();
-		delete texture_;
-		texture_ = NULL;
-	}
+
 }
 
 BOOL GraphicsManager::Update()
@@ -131,6 +104,7 @@ BOOL GraphicsManager::Update()
     *///cube_->SetRotation(DirectX::XMVectorSet(0.0f, zrot, 0.0f, 0.0f));
 	//sun_->SetDirection(1.0f, 1.0f, 1.0f);
     // ---------------------------------------------------------------------------
+	m_lightComp->Update(renderManager_->GetDirectXDeviceContext());
     this->Render(camera_);
     timer_->Frame();
     fps_->Frame();
@@ -140,13 +114,12 @@ BOOL GraphicsManager::Update()
 BOOL GraphicsManager::Render(Camera * camera)
 {
     renderManager_->StartScene(0.1f, 0.1f, 0.1f, 1.0f);
-    //cube_->Render(renderManager_->GetDirectXDeviceContext(), camera, sun_, texture_->Get());
-    // TODO : RenderActions
-	for (auto mesh = m_meshes->Begin(); mesh != m_meshes->End(); ++mesh)
+	for (UINT i = 0; i < LIMIT_AMOUNT_OF_STATIC_MESHES; ++i)
 	{
-		if (mesh->IsActive())
+		StaticMesh * item = m_staticMeshes->GetItem(i);
+		if (item->IsActive())
 		{
-			mesh->Render(renderManager_->GetDirectXDeviceContext(), camera, m_lights, texture_->Get());
+			item->Render(renderManager_->GetDirectXDeviceContext());
 		}
 	}
     renderManager_->FinishSceneAndPresent();
@@ -163,7 +136,7 @@ UINT GraphicsManager::GetWindowHeight()
     return windowHeight_;
 }
 
-VOID GraphicsManager::SetRenderCamera(Camera * camera)
+Camera * GraphicsManager::GetCamera()
 {
-    camera_ = camera;
+	return camera_;
 }

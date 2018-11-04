@@ -1,10 +1,5 @@
 #pragma once
 
-
-
-#include <vector>
-#include <algorithm>
-
 template <class T>
 class Pool
 {
@@ -13,23 +8,29 @@ public:
 	Pool(size_t size);
 	~Pool();
 
-	VOID Allocate(T ** object);
+	VOID Allocate(std::string name, T ** object);
 	VOID Release(T * object);
+	VOID Release(std::string name);
 
-	auto Begin() { return m_pool.begin(); };
-	auto End() { return m_pool.end(); };
-
+	
 	VOID Resize(size_t new_size);
 	size_t GetSize() { return m_size; };
 
 	VOID Clear();
 
-	static BOOL FindObject(Pool<T> * pool, std::string name);
-	static T * UseObject(Pool<T> * pool, std::string name);
+	BOOL HaveObject(std::string name);
+	T * FindObject(std::string name);
+
+private:
+	friend class LightCommonComponent;
+	friend class GraphicsManager;
+
+	T * GetItem(UINT i);
+	BOOL AnyUpdates();
+
 private:
 	std::vector<T> m_pool;
 	size_t m_size;
 };
-
 
 #include "Pool.cpp"

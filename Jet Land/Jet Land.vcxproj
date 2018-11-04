@@ -160,69 +160,16 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="ConfigManager.cpp" />
-    <ClCompile Include="FpsCounter.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GameplayManager.cpp" />
-    <ClCompile Include="GraphicsManager.cpp" />
-    <ClCompile Include="INIReader\ini.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="INIReader\INIReader.cpp" />
-    <ClCompile Include="InputHandler.cpp" />
-    <ClCompile Include="InputHandlerActorFreeCamState.cpp" />
-    <ClCompile Include="InputHandlerBaseState.cpp" />
-    <ClCompile Include="InputHandlerIgnoreState.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="JMH_Loader.cpp" />
-    <ClCompile Include="LibraryPCH.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LightSource.cpp" />
-    <ClCompile Include="LocationManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Material.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Object3D.cpp" />
-    <ClCompile Include="ActorFreeCam.cpp" />
-    <ClCompile Include="OBJ_Loader.cpp" />
-    <None Include="Pool.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </None>
-    <ClCompile Include="StaticMesh.cpp" />
-    <ClCompile Include="DirectXManager.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="TinyXML\tinyxml2.cpp" />
-    <ClCompile Include="WindowsManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Jet Land.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorFreeCam.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CompiledShader.h" />
     <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="Configuration.h" />
+    <ClInclude Include="DirectXManager.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameplayManager.h" />
@@ -237,21 +184,24 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="JMH_Loader.h" />
     <ClInclude Include="LibraryPCH.h" />
+    <ClInclude Include="LightCommonComponent.h" />
     <ClInclude Include="LightSource.h" />
-    <ClInclude Include="LocationManager.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object3D.h" />
-    <ClInclude Include="ActorFreeCam.h" />
     <ClInclude Include="OBJ_Loader.h" />
+    <ClInclude Include="PipelineElements.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="PoolObject.h" />
-    <ClInclude Include="StaticMesh.h" />
-    <ClInclude Include="DirectXManager.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TinyXML\tinyxml2.h" />
+    <ClInclude Include="TransformationBuffer.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="VFormat.h" />
     <ClInclude Include="WindowsManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -259,37 +209,59 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="color_shader_v.hlsl">
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS</EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS</EntryPointName>
-      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableDebuggingInformation>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
-      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableDebuggingInformation>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="ActorFreeCam.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CompiledShader.cpp" />
+    <ClCompile Include="ConfigManager.cpp" />
+    <ClCompile Include="DirectXManager.cpp" />
+    <ClCompile Include="FpsCounter.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameplayManager.cpp" />
+    <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="INIReader\ini.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="INIReader\INIReader.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="InputHandlerActorFreeCamState.cpp" />
+    <ClCompile Include="InputHandlerBaseState.cpp" />
+    <ClCompile Include="InputHandlerIgnoreState.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="JMH_Loader.cpp" />
+    <ClCompile Include="LibraryPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LightCommonComponent.cpp" />
+    <ClCompile Include="LightSource.cpp" />
+    <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="OBJ_Loader.cpp" />
+    <ClCompile Include="PipelineElements.cpp" />
+    <Text Include="Pool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Text>
+    <ClCompile Include="StaticMesh.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TinyXML\tinyxml2.cpp" />
+    <ClCompile Include="WindowsManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <FxCompile Include="color_shader_p.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PS</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PS</EntryPointName>
-      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableDebuggingInformation>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
-      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableDebuggingInformation>
+    </FxCompile>
+    <FxCompile Include="color_shader_v.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

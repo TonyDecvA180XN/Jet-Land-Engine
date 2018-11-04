@@ -13,6 +13,7 @@ namespace LightProperties
 	};
 	enum LightFalloff : INT32
 	{
+		// \todo make proper falloffs
 		LIGHT_FALLOFF_DISABLED = 0,
 		LIGHT_FALLOFF_LINEAR   = 1,
 		LIGHT_FALLOFF_QUAD     = 2,
@@ -25,6 +26,15 @@ class Light : public PoolObject
 public:
 	struct LightBuffer
 	{
+		LightBuffer() :
+			color(0.0f, 0.0f, 0.0f, 0.0f),
+			position(0.0f, 0.0f, 0.0f),
+			radius(0.0f),
+			direction(0.0f, 0.0f, 0.0f),
+			angle(0.0f),
+			type(LightProperties::LightType(0)),
+			falloff(LightProperties::LightFalloff(0))
+		{};
 
 		DirectX::XMFLOAT4 color;                // 4*4=16 bytes
 		DirectX::XMFLOAT3 position;             // 4*3=12 bytes
@@ -37,9 +47,8 @@ public:
 		//                                      Total: 56(64)
 	};
 
-	Light() : Light(LightProperties::LIGHT_TYPE_NONE) {};
-	Light(LightProperties::LightType type);
-	~Light() = default;
+	Light();
+	~Light();
 
 	LightProperties::LightType GetType();
 	VOID SetType(LightProperties::LightType type);
@@ -62,9 +71,16 @@ public:
 	FLOAT GåtAngle();
 	VOID SetAngle(FLOAT angle);
 
+	FLOAT GetRadius();
+	VOID SetRadius(FLOAT radius);
+
+	LightProperties::LightFalloff GetFalloffType();
+	VOID SetFalloffType(LightProperties::LightFalloff type);
+
 	LightBuffer GenerateBuffer();
 
 private:
+	friend class Loader;
 
 	LightProperties::LightType m_type;
 	LightProperties::LightFalloff m_falloff;

@@ -27,7 +27,7 @@ struct PixelInputType
 };
 
 
-PixelInputType VS(VertexInputType input)
+PixelInputType main(VertexInputType input)
 {
     PixelInputType output;
     

@@ -24,17 +24,14 @@ BOOL GameplayManager::Initialize(GraphicsManager * graphics, InputManager * inpu
 
     inputHandler_ = new InputHandler(input_);
     if (!inputHandler_) { return FALSE; }
-    camera_ = new Camera;
-    if (!camera_) { return FALSE; }
     player_ = new ActorFreeCam;
     if (!player_) { return FALSE; }
     state_ = new InputHandlerActorFreeCamState(player_);
     if (!state_) { return FALSE; }
     
 
-    camera_->Create(45.0f, graphics->GetWindowWidth(), graphics->GetWindowHeight(), 0.1f, 1000.0f);
+	camera_ = graphics->GetCamera();
     player_->SetCamera(camera_);
-    graphics_->SetRenderCamera(camera_);
     player_->SetPosition(0.0f, 0.0f, 10.0f);
     player_->SetRotation(0.0f, 0.0f, 0.0f);
     player_->Update(0);

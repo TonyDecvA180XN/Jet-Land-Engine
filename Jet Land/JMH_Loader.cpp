@@ -1,10 +1,10 @@
 #include "JMH_Loader.h"
 
-VOID LoadMeshJMHFromFile(std::string * filename, VFORMAT * vertex_mode,
+VOID LoadMeshJMHFromFile(std::string filename, VFORMAT * vertex_mode,
 	VOID ** vertex_buffer_data, UINT * vertex_count, UINT * vertex_size,
 	UINT ** index_buffer_data, UINT * index_count)
 {
-	std::fstream input(*filename, std::fstream::in | std::fstream::binary);
+	std::fstream input(filename, std::fstream::in | std::fstream::binary);
 	if (input.fail()) { return; }
 
 	char header[5] = {'\0', '\0', '\0', '\0', '\0'};

@@ -1,26 +1,29 @@
 #pragma once
 
-
-
 class PoolObject
 {
 public:
-	PoolObject() : m_isActive(FALSE), m_name() {};
-	PoolObject(std::string name) : m_isActive(FALSE), m_name(name) {};
+	PoolObject() : m_isActive(FALSE), m_name(), m_isUpdated(TRUE) {};
 
-	virtual VOID Initialize() { this->Activate(TRUE); };
-	virtual VOID Terminate() { this->Activate(FALSE); };
+	virtual VOID Initialize(std::string name) { this->Activate(TRUE); m_name = name; };
+	virtual VOID Terminate() { if (this->IsActive()) { this->Activate(FALSE); m_name = ""; } };
 
 	BOOL IsActive() { return this->m_isActive; };
 
-	std::string       GetName() { return m_name; };
-	VOID              SetName(std::string name) { m_name = name; };
+	VOID Update() { m_isUpdated = TRUE; }
 
-protected:
+	BOOL CheckForUpdates() {
+		if (m_isUpdated) { m_isUpdated = FALSE; return TRUE; }
+		else return FALSE;
+	}
+
+	std::string GetName() { return m_name; };
+private:
 	VOID Activate(BOOL state) { this->m_isActive = state; }
 
 private:
 	BOOL m_isActive;
+	BOOL m_isUpdated;
 	std::string m_name;
 };
 

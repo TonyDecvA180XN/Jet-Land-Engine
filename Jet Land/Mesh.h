@@ -1,41 +1,31 @@
 #pragma once
 
-
-
-#include "VFormat.h"
+#include "PoolObject.h"
 #include "OBJ_Loader.h"
 #include "JMH_Loader.h"
+#include "VFormat.h"
 
-class Mesh
+class Mesh : public PoolObject
 {
 public:
     Mesh();
     ~Mesh();
 
-    BOOL Create();
-    VOID Load(std::string * filename);
-
-    VOID Destroy();
-
-    BOOL FillVertexBuffer(ID3D11Device * device);
-    BOOL FillIndexBuffer(ID3D11Device * device);
-
-    VOID ApplyBuffers(ID3D11DeviceContext * device_context);
-
+	VOID * GetVertices();
     UINT GetVertexCount();
+	UINT GetVertexSize();
+
+	UINT * GetIndices();
     UINT GetIndexCount();
     VFORMAT GetVertexFormat();
 
+	VOID Terminate() override;
 private:
+	friend class Loader;
 
-
-private:
-    VFORMAT vertexFormat_;
-    VOID * vertexArray_;
-    UINT * indexArray_;
-    UINT vertexCount_, indexCount_, vertexSize_;
-
-    ID3D11Buffer * vertexBuffer_;
-    ID3D11Buffer * indexBuffer_;
+    VFORMAT m_vFormat;
+    VOID * m_vertexArray;
+    UINT * m_indexArray;
+    UINT m_vertexCount, m_indexCount, m_vertexSize;
 };
 
