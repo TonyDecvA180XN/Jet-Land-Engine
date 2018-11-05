@@ -33,7 +33,7 @@ cbuffer cbMaterialBuffer : register (b1)
 struct PixelInputType
 {
 	float4 positionWVP : SV_POSITION;
-	float3 positionW : POSITION;
+	float4 positionW : POSITION;
 	float2 texcoords : TEXCOORDS;
 	float3 normal : NORMAL;
 };
@@ -61,14 +61,14 @@ float4 main(PixelInputType inputPixel) : SV_TARGET
 		case 1: // sun
 		{
 			float3 inputRay = normalize(-lights[iL].lDirection);
-			intensity = dot(inputRay, inputPixel.normal);
+			intensity = dot(inputRay, normalize(inputPixel.normal));
 			intensity = saturate(intensity); // optimize ifn't need
 			break;
 		}
 		case 2: // point
 		{
-			float3 inputRay = normalize(lights[iL].lPosition - inputPixel.positionW);
-			intensity = dot(inputRay, inputPixel.normal);
+			float3 inputRay = normalize(lights[iL].lPosition - inputPixel.positionW.xyz);
+			intensity = dot(inputRay, normalize(inputPixel.normal));
 			intensity = saturate(intensity); // optimize ifn't need
 			break;
 		}

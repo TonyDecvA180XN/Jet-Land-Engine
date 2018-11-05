@@ -20,7 +20,7 @@ struct VertexInputType
 struct PixelInputType
 {
     float4 positionWVP : SV_POSITION;
-	float3 positionW : POSITION;
+	float4 positionW : POSITION;
     //float4 color : VERTEXCOLOR;
 	float2 texcoords : TEXCOORDS;
 	float3 normal : NORMAL;
@@ -35,7 +35,9 @@ PixelInputType main(VertexInputType input)
     input.position.w = 1.0f;
 
 	// Calculate the position of the vertex against the world, view, and projection matrices.
-    output.positionW = mul(input.position.xyz, (float3x3)world);
+
+    output.positionW = mul(input.position, world);
+
     output.positionWVP = mul(mul(input.position, world), view);
     output.positionWVP = mul(output.positionWVP, projection);
     

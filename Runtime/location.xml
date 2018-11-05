@@ -5,16 +5,17 @@
     </World>
     <Layout>
         <Lights>
-            <Light name="lamp" filename="lights.xml"/>
-            <Light name="sun light" filename="lights.xml"/>
+            <!--<Light name="lamp" filename="lights.xml"/>
+            <Light name="sun light" filename="lights.xml"/>-->
+            <Light name="candle" filename="lights.xml" />
         </Lights>
 
         <Meshes>
 
-            <StaticMesh name = "central block">
+            <StaticMesh name = "trash box">
                 <Model name = "shtuka" filename = "Data/Meshes/container.jmh"/>
-                <Position x = "0.0" y = "0.0" z = "0.0"/>
-                <Rotation x = "0.0" y = "0.0" z = "0.0"/>
+                <Position x = "0.0" y = "0.0" z = "-4.0"/>
+                <Rotation x = "0.0" y = "90.0" z = "0.0"/>
                 <Scale x = "1.0" y = "1.0" z = "1.0"/>
                 <Material name = "middle" filename ="materials.xml"/>
                 <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
@@ -27,6 +28,26 @@
                 <Position x = "0.0" y = "12.0" z = "0.0"/>
                 <Rotation x = "0.0" y = "0.0" z = "0.0"/>
                 <Scale x = "1.0" y = "1.0" z = "1.0"/>
+                <Material name = "GreenPlastic" filename ="materials.xml"/>
+                <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
+                <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>
+            </StaticMesh>
+
+            <StaticMesh name = "plane">
+                <Model name = "floor" filename = "Data/Meshes/floor_plane.jmh"/>
+                <Position x = "0.0" y = "-0.1" z = "0.0"/>
+                <Rotation x = "0.0" y = "0.0" z = "0.0"/>
+                <Scale x = "2.0" y = "2.0" z = "2.0"/>
+                <Material name = "gray" filename ="materials.xml"/>
+                <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
+                <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>
+            </StaticMesh>
+
+            <StaticMesh name = "test_rounded_model">
+                <Model name = "something" filename = "Data/Meshes/test_for_lighting.jmh"/>
+                <Position x = "-12.0" y = "0.0" z = "-3.0"/>
+                <Rotation x = "0.0" y = "90.0" z = "0.0"/>
+                <Scale x = "4.0" y = "4.0" z = "4.0"/>
                 <Material name = "GreenPlastic" filename ="materials.xml"/>
                 <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
                 <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>

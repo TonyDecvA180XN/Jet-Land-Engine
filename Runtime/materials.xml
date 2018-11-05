@@ -10,7 +10,7 @@
         <IOR v="1.45"/>
     </Material>
     <Material name="GreenPlastic">
-        <Diffuse r="0.1" g="0.1" b="0.35"/>
+        <Diffuse r="0.1" g="0.1" b="0.1"/>
         <Ambient r="0.0" g="0.0" b="0.0"/>
         <Specular r="0.45" g="0.55" b="0.45"/>
         <Roughness v="32.0"/>
@@ -21,6 +21,15 @@
     <Material name="middle">
         <Diffuse r="0.8" g="0.8" b="0.8"/>
         <Ambient r="0.2" g="0.2" b="0.2"/>
+        <Specular r="1.0" g="1.0" b="1.0"/>
+        <Roughness v="1.0"/>
+        <Transparency v="0.0"/>
+        <Mirror v="0.0"/>
+        <IOR v="1.45"/>
+    </Material>
+    <Material name="gray">
+        <Diffuse r="0.5" g="0.5" b="0.5"/>
+        <Ambient r="0.05" g="0.05" b="0.05"/>
         <Specular r="1.0" g="1.0" b="1.0"/>
         <Roughness v="1.0"/>
         <Transparency v="0.0"/>
