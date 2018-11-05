@@ -15,7 +15,7 @@
         <Falloff falloff="LIGHT_FALLOFF_DISABLED"/>
         <Color r = "1.0" g = "1.0" b = "1.0" a = "1.0"/>
         <Position x="0.0" y ="30.0" z="0.0"/>
-        <Direction x = "1.0" y = "1.0" z = "1.0"/>
+        <Direction x = "1.0" y = "-1.0" z = "0.0"/>
         <Radius r="100.0"/>
         <Angle a="45.0"/>
     </Light>

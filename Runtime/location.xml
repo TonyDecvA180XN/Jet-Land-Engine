@@ -5,8 +5,7 @@
     </World>
     <Layout>
         <Lights>
-            <!--<Light name="lamp" filename="lights.xml"/>
-            <Light name="sun light" filename="lights.xml"/>-->
+            <!--<Light name="sun light" filename="lights.xml"/>-->
             <Light name="candle" filename="lights.xml" />
         </Lights>
 
