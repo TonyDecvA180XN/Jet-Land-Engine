@@ -27,11 +27,11 @@
         <Mirror v="0.0"/>
         <IOR v="1.45"/>
     </Material>
-    <Material name="gray">
+    <Material name="grass">
         <Diffuse r="0.5" g="0.5" b="0.5"/>
         <Ambient r="0.05" g="0.05" b="0.05"/>
         <Specular r="1.0" g="1.0" b="1.0"/>
-        <Roughness v="48.0"/>
+        <Roughness v="1.0"/>
         <Transparency v="0.0"/>
         <Mirror v="0.0"/>
         <IOR v="1.45"/>

@@ -5,7 +5,7 @@
     </World>
     <Layout>
         <Lights>
-            <!--<Light name="sun light" filename="lights.xml"/>-->
+            <Light name="sun light" filename="lights.xml"/>
             <Light name="candle" filename="lights.xml" />
         </Lights>
 
@@ -30,17 +30,10 @@
                 <Material name = "GreenPlastic" filename ="materials.xml"/>
                 <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
                 <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>
+                <Texture name ="checker" filename ="Data/Textures/plane_tex.dds"/>
             </StaticMesh>
 
-            <StaticMesh name = "plane">
-                <Model name = "floor" filename = "Data/Meshes/floor_plane.jmh"/>
-                <Position x = "0.0" y = "-0.1" z = "0.0"/>
-                <Rotation x = "0.0" y = "0.0" z = "0.0"/>
-                <Scale x = "2.0" y = "2.0" z = "2.0"/>
-                <Material name = "gray" filename ="materials.xml"/>
-                <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
-                <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>
-            </StaticMesh>
+            
 
             <StaticMesh name = "test_rounded_model">
                 <Model name = "something" filename = "Data/Meshes/test_for_lighting.jmh"/>
@@ -50,6 +43,17 @@
                 <Material name = "GreenPlastic" filename ="materials.xml"/>
                 <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
                 <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>
+            </StaticMesh>
+
+            <StaticMesh name = "plane_0_0">
+                <Model name = "floor" filename = "Data/Meshes/floor_plane.jmh"/>
+                <Position x = "0.0" y = "0.0" z = "0.0"/>
+                <Rotation x = "0.0" y = "0.0" z = "0.0"/>
+                <Scale x = "1.0" y = "1.0" z = "1.0"/>
+                <Material name = "grass" filename ="materials.xml"/>
+                <VertexShader name = "standard_vs" filename = "Data/Shaders/color_shader_v.cso"/>
+                <PixelShader name = "color_ps" filename = "Data/Shaders/color_shader_p.cso"/>
+                <Texture name ="grass_diff" filename ="Data/Textures/grass_1024x1024.dds"/>
             </StaticMesh>
 
         </Meshes>
