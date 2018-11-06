@@ -40,6 +40,18 @@ VOID PipelineElements::Initiate(ID3D11Device * device, LightCommonComponent * li
 
 	device->CreateBuffer(&mbDescription, NULL, &m_mb);
 
+	// ------------------- Creating Auxiliary Buffer --------------------------
+	D3D11_BUFFER_DESC abDescription;
+	abDescription.Usage = D3D11_USAGE_DYNAMIC; // may updates after creating
+	abDescription.ByteWidth = sizeof PipelineElements::AuxiliaryBuffer; // size of auxiliary buffer
+	abDescription.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // GPU cannot write
+	abDescription.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE; // CPU can write
+	abDescription.MiscFlags = 0; // bullshit
+	abDescription.StructureByteStride = 0; // bullshit
+
+	device->CreateBuffer(&abDescription, NULL, &m_auxb);
+
+
 	// ------------------- Creating Sampler State -----------------------------
 	D3D11_SAMPLER_DESC ssDescription;
 	ssDescription.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -209,8 +221,16 @@ VOID PipelineElements::SetTexture(Texture * texture)
 	m_tex = texture->Get();
 }
 
-VOID PipelineElements::Draw(ID3D11DeviceContext * device_context, UINT index_count, UINT vertex_size)
+VOID PipelineElements::Draw(ID3D11DeviceContext * device_context, Camera * camera, UINT index_count, UINT vertex_size)
 {
+	D3D11_MAPPED_SUBRESOURCE resource;
+	HRESULT result = device_context->Map(m_auxb, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+
+	auto inside_data = (PipelineElements::AuxiliaryBuffer *)(resource.pData);
+	DirectX::XMStoreFloat4(&inside_data->eyePos, camera->GetPositionXM());
+
+	device_context->Unmap(m_auxb, 0);
+
 	UINT stride = vertex_size, offset = 0;
 	device_context->IASetInputLayout(m_il);
 	device_context->IASetVertexBuffers(0, 1, &m_vb, &stride, &offset);
@@ -221,6 +241,7 @@ VOID PipelineElements::Draw(ID3D11DeviceContext * device_context, UINT index_cou
 	device_context->PSSetShader(m_ps, NULL, 0);
 	device_context->PSSetConstantBuffers(0, 1, m_lightComponent->GetBufferLP());
 	device_context->PSSetConstantBuffers(1, 1, &m_mb);
+	device_context->PSSetConstantBuffers(2, 1, &m_auxb);
 
 	// !!! there the NULL textures also bind to pipeline, so samplers return 0,
 	// but if limit this by condition, the srv will be used from previous draw call !!!

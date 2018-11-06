@@ -140,5 +140,6 @@ Light::LightBuffer Light::GenerateBuffer()
 	buffer.color = m_color;
 	buffer.angle = m_angle;
 	buffer.radius = m_radius;
+	buffer.isActive = this->IsActive();
 	return buffer;
 }

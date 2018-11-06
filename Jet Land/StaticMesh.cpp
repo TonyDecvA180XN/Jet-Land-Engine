@@ -75,7 +75,7 @@ VOID StaticMesh::Render(ID3D11DeviceContext * device_context)
 		m_pe->SetTexture(m_texture);
 	}
 
-	m_pe->Draw(device_context, m_mesh->GetIndexCount(), m_mesh->GetVertexSize());
+	m_pe->Draw(device_context, this->m_cam, m_mesh->GetIndexCount(), m_mesh->GetVertexSize());
 }
 
 Mesh * StaticMesh::GetMesh()

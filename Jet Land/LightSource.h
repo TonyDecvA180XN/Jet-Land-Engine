@@ -33,7 +33,8 @@ public:
 			direction(0.0f, 0.0f, 0.0f),
 			angle(0.0f),
 			type(LightProperties::LightType(0)),
-			falloff(LightProperties::LightFalloff(0))
+			falloff(LightProperties::LightFalloff(0)),
+			isActive(0)
 		{};
 
 		DirectX::XMFLOAT4 color;                // 4*4=16 bytes
@@ -43,7 +44,8 @@ public:
 		FLOAT angle;                            // 4 bytes
 		LightProperties::LightType type;        // 4 bytes
 		LightProperties::LightFalloff falloff;  // 4 bytes
-		DirectX::XMFLOAT2 _padding;             // (8) bytes
+		BOOL isActive;                          // 4 bytes
+		FLOAT _padding;                         // (8) bytes
 		//                                      Total: 56(64)
 	};
 

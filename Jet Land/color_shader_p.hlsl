@@ -1,25 +1,26 @@
-#define MAX_LIGHTS_PER_LOCATION_COUNT 8
+#define LIMIT_AMOUNT_OF_LIGHTS 8
 
-Texture2D my_texture;
-SamplerState my_sampler;
+// --------------------------------- CB Types Definition ----------------------
 
-cbuffer cbLightBuffer : register (b0)
+#define LIGHT_TYPE_SUN 1
+#define LIGHT_TYPE_POINT 2
+#define LIGHT_TYPE_SPOT 3
+
+struct LightSourceType
 {
-	struct LightSrc
-	{
-		float4 lColor;                           // 4*4=16 bytes
-		float3 lPosition;                        // 4*3=12 bytes
-		float lRadius;                           // 4 bytes
-		float3 lDirection;                       // 4*3=12 bytes
-		float lAngle;                            // 4 bytes
-		int lType;                               // 4 bytes
-		int lFalloff;                            // 4 bytes
-		float2 _padding;                         // (8) bytes
-		//                                   Total: 56(64)
-	} lights[MAX_LIGHTS_PER_LOCATION_COUNT];
+	float4 lColor;                           // 4*4=16 bytes
+	float3 lPosition;                        // 4*3=12 bytes
+	float lRadius;                           // 4 bytes
+	float3 lDirection;                       // 4*3=12 bytes
+	float lAngle;                            // 4 bytes
+	int lType;                               // 4 bytes
+	int lFalloff;                            // 4 bytes
+	bool lActive;                            // 4 bytes
+	float _padding;                         // (4) bytes
+	//                                   Total: 56(64)
 };
 
-cbuffer cbMaterialBuffer : register (b1)
+struct MaterialType
 {
 	float4 mDiffuse;
 	float4 mAmbient;
@@ -28,6 +29,31 @@ cbuffer cbMaterialBuffer : register (b1)
 	float mTransparency;
 	float mMirror;
 	float mIOR;
+};
+
+struct AuxiliaryBufferType
+{
+	float4 eyePosition;
+};
+
+// --------------------------------- CB Registration --------------------------
+
+Texture2D my_texture;
+SamplerState my_sampler;
+
+cbuffer cbLightBuffer : register (b0)
+{
+	LightSourceType LightsArray[LIMIT_AMOUNT_OF_LIGHTS];
+};
+
+cbuffer cbMaterialBuffer : register (b1)
+{
+	MaterialType Material;
+}
+
+cbuffer cbAuxiliaryBuffer : register (b2)
+{
+	AuxiliaryBufferType AuxBuffer;
 }
 
 struct PixelInputType
@@ -38,61 +64,98 @@ struct PixelInputType
 	float3 normal : NORMAL;
 };
 
+// --------------------------------- Light Helper Functions -------------------
+
+float ComputeDiffuse(float3 fallRay, float3 pixelNormal)
+{
+	float intensity = dot(fallRay, pixelNormal);
+	return saturate(intensity);
+}
+
+float ComputeSpecular(float3 pixelPos, float3 pixelNormal, float3 fallRay, float3 eyePos, float glossiness)
+{
+	if (dot(fallRay, pixelNormal) > 0.0f)
+	{
+		float3 eyeRay = normalize(eyePos - pixelPos);
+		float3 reflectedRay = normalize(-fallRay - 2 * dot(-fallRay, pixelNormal) * pixelNormal);
+		float intensity = saturate(dot(eyeRay, reflectedRay));
+		intensity = pow(intensity, glossiness);
+		return intensity;
+	}
+	return 0.0f;
+}
+
+struct LightResult
+{
+	float4 Diffuse;
+	float4 Specular;
+};
+
+LightResult SolveDirectionalLight(LightSourceType light, float3 pixelPos, float3 pixelNormal, float3 eyePos)
+{
+	float3 fallRay = normalize(-light.lDirection);
+
+	LightResult result;
+	result.Diffuse = light.lColor * ComputeDiffuse(fallRay, pixelNormal);
+	result.Specular = light.lColor * ComputeSpecular(pixelPos, pixelNormal, fallRay, eyePos.xyz, Material.mRoughness);
+
+	return result;
+}
+
+LightResult SolvePointLight(LightSourceType light, float3 pixelPos, float3 pixelNormal, float3 eyePos)
+{
+	float3 fallRay = normalize(light.lPosition - pixelPos);
+
+	LightResult result;
+	result.Diffuse = light.lColor * ComputeDiffuse(fallRay, pixelNormal);
+	result.Specular = light.lColor * ComputeSpecular(pixelPos, pixelNormal, fallRay, eyePos.xyz, Material.mRoughness);
+
+	return result;
+}
+
 float4 main(PixelInputType inputPixel) : SV_TARGET
 {
-	/*float4 texColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
-	float3 inputRay = normalize(-direction1);
-	float3 l = saturate(direction1);
-	float i = saturate(dot(inputRay, normalize(inputPixel.normal)));
-	return saturate(0.2f + 0.8f * i) * texColor;*/
-
-	float f_intensity = 0.0f;
-	float4 f_textureColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
-	float4 f_lightColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
-	float4 outputColor;
-
-
-	for (uint iL = 0; iL < MAX_LIGHTS_PER_LOCATION_COUNT; ++iL)
+	LightResult lightingResult;
+	for (uint i = 0; i < LIMIT_AMOUNT_OF_LIGHTS; ++i)
 	{
-		float intensity = 0.0f;
-		float3 lightColor = lights[iL].lColor.rgb;
-		switch (lights[iL].lType)
+		if (LightsArray[i].lActive)
 		{
-		case 1: // sun
-		{
-			float3 inputRay = normalize(-lights[iL].lDirection);
-			intensity = dot(inputRay, normalize(inputPixel.normal));
-			intensity = saturate(intensity); // optimize ifn't need
-			break;
+			LightResult current;
+			current.Diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
+			current.Specular = float4(0.0f, 0.0f, 0.0f, 0.0f);
+
+			switch (LightsArray[i].lType)
+			{
+			case LIGHT_TYPE_SUN:
+			{
+				current = SolveDirectionalLight(LightsArray[i], inputPixel.positionW.xyz, inputPixel.normal, AuxBuffer.eyePosition.xyz);
+				break;
+			}
+			case LIGHT_TYPE_POINT:
+			{
+				current = SolvePointLight(LightsArray[i], inputPixel.positionW.xyz, inputPixel.normal, AuxBuffer.eyePosition.xyz);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+			}
+			lightingResult.Diffuse += current.Diffuse;
+			lightingResult.Specular += current.Specular;
 		}
-		case 2: // point
-		{
-			float3 inputRay = normalize(lights[iL].lPosition - inputPixel.positionW.xyz);
-			intensity = dot(inputRay, normalize(inputPixel.normal));
-			intensity = saturate(intensity); // optimize ifn't need
-			break;
-		}
-		case 3: // spot
-		{
-			break;
-		}
-		default:
-		{
-			break;
-		}
-		}
-		if (intensity > f_intensity) f_intensity = intensity;
-		if (lightColor.r > f_lightColor.r) f_lightColor.r = lightColor.r;
-		if (lightColor.g > f_lightColor.g) f_lightColor.g = lightColor.g;
-		if (lightColor.b > f_lightColor.b) f_lightColor.b = lightColor.b;
 	}
-	if (any(f_textureColor - float4(0.0f, 0.0f, 0.0f, 0.0f)))
+
+	float4 textureColor = my_texture.Sample(my_sampler, inputPixel.texcoords);
+	float4 finalDiffuse = saturate(lightingResult.Diffuse) * Material.mDiffuse;
+	float4 finalSpecular = saturate(lightingResult.Specular) * Material.mSpecular;
+	float4 finalAmbient = Material.mAmbient;
+
+	float4 finalColor = finalDiffuse + finalSpecular + finalAmbient;
+	if (any(textureColor))
 	{
-		outputColor = f_textureColor * (mDiffuse * f_lightColor * f_intensity + mAmbient);
+		finalColor *= textureColor;
 	}
-	else
-	{
-		outputColor = mDiffuse * f_lightColor * f_intensity + mAmbient;
-	}
-	return outputColor;
+
+	return finalColor;
 }
