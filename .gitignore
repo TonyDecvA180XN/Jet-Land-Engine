@@ -292,3 +292,6 @@ Runtime/*.exe
 
 # Doxygen documentation
 Docs/
+
+#Code Graph files
+CodeGraphData/

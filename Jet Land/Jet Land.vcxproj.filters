@@ -126,11 +126,9 @@
     <ClInclude Include="CompiledShader.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="PipelineElements.h" />
     <ClInclude Include="Utils.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="LightCommonComponent.h" />
     <ClInclude Include="TransformationBuffer.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -142,6 +140,12 @@
     </ClInclude>
     <ClInclude Include="TinyXML\tinyxml2.h">
       <Filter>src\TinyXML2</Filter>
+    </ClInclude>
+    <ClInclude Include="LightCommonComponent.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="PipelineElements.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,8 +241,6 @@
     <ClCompile Include="WindowsManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="PipelineElements.cpp" />
-    <ClCompile Include="LightCommonComponent.cpp" />
     <ClCompile Include="INIReader\INIReader.cpp">
       <Filter>src\INIReader</Filter>
     </ClCompile>
@@ -247,6 +249,12 @@
     </ClCompile>
     <ClCompile Include="INIReader\ini.c">
       <Filter>src\INIReader</Filter>
+    </ClCompile>
+    <ClCompile Include="LightCommonComponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="PipelineElements.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

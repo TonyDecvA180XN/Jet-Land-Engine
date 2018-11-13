@@ -32,8 +32,8 @@ BOOL GameplayManager::Initialize(GraphicsManager * graphics, InputManager * inpu
 
 	camera_ = graphics->GetCamera();
     player_->SetCamera(camera_);
-    player_->SetPosition(0.0f, 0.0f, 10.0f);
-    player_->SetRotation(0.0f, 0.0f, 0.0f);
+    camera_->SetPosition(-3.0f, 1.0f, -10.0f);
+    camera_->Rotate(-8.0f, 27.0f, 0.0f);
     player_->Update(0);
 
 

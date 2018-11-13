@@ -10,8 +10,8 @@
         <IOR v="1.45"/>
     </Material>
     <Material name="GreenPlastic">
-        <Diffuse r="0.1" g="0.3" b="0.1"/>
-        <Ambient r="0.05" g="0.05" b="0.05"/>
+        <Diffuse r="0.05" g="0.25" b="0.05"/>
+        <Ambient r="0.1" g="0.1" b="0.1"/>
         <Specular r="0.45" g="0.55" b="0.45"/>
         <Roughness v="48.0"/>
         <Transparency v="0.0"/>
