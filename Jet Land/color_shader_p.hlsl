@@ -25,7 +25,7 @@ struct MaterialType
     float4 mDiffuse;
     float4 mAmbient;
     float4 mSpecular;
-    float mRoughness;
+    float mShininess;
     float mTransparency;
     float mMirror;
     float mIOR;
@@ -97,7 +97,7 @@ LightResult SolveDirectionalLight(LightSourceType light, float3 pixelPos, float3
 
     LightResult result;
     result.Diffuse = light.lColor * ComputeDiffuse(fallRay, pixelNormal);
-    result.Specular = light.lColor * ComputeSpecular(pixelPos, pixelNormal, fallRay, eyePos.xyz, Material.mRoughness);
+    result.Specular = light.lColor * ComputeSpecular(pixelPos, pixelNormal, fallRay, eyePos.xyz, Material.mShininess);
 
     return result;
 }
@@ -108,7 +108,7 @@ LightResult SolvePointLight(LightSourceType light, float3 pixelPos, float3 pixel
 
     LightResult result;
     result.Diffuse = light.lColor * ComputeDiffuse(fallRay, pixelNormal);
-    result.Specular = light.lColor * ComputeSpecular(pixelPos, pixelNormal, fallRay, eyePos.xyz, Material.mRoughness);
+    result.Specular = light.lColor * ComputeSpecular(pixelPos, pixelNormal, fallRay, eyePos.xyz, Material.mShininess);
 
     return result;
 }

@@ -85,14 +85,14 @@ VOID Material::SetSpecular(FLOAT r, FLOAT g, FLOAT b)
 	PoolObject::Update();
 }
 
-FLOAT Material::GåtRoughness()
+FLOAT Material::GåtShininess()
 {
-	return m_roughness;
+	return m_shininess;
 }
 
-VOID Material::SetRoughness(FLOAT roughness)
+VOID Material::SetShininess(FLOAT shininess)
 {
-	m_roughness = roughness;
+	m_shininess = shininess;
 	PoolObject::Update();
 }
 
@@ -135,7 +135,7 @@ Material::MaterialBuffer Material::GenerateBuffer()
 	buffer.mDiffuse = m_diffuse;
 	buffer.mAmbient = m_ambient;
 	buffer.mSpecular = m_specular;
-	buffer.mRoughness = m_roughness;
+	buffer.mShininess = m_shininess;
 	buffer.mTransparency = m_transparency;
 	buffer.mMirror = m_mirror;
 	buffer.mIOR = m_IOR;

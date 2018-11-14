@@ -208,7 +208,7 @@ VOID PipelineElements::SetMaterial(ID3D11DeviceContext * device_context, Materia
 	inside_data->mDiffuse = mb.mDiffuse;
 	inside_data->mAmbient = mb.mAmbient;
 	inside_data->mSpecular = mb.mSpecular;
-	inside_data->mRoughness = mb.mRoughness;
+	inside_data->mShininess = mb.mShininess;
 	inside_data->mTransparency = mb.mTransparency;
 	inside_data->mMirror = mb.mMirror;
 	inside_data->mIOR = mb.mIOR;

@@ -10,7 +10,7 @@ public:
 		DirectX::XMFLOAT4 mDiffuse;
 		DirectX::XMFLOAT4 mAmbient;
 		DirectX::XMFLOAT4 mSpecular;
-		FLOAT mRoughness;
+		FLOAT mShininess;
 		FLOAT mTransparency;
 		FLOAT mMirror;
 		FLOAT mIOR;
@@ -34,8 +34,8 @@ public:
 	VOID              GetSpecular     (FLOAT &r, FLOAT &g, FLOAT &b);
 	VOID              SetSpecular     (FLOAT r, FLOAT g, FLOAT b);
 
-	FLOAT             GåtRoughness    ();
-	VOID              SetRoughness    (FLOAT roughness);
+	FLOAT             GåtShininess    ();
+	VOID              SetShininess    (FLOAT shininess);
 
 	FLOAT             GåtTransparency ();
 	VOID              SetTransparency (FLOAT transparency);
@@ -54,7 +54,7 @@ private:
 	DirectX::XMFLOAT4 m_diffuse;
 	DirectX::XMFLOAT4 m_ambient;
 	DirectX::XMFLOAT4 m_specular;
-	FLOAT m_roughness;
+	FLOAT m_shininess;
 	FLOAT m_transparency;
 	FLOAT m_mirror;
 	FLOAT m_IOR;

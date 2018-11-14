@@ -89,7 +89,7 @@ Material * Loader::LoadMaterial(Pool<Material>* pool, std::string name, std::str
 		tinyxml2::XMLElement * diffuse = materialBlock->FirstChildElement("Diffuse");
 		tinyxml2::XMLElement * ambient = materialBlock->FirstChildElement("Ambient");
 		tinyxml2::XMLElement * specular = materialBlock->FirstChildElement("Specular");
-		tinyxml2::XMLElement * roughness = materialBlock->FirstChildElement("Roughness");
+		tinyxml2::XMLElement * shininess = materialBlock->FirstChildElement("Shininess");
 		tinyxml2::XMLElement * transparency = materialBlock->FirstChildElement("Transparency");
 		tinyxml2::XMLElement * mirror = materialBlock->FirstChildElement("Mirror");
 		tinyxml2::XMLElement * ior = materialBlock->FirstChildElement("IOR");
@@ -97,7 +97,7 @@ Material * Loader::LoadMaterial(Pool<Material>* pool, std::string name, std::str
 		newMaterial->m_diffuse = DirectX::XMFLOAT4(diffuse->FloatAttribute("r"), diffuse->FloatAttribute("g"), diffuse->FloatAttribute("b"), 1.0f);
 		newMaterial->m_ambient = DirectX::XMFLOAT4(ambient->FloatAttribute("r"), ambient->FloatAttribute("g"), ambient->FloatAttribute("b"), 1.0f);
 		newMaterial->m_specular = DirectX::XMFLOAT4(specular->FloatAttribute("r"), specular->FloatAttribute("g"), specular->FloatAttribute("b"), 1.0f);
-		newMaterial->m_roughness = roughness->FloatAttribute("v");
+		newMaterial->m_shininess = shininess->FloatAttribute("v");
 		newMaterial->m_transparency = transparency->FloatAttribute("v");
 		newMaterial->m_mirror = mirror->FloatAttribute("v");
 		newMaterial->m_IOR = ior->FloatAttribute("v");
