@@ -88,8 +88,8 @@
     </ClCompile>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
+copy "$(OutputPath)*.cso" "$(SolutionDir)Runtime\Data\Shaders"
+"$(SolutionDir)Jet Land\Utils\MakeSpriteFont.exe" "Consolas" "$(SolutionDir)Runtime\cn.font" /FontSize:12</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -106,8 +106,8 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     </ClCompile>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
+copy "$(OutputPath)*.cso" "$(SolutionDir)Runtime\Data\Shaders"
+"$(SolutionDir)Jet Land\Utils\MakeSpriteFont.exe" "Consolas" "$(SolutionDir)Runtime\cn.font" /FontSize:12</Command>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>dinput8.lib;dxguid.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -132,8 +132,8 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     </Link>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
+copy "$(OutputPath)*.cso" "$(SolutionDir)Runtime\Data\Shaders"
+"$(SolutionDir)Jet Land\Utils\MakeSpriteFont.exe" "Consolas" "$(SolutionDir)Runtime\cn.font" /FontSize:12</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,8 +155,8 @@ copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Com
     </Link>
     <PostBuildEvent>
       <Command>copy "$(OutputPath)$(TargetFileName)" "$(SolutionDir)Runtime"
-copy "$(OutputPath)color_shader_v.cso" "$(SolutionDir)Runtime\Data\Shaders"
-copy "$(OutputPath)color_shader_p.cso" "$(SolutionDir)Runtime\Data\Shaders"</Command>
+copy "$(OutputPath)*.cso" "$(SolutionDir)Runtime\Data\Shaders"
+"$(SolutionDir)Jet Land\Utils\MakeSpriteFont.exe" "Consolas" "$(SolutionDir)Runtime\cn.font" /FontSize:12</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

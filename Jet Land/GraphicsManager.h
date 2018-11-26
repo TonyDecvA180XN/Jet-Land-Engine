@@ -13,6 +13,9 @@
 #include "CompiledShader.h"
 #include "Pool.h"
 #include "LightCommonComponent.h"
+#include "SpriteFont.h"
+#include "SimpleMath.h"
+
 
 
 class GraphicsManager
@@ -43,6 +46,8 @@ private:
 	Pool<Material> * m_materials;
 	Pool<Texture> * m_textures;
 	Pool<CompiledShader> * m_shaders;
+	DirectX::SpriteFont * m_text;
+	DirectX::SpriteBatch* m_spriteBatch;
 
     Timer * timer_;
     FpsCounter * fps_;
